@@ -3,6 +3,8 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 // @route   POST api/users
 // @ desc   Register User
@@ -34,7 +36,10 @@ router.post(
 			//USING AWAIT TO WAIT FOR SERVER RESPONSE
 			let user = await User.findOne({ email });
 			if (user) {
-				res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+				//ADD RETURN TO RES.STATUS SO NO CONFLICT WITH FINAL RES.SEND
+				return res
+					.status(400)
+					.json({ errors: [{ msg: 'User already exists' }] });
 			}
 
 			user = new User({
@@ -48,11 +53,23 @@ router.post(
 
 			user.password = await bcrypt.hash(password, salt);
 
-			await user.save();
+			await user.save(); //RETURNS A PROMISE WITH NEW USER INFO INCLDING MONGODB _ID INFO
 
-			//RETURN JSONWEBTOKEN
+			//CREATE AND RETURN JSONWEBTOKEN
+			const payload = {
+				user: {
+					id: user.id,
+				},
+			};
 
-			res.send('User registered');
+			jwt.sign(payload, 
+        config.get('jwtSecret'),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if(err) throw err;
+          res.json({token});
+        }
+        );
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('Server Error');
