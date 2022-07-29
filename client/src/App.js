@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from '../src/components/layout/Navbar';
 import Landing from '../src/components/layout/Landing';
+import Login from '../src/components/layout/Login';
+import Register from '../src/components/layout/Register';
 
 const App = () => {
   return (
@@ -10,7 +12,7 @@ const App = () => {
 <Fragment>
  <Navbar />
  <Routes>
-<Route path="/" element={ <Landing /> } />
+<Route path="/" element={ <Register /> } />
   </Routes> 
   
 </Fragment>
