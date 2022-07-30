@@ -1,0 +1,47 @@
+[33mcommit c797f62733650f5587d28ee1fd1a470c8a04e937[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31mheroku/main[m[33m)[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Fri Jul 29 17:51:35 2022 -0400
+
+    Debug Heroku build error
+
+[33mcommit 03124435c53a9a3fe86e9c4567575d802236f98a[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Fri Jul 29 17:12:52 2022 -0400
+
+    Test deployable code with Heroku
+
+[33mcommit 4c6601994cda8d6507594c4ac8395034a375537e[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Fri Jul 29 06:15:01 2022 -0400
+
+    Created Login and Register Components
+
+[33mcommit 29129e180fbb4570b8fea13aaa22e5d94874f73b[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Thu Jul 28 21:39:21 2022 -0400
+
+    Start front end dev with React - Landing page complete
+
+[33mcommit efc09fa5c8d511adcfd28b66a2493bd346553afa[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Wed Jul 27 17:21:51 2022 -0400
+
+    Finish user POST route for registration and add custom middleware for auth
+
+[33mcommit 3a20d98e1bcb5239d5131ef67aa43eab78de39e4[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Wed Jul 27 15:39:01 2022 -0400
+
+    Create User model and start user routes
+
+[33mcommit 27fd5eb8e662b76ef004dada284f07806eef39b8[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Tue Jul 26 19:10:09 2022 -0400
+
+    Add database connectivity and some file structure
+
+[33mcommit 06fd26bf65549cd88feedf845453d9b2abd7a5a8[m
+Author: Brok3Turtl3 <brok3turtl3@gmail.com>
+Date:   Wed Jul 6 21:15:21 2022 -0400
+
+    Initial commit

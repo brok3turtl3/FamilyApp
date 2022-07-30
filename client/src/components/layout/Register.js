@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
 
@@ -73,7 +74,7 @@ const Register = () => {
           <button class="btn">Submit</button>
 				
 			</form>
-			<p style={pstyles}>Already have an account?<a href="login.html">  Sign in here</a></p>
+			<p style={pstyles}>Already have an account?<Link to="/login">  Sign in here</Link></p>
 		</section>
     </Fragment>
   )

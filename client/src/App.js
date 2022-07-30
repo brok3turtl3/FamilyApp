@@ -12,7 +12,9 @@ const App = () => {
 <Fragment>
  <Navbar />
  <Routes>
-<Route path="/" element={ <Register /> } />
+<Route path="/" element={ <Landing /> } />
+<Route path="/register" element={ <Register /> } />
+<Route path="/login" element={ <Login /> } />
   </Routes> 
   
 </Fragment>
