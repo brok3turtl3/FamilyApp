@@ -1,12 +1,28 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+
 const Register = () => {
+
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		password: '',
+		password2: ''
+	});
+
+	const { name, email, password, password2} = formData;
+
+	const handleChange = e => {
+		setFormData({ ...formData, [e.target.name]: e.target.value})
+	}
 
   const pstyles = {
     color: "white", 
     marginTop: "3rem"
     }
+
+		
 
   return (
     <Fragment>
@@ -29,44 +45,48 @@ const Register = () => {
 				<div class="register-field">
 					<label for="register-name"
 						>Name:<input
-            
+							name="name"
 							id="register-name"
 							type="text"
 							placeholder="Name"
-							value=""
+							value={name}
+							onChange={handleChange}
 							required
 					/></label>
 				</div>
 				<div class="register-field">
 					<label for="register-email"
 						>Email:<input
-            
+							name="email"
 							id="register-email"
 							type="email"
 							placeholder="Email Address"
-							value=""
+							value={email}
+							onChange={handleChange}
 							required
 					/></label>
 				</div>
 				<div class="register-field">
 					<label for="register-password"
 						>Password:<input
-            
+							name="password"
 							id="register-password"
 							type="text"
 							placeholder="Password"
-							value=""
+							value={password}
+							onChange={handleChange}
 							required
 					/></label>
 				</div>
 				<div class="register-field">
 					<label for="register-password"
 						>Password:</label><input
-            
+            name="password2"
             id="register-password"
             type="text"
             placeholder="Confirm your password"
-            value=""
+            value={password2}
+						onChange={handleChange}
             required
         />
           </div>

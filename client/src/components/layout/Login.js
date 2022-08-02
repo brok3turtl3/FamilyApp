@@ -1,13 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState} from 'react';
 import { Link } from 'react-router-dom';
 
-
 const Login = () => {
+
+	const [formData, setFormData] = useState({
+		email: '',
+		password: ''
+	});
+
+	const { email, password } = formData;
 
   const pstyles = {
     color: "white", 
     marginTop: "3rem"
     }
+
+		const handleChange = (e) => {
+			setFormData({...formData, [e.target.name]: e.target.value})
+		}
+		
+
   return (
     <Fragment>
     <section class="homepage">
@@ -30,22 +42,24 @@ const Login = () => {
 				<div class="register-field">
 					<label for="register-email"
 						>Email:<input
-            
+							name="email"
 							id="register-email"
 							type="email"
 							placeholder="Email Address"
-							value=""
+							value={email}
+							onChange={handleChange}
 							required
 					/></label>
 				</div>
 				<div class="register-field">
 					<label for="register-password"
 						>Password:<input
-            
+							name="password"
 							id="register-password"
 							type="text"
 							placeholder="Password"
-							value=""
+							value={password}
+							onChange={handleChange}
 							required
 					/></label>
 				</div>
