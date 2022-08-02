@@ -18,6 +18,15 @@ const Login = () => {
 		const handleChange = (e) => {
 			setFormData({...formData, [e.target.name]: e.target.value})
 		}
+
+		// const handleSubmit = (e) => {
+		// 	e.preventDefault();
+		// 	if(password !== password2){
+		// 		console.log('Passowrds do not match');
+		// 	} else {
+		// 		console.log(formData);
+		// 	}
+		// }
 		
 
   return (
@@ -35,7 +44,7 @@ const Login = () => {
 		</section>
 
 		<section class="register-container">
-			<form class="register-form">
+			<form class="register-form" >
         <h3>Please enter your email and password to login.</h3>
         <div class="fields">
 				
@@ -65,7 +74,7 @@ const Login = () => {
 				</div>
 				
         </div>
-          <button class="btn">Submit</button>
+          <button class="btn" type="submit">Submit</button>
 				
 			</form>
 			<p style={pstyles}>Need an account?<Link to="/register"> Register here</Link></p>
