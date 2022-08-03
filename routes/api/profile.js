@@ -5,9 +5,9 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 
-// @route   GET api/profile/user
-// @ desc   get current users profile
-// @access  Private
+//ROUTE     GET api/profile/user
+//PURPOSE   get current users profile
+//ACCESS    Private
 
 router.get('/user', auth, async (req, res) => {
 	try {
@@ -25,9 +25,9 @@ router.get('/user', auth, async (req, res) => {
 	}
 });
 
-// @route   POST api/profile
-// @ desc   Create/Update profile data for logged in user
-// @access  Private
+//ROUTE     POST api/profile
+//PURPOSE   Create/Update profile data for logged in user
+//ACCESS    Private
 
 router.post(
 	'/',
@@ -90,20 +90,42 @@ router.post(
 	}
 );
 
-// @route   GET api/profile
-// @ desc   Get all profiles
-// @access  Private
+//ROUTE     GET api/profile
+//PURPOSE   Get all profiles
+//ACCESS    Private
 
 router.get('/', auth, async (req, res) => {
+	try {
+		const profiles = await Profile.find().populate('user', ['name']);
+		res.json(profiles);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
 
-  try {
-    const profiles = await Profile.find().populate('user', ['name']);
-    res.json(profiles);
-    
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server Error')
-  }
+//ROUTE     GET api/profile/user/:user_id
+//PURPOSE   Get profile by user ID
+//ACCESS    Private
+
+router.get('/user/:user_id', auth, async (req, res) => {
+	try {
+		const profile = await Profile.findOne({
+			user: req.params.user_id,
+		}).populate('user', ['name']);
+
+		if (!profile) {
+			return res.status(400).json({ msg: 'Profile not found' });
+		}
+
+		res.json(profile);
+	} catch (error) {
+		console.error(error.message);
+		if (error.kind == 'ObjectId') {
+			return res.status(400).json({ msg: 'Profile not found' });
+		}
+		res.status(500).send('Server Error');
+	}
 });
 
 module.exports = router;
