@@ -11,6 +11,23 @@ const ProfileSchema = new mongoose.Schema({
   bio: {
     type: String
   },
+  work: {
+    company: {
+      type: String
+    },
+    position: {
+      type: String
+    }
+
+  },
+  education : {
+    school: {
+      type: String
+    },
+    program: {
+      type: String
+    }
+  },
   interests: {
     type: [String]
   },
