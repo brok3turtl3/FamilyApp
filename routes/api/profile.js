@@ -5,8 +5,8 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 
-//ROUTE     GET api/profile/user
-//PURPOSE   get current users profile
+//ENDPOINT  GET api/profile/user
+//PURPOSE   Get current users profile
 //ACCESS    Private
 
 router.get('/user', auth, async (req, res) => {
@@ -25,7 +25,7 @@ router.get('/user', auth, async (req, res) => {
 	}
 });
 
-//ROUTE     POST api/profile
+//ENDPOINT  POST api/profile
 //PURPOSE   Create/Update profile data for logged in user
 //ACCESS    Private
 
@@ -90,7 +90,7 @@ router.post(
 	}
 );
 
-//ROUTE     GET api/profile
+//ENDPOINT  GET api/profile
 //PURPOSE   Get all profiles
 //ACCESS    Private
 
@@ -104,7 +104,7 @@ router.get('/', auth, async (req, res) => {
 	}
 });
 
-//ROUTE     GET api/profile/user/:user_id
+//ENDPOINT  GET api/profile/user/:user_id
 //PURPOSE   Get profile by user ID
 //ACCESS    Private
 
@@ -127,5 +127,20 @@ router.get('/user/:user_id', auth, async (req, res) => {
 		res.status(500).send('Server Error');
 	}
 });
+
+//ENDPOINT   DELETE api/profile
+//PURPOSE    Delete profile, user & posts
+//ACCESS     Private
+router.delete('/',auth, async (req, res) => {
+  try {
+    //REMOVE PROFILE
+    await Profile.findOneAndRemove({user: req.user.id});
+    await User.findOneAndRemove({_id: req.user.id});
+    res.json({msg: 'User deleted'});
+  } catch (err) {
+    console.log(err.msg);
+    res.status(500).send('Server Error');
+  }
+})
 
 module.exports = router;
