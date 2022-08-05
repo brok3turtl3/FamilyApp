@@ -38,8 +38,19 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 		//DESTRUCTURE VARIABLES FROM REQ.BODY FOR EASE OF USE AND CLARITY
-		const { city, bio, interests, dob, twitter, facebook, instagram } =
-			req.body;
+		const {
+			city,
+			company,
+			position,
+			school,
+			program,
+			bio,
+			interests,
+			dob,
+			twitter,
+			facebook,
+			instagram,
+		} = req.body;
 
 		//BUILD PROFILE OBJECT
 		const profileFields = {};
@@ -48,9 +59,7 @@ router.post(
 		if (bio) profileFields.bio = bio;
 		if (interests) profileFields.interests = interests;
 		if (dob) profileFields.dob = dob;
-		if (twitter) profileFields.twitter = twitter;
-		if (facebook) profileFields.facebook = city;
-		if (instagram) profileFields.instagram = instagram;
+
 		if (interests) {
 			profileFields.interests = interests
 				.split(',')
@@ -64,6 +73,16 @@ router.post(
 		if (facebook) profileFields.social.facebook = facebook;
 		if (twitter) profileFields.social.twitter = twitter;
 		if (instagram) profileFields.social.instagram = instagram;
+
+		//BUILD WORK OBJECT
+		profileFields.work = {};
+		if (company) profileFields.work.company = company;
+		if (position) profileFields.work.position = position;
+
+		//BUILD EDUCATION OBJECT
+		profileFields.education = {};
+		if (school) profileFields.education.school = school;
+		if (program) profileFields.education.program = program;
 
 		try {
 			let profile = await Profile.findOne({ user: req.user.id });
@@ -131,16 +150,18 @@ router.get('/user/:user_id', auth, async (req, res) => {
 //ENDPOINT   DELETE api/profile
 //PURPOSE    Delete profile, user & posts
 //ACCESS     Private
-router.delete('/',auth, async (req, res) => {
-  try {
-    //REMOVE PROFILE
-    await Profile.findOneAndRemove({user: req.user.id});
-    await User.findOneAndRemove({_id: req.user.id});
-    res.json({msg: 'User deleted'});
-  } catch (err) {
-    console.log(err.msg);
-    res.status(500).send('Server Error');
-  }
-})
+router.delete('/', auth, async (req, res) => {
+	try {
+		//REMOVE PROFILE
+		await Profile.findOneAndRemove({ user: req.user.id });
+		//REMOVE USER
+		await User.findOneAndRemove({ _id: req.user.id });
+		//SEND CONFIRMATION
+		res.json({ msg: 'User deleted' });
+	} catch (err) {
+		console.log(err.msg);
+		res.status(500).send('Server Error');
+	}
+});
 
 module.exports = router;
