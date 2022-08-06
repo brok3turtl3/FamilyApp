@@ -7,9 +7,8 @@ const Profile = require('../../models/Profile');
 const { check, validationResult } = require('express-validator');
 
 //ENDPOINT  POST api/posts
-//PURPOSE   Add new post
+//PURPOSE   Add a new post
 //ACCESS    Private
-
 router.post(
 	'/',
 	[
@@ -43,5 +42,19 @@ router.post(
 		}
 	}
 );
+
+//ENDPOINT  GET api/posts
+//PURPOSE   Retrieve all posts
+//ACCESS    Private
+router.get('/', auth, async (req, res) => {
+
+  try {
+    const posts = await Post.find().sort({date: -1});
+    res.json(posts);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).semd('Server Errror')
+  }
+})
 
 module.exports = router;
