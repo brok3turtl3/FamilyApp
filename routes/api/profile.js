@@ -6,7 +6,7 @@ const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 
 //ENDPOINT  GET api/profile/user
-//PURPOSE   Get current users profile
+//PURPOSE   Retrieve current users profile
 //ACCESS    Private
 
 router.get('/user', auth, async (req, res) => {
@@ -110,7 +110,7 @@ router.post(
 );
 
 //ENDPOINT  GET api/profile
-//PURPOSE   Get all profiles
+//PURPOSE   Retrieve all profiles
 //ACCESS    Private
 
 router.get('/', auth, async (req, res) => {
@@ -124,7 +124,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 //ENDPOINT  GET api/profile/user/:user_id
-//PURPOSE   Get profile by user ID
+//PURPOSE   Retireve profile by user ID
 //ACCESS    Private
 
 router.get('/user/:user_id', auth, async (req, res) => {
