@@ -149,4 +149,37 @@ router.put('/unlike/:postId', auth, async (req, res) => {
 	}
 });
 
+//ENDPOINT  POST api/posts/comment/:postId
+//PURPOSE   Comment on a post
+//ACCESS    Private
+router.post(
+	'/comment/:postId',
+	[auth, [check('text', 'Post message is required').not().isEmpty()]],
+	async (req, res) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		try {
+			const user = await User.findById(req.user.id).select('-password');
+			const post = await Post.findById(req.params.postId);
+
+			const newComment = {
+				text: req.body.text,
+				name: user.name,
+				user: req.user.id,
+			};
+
+			post.comments.unshift(newComment);
+
+			await post.save();
+			res.json(post.comments);
+		} catch (error) {
+			console.error(error.message);
+			res.status(500).send('Server Error');
+		}
+	}
+);
+
 module.exports = router;
