@@ -182,4 +182,34 @@ router.post(
 	}
 );
 
+//ENDPOINT  DELETE api/posts/comment/:postId/:commentId
+//PURPOSE   Delete a comment from a post
+//ACCESS    Private
+router.delete('/comment/:postId/:commentId', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.postId);
+		const comment = post.comments.find(
+			(comment) => comment.id === req.params.commentId
+		);
+
+		if (!comment) {
+			return res.status(404).json({ msg: 'Comment does not exist' });
+		}
+
+		if (req.user.id !== comment.user.toString()) {
+			return res
+				.status(401)
+				.json({ msg: 'Not authorized to delete this comment' });
+		}
+
+		const indexToRemove = post.comments.indexOf(comment);
+		post.comments.splice(indexToRemove, 1);
+		post.save();
+		res.json(post.comments);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Errror');
+	}
+});
+
 module.exports = router;
