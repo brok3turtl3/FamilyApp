@@ -7,21 +7,26 @@ import Login from '../src/components/layout/Login';
 import Register from '../src/components/layout/Register';
 import Profile from '../src/components/layout/Profile';
 
+//REDUX IMPORTS
+import { Provider } from 'react-redux';
+import store from './store';
+
 const App = () => {
-  return (
-<Router>
-<Fragment>
- <Navbar />
- <Routes>
-<Route path="/" element={ <Landing /> } />
-<Route path="/register" element={ <Register /> } />
-<Route path="/login" element={ <Login /> } />
-<Route path="/profile" element={ <Profile /> } />
-<Route path="/profiles" element={ <Profile /> } />
-  </Routes> 
-  
-</Fragment>
-</Router>
-  )
+	return (
+		<Provider store={store}>
+			<Router>
+				<Fragment>
+					<Navbar />
+					<Routes>
+						<Route path='/' element={<Landing />} />
+						<Route path='/register' element={<Register />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/profile' element={<Profile />} />
+						<Route path='/profiles' element={<Profile />} />
+					</Routes>
+				</Fragment>
+			</Router>
+		</Provider>
+	);
 };
 export default App;
