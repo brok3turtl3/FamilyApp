@@ -3,15 +3,12 @@ import React, { Fragment } from 'react'
 const Profile = () => {
   return (
     <Fragment>
-      <section class="homepage">
-			<div class="dark-overlay">
-				<div class="homepage-inner">
-					<h1 class="x-large">PROFILE PLACEHOLDER</h1>
-					<p class="lead">
-						Under construction
-					</p>
-				</div>
-			</div>
+      <section className='background'>
+			<section className='dark-overlay'>
+				<section className='profile-container'>
+					<h1>UNDER CONSTRUCTION</h1>
+					</section>
+				</section>
 		</section>
 
 		

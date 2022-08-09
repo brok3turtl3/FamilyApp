@@ -6,6 +6,7 @@ import Landing from '../src/components/layout/Landing';
 import Login from '../src/components/layout/Login';
 import Register from '../src/components/layout/Register';
 import Profile from '../src/components/layout/Profile';
+import Alert from '../src/components/layout/Alert';
 
 //REDUX IMPORTS
 import { Provider } from 'react-redux';
@@ -16,7 +17,10 @@ const App = () => {
 		<Provider store={store}>
 			<Router>
 				<Fragment>
+				
 					<Navbar />
+					<section className="sectionAlert">
+					<Alert />
 					<Routes>
 						<Route path='/' element={<Landing />} />
 						<Route path='/register' element={<Register />} />
@@ -24,6 +28,7 @@ const App = () => {
 						<Route path='/profile' element={<Profile />} />
 						<Route path='/profiles' element={<Profile />} />
 					</Routes>
+					</section>
 				</Fragment>
 			</Router>
 		</Provider>

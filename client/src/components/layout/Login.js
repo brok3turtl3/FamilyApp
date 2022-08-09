@@ -1,86 +1,108 @@
-import React, { Fragment, useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
-const Login = () => {
-
+const Login = ({ setAlert }) => {
 	const [formData, setFormData] = useState({
 		email: '',
-		password: ''
+		password: '',
 	});
 
 	const { email, password } = formData;
 
-  const pstyles = {
-    color: "white", 
-    marginTop: "3rem"
-    }
+	let navigate = useNavigate();
 
-		const handleChange = (e) => {
-			setFormData({...formData, [e.target.name]: e.target.value})
+	const pstyles = {
+		color: 'white',
+		marginTop: '3rem',
+	};
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const user = {
+			email,
+			password,
+		};
+
+		try {
+			const config = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+
+			const body = JSON.stringify(user);
+
+			const res = await axios.post('/api/auth', body, config);
+			console.log(res.data);
+			navigate('../Profile');
+		} catch (error) {
+			console.error(error.response.data);
+			setAlert(error.response.data.errors[0].msg, 'danger');
 		}
+	};
 
-		// const handleSubmit = (e) => {
-		// 	e.preventDefault();
-		// 	if(password !== password2){
-		// 		console.log('Passowrds do not match');
-		// 	} else {
-		// 		console.log(formData);
-		// 	}
-		// }
-		
+	return (
+		<Fragment>
+			<section className='background'>
+				<section className='dark-overlay'>
+					<section className='register-container'>
+						<form className='register-form' onSubmit={handleSubmit}>
+							<h3>Please enter your email and password to login.</h3>
+							<div className='fields'>
+								<div className='register-field'>
+									<label htmlFor='register-email'>
+										Email:
+										<input
+											name='email'
+											id='register-email'
+											type='email'
+											placeholder='Email Address'
+											value={email}
+											onChange={handleChange}
+											required
+										/>
+									</label>
+								</div>
+								<div className='register-field'>
+									<label htmlFor='register-password'>
+										Password:
+										<input
+											name='password'
+											id='register-password'
+											type='password'
+											placeholder='Password'
+											value={password}
+											onChange={handleChange}
+											required
+										/>
+									</label>
+								</div>
+							</div>
+							<button className='btn' type='submit'>
+								Submit
+							</button>
+						</form>
+						<p style={pstyles}>
+							Need an account?<Link to='/register'> Register here</Link>
+						</p>
+					</section>
+				</section>
+			</section>
+		</Fragment>
+	);
+};
 
-  return (
-    <Fragment>
-    <section class="homepage">
-			<div class="dark-overlay">
-				<div class="homepage-inner">
-					<h1 class="x-large">Family Matters</h1>
-					<p class="lead">
-						A private page for our family to get to know each other, share
-						stories and stay in touch.
-					</p>
-				</div>
-			</div>
-		</section>
+Login.propTypes = {
+	setAlert: PropTypes.func.isRequired,
+};
 
-		<section class="register-container">
-			<form class="register-form" >
-        <h3>Please enter your email and password to login.</h3>
-        <div class="fields">
-				
-				<div class="register-field">
-					<label for="register-email"
-						>Email:<input
-							name="email"
-							id="register-email"
-							type="email"
-							placeholder="Email Address"
-							value={email}
-							onChange={handleChange}
-							required
-					/></label>
-				</div>
-				<div class="register-field">
-					<label for="register-password"
-						>Password:<input
-							name="password"
-							id="register-password"
-							type="text"
-							placeholder="Password"
-							value={password}
-							onChange={handleChange}
-							required
-					/></label>
-				</div>
-				
-        </div>
-          <button class="btn" type="submit">Submit</button>
-				
-			</form>
-			<p style={pstyles}>Need an account?<Link to="/register"> Register here</Link></p>
-		</section>
-    </Fragment>
-  )
-}
-
-export default Login;
+export default connect(null, { setAlert })(Login);

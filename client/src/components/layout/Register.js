@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
-const Register = (props) => {
+const Register = ({ setAlert }) => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -24,7 +25,7 @@ const Register = (props) => {
 		e.preventDefault();
 
 		if (password !== password2) {
-			props.setAlert('Passwords do not match', 'danger');
+			setAlert('Passwords do not match', 'danger');
 		} else {
 			const newUser = {
 				name,
@@ -46,6 +47,7 @@ const Register = (props) => {
 				navigate('../Profile');
 			} catch (error) {
 				console.error(error.response.data);
+				setAlert(error.response.data.errors[0].msg, 'danger');
 			}
 		}
 	};
@@ -57,90 +59,86 @@ const Register = (props) => {
 
 	return (
 		<Fragment>
-			<section class='homepage'>
-				<div class='dark-overlay'>
-					<div class='homepage-inner'>
-						<h1 class='x-large'>Family Matters</h1>
-						<p class='lead'>
-							A private page for our family to get to know each other, share
-							stories and stay in touch.
+			<section className='background'>
+				<section className='dark-overlay'>
+					<section className='register-container'>
+						<form className='register-form' onSubmit={handleSubmit}>
+							<h3>
+								Please enter your name, email and password to register your
+								account for the site.
+							</h3>
+							<div className='fields'>
+								<div className='register-field'>
+									<label htmlFor='register-name'>
+										Name:
+										<input
+											name='name'
+											id='register-name'
+											type='text'
+											placeholder='Name'
+											value={name}
+											onChange={handleChange}
+											required
+										/>
+									</label>
+								</div>
+								<div className='register-field'>
+									<label htmlFor='register-email'>
+										Email:
+										<input
+											name='email'
+											id='register-email'
+											type='email'
+											placeholder='Email Address'
+											value={email}
+											onChange={handleChange}
+											required
+										/>
+									</label>
+								</div>
+								<div className='register-field'>
+									<label htmlFor='register-password'>
+										Password:
+										<input
+											name='password'
+											id='register-password'
+											type='password'
+											placeholder='Password'
+											value={password}
+											onChange={handleChange}
+											required
+										/>
+									</label>
+								</div>
+								<div className='register-field'>
+									<label htmlFor='register-password2'>Password:</label>
+									<input
+										name='password2'
+										id='register-password2'
+										type='password'
+										placeholder='Confirm your password'
+										value={password2}
+										onChange={handleChange}
+										required
+									/>
+								</div>
+							</div>
+							<button className='btn' type='submit'>
+								Submit
+							</button>
+						</form>
+						<p style={pstyles}>
+							Already have an account?<Link to='/login'> Sign in here</Link>
 						</p>
-					</div>
-				</div>
-			</section>
-
-			<section class='register-container'>
-				<form class='register-form' onSubmit={handleSubmit}>
-					<h3>
-						Please enter your name, email and password to register your account
-						for the site.
-					</h3>
-					<div class='fields'>
-						<div class='register-field'>
-							<label for='register-name'>
-								Name:
-								<input
-									name='name'
-									id='register-name'
-									type='text'
-									placeholder='Name'
-									value={name}
-									onChange={handleChange}
-									required
-								/>
-							</label>
-						</div>
-						<div class='register-field'>
-							<label for='register-email'>
-								Email:
-								<input
-									name='email'
-									id='register-email'
-									type='email'
-									placeholder='Email Address'
-									value={email}
-									onChange={handleChange}
-									required
-								/>
-							</label>
-						</div>
-						<div class='register-field'>
-							<label for='register-password'>
-								Password:
-								<input
-									name='password'
-									id='register-password'
-									type='text'
-									placeholder='Password'
-									value={password}
-									onChange={handleChange}
-									required
-								/>
-							</label>
-						</div>
-						<div class='register-field'>
-							<label for='register-password'>Password:</label>
-							<input
-								name='password2'
-								id='register-password'
-								type='text'
-								placeholder='Confirm your password'
-								value={password2}
-								onChange={handleChange}
-								required
-							/>
-						</div>
-					</div>
-					<button class='btn' type='submit'>
-						Submit
-					</button>
-				</form>
-				<p style={pstyles}>
-					Already have an account?<Link to='/login'> Sign in here</Link>
-				</p>
+					</section>
+				</section>
 			</section>
 		</Fragment>
 	);
+};
+
+Register.propTypes = {
+	setAlert: PropTypes.func.isRequired,
 };
 
 export default connect(null, { setAlert })(Register);
