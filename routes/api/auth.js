@@ -30,7 +30,7 @@ router.post(
 	//VALIDATION PARAMETERS AS SECOND MIDDLEWARE ARGUMENT
 	[
 		check('email', 'Please include a valid email').isEmail(),
-		check('password', 'Password is required').exists()
+		check('password', 'Password is required').exists(),
 	],
 	async (req, res) => {
 		//CALL VALIDATOR ON REQ AND IF THERE ARE ERRORS RETURN BAD REQ STATUS AND JSON OBJECT WITH ERROR MESSAGES
@@ -54,7 +54,7 @@ router.post(
 			}
 
 			const isMatch = await bcrypt.compare(password, user.password);
-      console.log(isMatch);
+			console.log(isMatch);
 
 			if (!isMatch) {
 				return res

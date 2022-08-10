@@ -1,19 +1,18 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-const Login = ({ setAlert }) => {
+const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
 	});
 
 	const { email, password } = formData;
-
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const pstyles = {
 		color: 'white',
@@ -26,29 +25,15 @@ const Login = ({ setAlert }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		const user = {
-			email,
-			password,
-		};
-
-		try {
-			const config = {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			};
-
-			const body = JSON.stringify(user);
-
-			const res = await axios.post('/api/auth', body, config);
-			console.log(res.data);
-			navigate('../Profile');
-		} catch (error) {
-			console.error(error.response.data);
-			setAlert(error.response.data.errors[0].msg, 'danger');
-		}
+		login(email, password);
 	};
+
+	//REDIRECT IF LOGGED IN
+	useEffect(() => {
+		if (isAuthenticated) {
+			navigate('/Homepage');
+		}
+	});
 
 	return (
 		<Fragment>
@@ -102,7 +87,12 @@ const Login = ({ setAlert }) => {
 };
 
 Login.propTypes = {
-	setAlert: PropTypes.func.isRequired,
+	login: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert })(Login);
+const mapStateToProps = (state) => ({
+	isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, login })(Login);

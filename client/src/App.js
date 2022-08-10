@@ -1,33 +1,42 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from '../src/components/layout/Navbar';
 import Landing from '../src/components/layout/Landing';
 import Login from '../src/components/layout/Login';
 import Register from '../src/components/layout/Register';
-import Profile from '../src/components/layout/Profile';
 import Alert from '../src/components/layout/Alert';
+import Homepage from './components/layout/homepage/Homepage';
+
 
 //REDUX IMPORTS
 import { Provider } from 'react-redux';
 import store from './store';
+import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
+
+if (localStorage.token) {
+	setAuthToken(localStorage.token);
+}
 
 const App = () => {
+	useEffect(() => {
+		store.dispatch(loadUser());
+	}, []);
+
 	return (
 		<Provider store={store}>
 			<Router>
 				<Fragment>
-				
 					<Navbar />
-					<section className="sectionAlert">
-					<Alert />
-					<Routes>
-						<Route path='/' element={<Landing />} />
-						<Route path='/register' element={<Register />} />
-						<Route path='/login' element={<Login />} />
-						<Route path='/profile' element={<Profile />} />
-						<Route path='/profiles' element={<Profile />} />
-					</Routes>
+					<section className='sectionAlert'>
+						<Alert />
+						<Routes>
+							<Route path='/' element={<Landing />} />
+							<Route path='/register' element={<Register />} />
+							<Route path='/login' element={<Login />} />
+							<Route path='/homepage' element={<Homepage />} />
+						</Routes>
 					</section>
 				</Fragment>
 			</Router>
