@@ -8,12 +8,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 	const authLinks = (
 		<ul>
 			<li>
-				<Link to='/profiles'>Profiles</Link>
+				<Link to='/homepage'>Homepage</Link>
 			</li>
 			<li>
-				<a onClick={logout} href='#!'>Logout</a>
+				<a onClick={logout} href='#!'>
+					Logout
+				</a>
 			</li>
-			
 		</ul>
 	);
 
@@ -36,8 +37,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 				</Link>
 			</h1>
 
-			{!loading && (<Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>)}
-			
+			{!loading && (
+				<Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>
+			)}
 		</nav>
 	);
 };

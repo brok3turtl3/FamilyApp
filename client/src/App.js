@@ -6,7 +6,10 @@ import Landing from '../src/components/layout/Landing';
 import Login from '../src/components/layout/Login';
 import Register from '../src/components/layout/Register';
 import Alert from '../src/components/layout/Alert';
+import PrivateRoute from './utils/PrivateRoute';
 import Homepage from './components/layout/homepage/Homepage';
+
+
 
 
 //REDUX IMPORTS
@@ -28,6 +31,7 @@ const App = () => {
 		<Provider store={store}>
 			<Router>
 				<Fragment>
+					<h1>TTEST</h1>
 					<Navbar />
 					<section className='sectionAlert'>
 						<Alert />
@@ -35,7 +39,10 @@ const App = () => {
 							<Route path='/' element={<Landing />} />
 							<Route path='/register' element={<Register />} />
 							<Route path='/login' element={<Login />} />
-							<Route path='/homepage' element={<Homepage />} />
+							<Route element={<PrivateRoute />}>
+								<Route path='/homepage' element={<Homepage />} />
+							</Route>
+							
 						</Routes>
 					</section>
 				</Fragment>
@@ -43,4 +50,5 @@ const App = () => {
 		</Provider>
 	);
 };
+
 export default App;

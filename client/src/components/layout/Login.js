@@ -31,7 +31,7 @@ const Login = ({ login, isAuthenticated }) => {
 	//REDIRECT IF LOGGED IN
 	useEffect(() => {
 		if (isAuthenticated) {
-			navigate('/Homepage');
+			navigate('/homepage');
 		}
 	});
 

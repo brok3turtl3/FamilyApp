@@ -28,7 +28,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 			setAlert('Passwords do not match', 'danger');
 		} else {
 			register({ name, email, password });
-			navigate('../Profile');
+			navigate('/homepage');
 		}
 	};
 
