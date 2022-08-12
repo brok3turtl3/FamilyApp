@@ -31,7 +31,7 @@ const App = () => {
 		<Provider store={store}>
 			<Router>
 				<Fragment>
-					<h1>TTEST</h1>
+					
 					<Navbar />
 					<section className='sectionAlert'>
 						<Alert />
