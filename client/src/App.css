@@ -244,7 +244,7 @@ img {
 	height: 100vh;
 }
 
-.profile-container{
+.homepage-container{
   background-color: rgba(0, 0, 0, 0.6);
   font-size: 3rem;
   color: var(--light-color);
@@ -257,3 +257,5 @@ img {
 	justify-content: center;
 	text-align: center;
 }
+
+/* PROFILE PAGE */

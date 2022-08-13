@@ -8,6 +8,7 @@ import Register from '../src/components/layout/Register';
 import Alert from '../src/components/layout/Alert';
 import PrivateRoute from './utils/PrivateRoute';
 import Homepage from './components/layout/homepage/Homepage';
+import ProfileForm from './components/layout/ProfileForm';
 
 
 
@@ -41,6 +42,8 @@ const App = () => {
 							<Route path='/login' element={<Login />} />
 							<Route element={<PrivateRoute />}>
 								<Route path='/homepage' element={<Homepage />} />
+								<Route path='/profileform' element={<ProfileForm />} />
+								
 							</Route>
 							
 						</Routes>
