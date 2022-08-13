@@ -6,8 +6,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 const PrivateRoute = ({ auth: { isAuthenticated, loading } }) => {
 	let navigate = useNavigate();
-	console.log(isAuthenticated);
-
 	return !isAuthenticated && !loading ? navigate('/') : <Outlet /> 
 };
 

@@ -1,8 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createProfile} from '../../actions/profile'
+import { useNavigate } from 'react-router-dom'
 
-const ProfileForm = (props) => {
+const ProfileForm = ({createProfile}) => {
+
+  const navigate = useNavigate();
+
 	const [formData, setFormData] = useState({
 		city: '',
 		bio: '',
@@ -37,6 +42,11 @@ const ProfileForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+    const success = createProfile(formData);
+
+    if(success){
+      navigate('/homepage')
+    }
 	};
 
 	return (
@@ -78,6 +88,7 @@ const ProfileForm = (props) => {
 											placeholder='Bio'
 											value={bio}
 											onChange={handleChange}
+                      required
 										></textarea>
 									
 								</div>
@@ -118,7 +129,7 @@ const ProfileForm = (props) => {
 									<label htmlFor='profile-company'>Company:</label><br></br>
 										
 										<input
-											name='dob'
+											name='company'
 											id='profile-company'
 											type='text'
 											placeholder='Company'
@@ -230,6 +241,10 @@ const ProfileForm = (props) => {
 	);
 };
 
-ProfileForm.propTypes = {};
+ProfileForm.propTypes = {
+  createProfile: PropTypes.func.isRequired
+};
 
-export default connect()(ProfileForm);
+
+
+export default connect(null, { createProfile})(ProfileForm);

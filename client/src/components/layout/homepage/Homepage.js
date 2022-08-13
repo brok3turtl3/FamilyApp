@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../../actions/profile';
+import { Link } from 'react-router-dom';
 
 const Homepage = ({
 	getCurrentProfile,
@@ -22,7 +23,13 @@ const Homepage = ({
 				<section className='dark-overlay'>
 					<section className='homepage-container'>
 					<h1>Welcome {user && user.name}</h1>
-					<h1>A little bit about me: {profile && profile.bio}</h1>
+					{profile !== null ? (
+						<Fragment>HAS</Fragment> ) : (<Fragment>
+							<p>You do not have a profile created, please add some information</p>
+							<Link to='/profileform' className='btn btn-primary'>Create Profile</Link>
+						</Fragment>)
+					}
+					
 					</section>
 				</section>
 			</section>
