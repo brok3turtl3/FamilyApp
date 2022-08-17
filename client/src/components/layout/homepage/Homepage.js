@@ -11,7 +11,7 @@ const Homepage = ({
 }) => {
 	useEffect(() => {
 		getCurrentProfile();
-	}, []);
+	}, [getCurrentProfile]);
 
 	return loading && profile === null ? (
 		<Fragment>
@@ -24,7 +24,7 @@ const Homepage = ({
 					<section className='homepage-container'>
 					<h1>Welcome {user && user.name}</h1>
 					{profile !== null ? (
-						<Fragment>HAS</Fragment> ) : (<Fragment>
+						<Fragment><div>{profile.bio}</div><div><Link to="/editprofile" className="btn btn-primary">Edit Profile</Link></div></Fragment> ) : (<Fragment>
 							<p>You do not have a profile created, please add some information</p>
 							<Link to='/profileform' className='btn btn-primary'>Create Profile</Link>
 						</Fragment>)

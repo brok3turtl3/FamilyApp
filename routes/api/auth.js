@@ -8,7 +8,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 //ROUTE  		GET api/auth
-//PURPOSE   Test route
+//PURPOSE   Get user with current jwt
 //ACCESS  	Public
 
 router.get('/', auth, async (req, res) => {

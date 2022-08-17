@@ -9,6 +9,8 @@ import Alert from '../src/components/layout/Alert';
 import PrivateRoute from './utils/PrivateRoute';
 import Homepage from './components/layout/homepage/Homepage';
 import ProfileForm from './components/layout/ProfileForm';
+import Profiles from './components/layout/Profiles';
+import EditProfileForm from './components/layout/EditProfileForm';
 
 
 
@@ -43,6 +45,9 @@ const App = () => {
 							<Route element={<PrivateRoute />}>
 								<Route path='/homepage' element={<Homepage />} />
 								<Route path='/profileform' element={<ProfileForm />} />
+								<Route path='/profiles' element={<Profiles />} />
+								<Route path='/editprofile' element={<EditProfileForm />} />
+
 								
 							</Route>
 							

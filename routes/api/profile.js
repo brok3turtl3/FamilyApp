@@ -11,7 +11,7 @@ const { check, validationResult } = require('express-validator');
 
 router.get('/user', auth, async (req, res) => {
 	console.log(req.body);
-	console.log('TESTING!!!!')
+	console.log('TESTING!!!!');
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate(
 			'user',
@@ -62,12 +62,13 @@ router.post(
 		if (interests) profileFields.interests = interests;
 		if (dob) profileFields.dob = dob;
 
-		if (interests) {
-			profileFields.interests = interests
-				.split(',')
-				.map((interest) => interest.trim());
-			console.log(profileFields.interests);
-		}
+		//TODO*** FIGURE OUT WHY THIS CAUSES AN ERROR WHEN PROFILE IS UPDATED
+		// if (interests) {
+		// 	profileFields.interests = interests
+		// 		.split(',')
+		// 		.map((interest) => interest.trim());
+		// 	console.log(profileFields.interests);
+		// }
 
 		//BUILD SOCIALS OBJECT
 		profileFields.social = {};

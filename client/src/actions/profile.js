@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import setAuthToken from '../utils/setAuthToken';
+// import setAuthToken from '../utils/setAuthToken';
 
 import { GET_PROFILE, PROFILE_ERROR } from './types';
 
@@ -8,9 +8,9 @@ import { GET_PROFILE, PROFILE_ERROR } from './types';
 export const getCurrentProfile = () => async (dispatch) => {
 	try {
 		//TODO*** NOT SURE IF SETAUTHTOKEN IS REQUIRED HERE - NEED TO TEST
-		if (localStorage.token) {
-			setAuthToken(localStorage.token);
-		}
+		// if (localStorage.token) {
+		// 	setAuthToken(localStorage.token);
+		// }
 
 		const res = await axios.get('/api/profile/user');
 
@@ -32,7 +32,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 
 //ACTION TO CREATE OR UPDATE USER PROFILE
 export const createProfile =
-	(formData, history, edit = false) =>
+	(formData, edit = false) =>
 	async (dispatch) => {
 		try {
 			// if (localStorage.token) {

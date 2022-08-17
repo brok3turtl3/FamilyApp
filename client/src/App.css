@@ -269,4 +269,17 @@ img {
 	text-align: center;
 }
 
-/* PROFILE PAGE */
+/* PROFILES PAGE */
+.profiles-container{
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 3rem;
+  color: var(--light-color);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: auto;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
