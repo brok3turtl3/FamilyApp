@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../../actions/profile';
 import { Link } from 'react-router-dom';
+import Hourglass from '../Hourglass';
 
 const Homepage = ({
 	getCurrentProfile,
@@ -15,7 +16,7 @@ const Homepage = ({
 
 	return loading && profile === null ? (
 		<Fragment>
-			<div>Homepage</div>
+			<Hourglass />
 		</Fragment>
 	) : (
 		<Fragment>
