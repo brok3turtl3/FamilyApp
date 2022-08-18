@@ -145,7 +145,8 @@ const EditProfileForm = ({
 											name='dob'
 											id='profile-dob'
 											type='date'
-											value={dob}
+											//TODO*** FIGURE OUT HOW TO DISPLAY EXISTING DOB IN EDIT FORM
+											// value={dob}
 											onChange={handleChange}
 										/>
 									</div>

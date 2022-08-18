@@ -8,9 +8,10 @@ import Register from '../src/components/layout/Register';
 import Alert from '../src/components/layout/Alert';
 import PrivateRoute from './utils/PrivateRoute';
 import Homepage from './components/layout/homepage/Homepage';
-import ProfileForm from './components/layout/ProfileForm';
-import Profiles from './components/layout/Profiles';
-import EditProfileForm from './components/layout/EditProfileForm';
+import ProfileForm from './components/profiles/ProfileForm';
+import Profiles from './components/profiles/Profiles';
+import EditProfileForm from './components/profiles/EditProfileForm';
+import Profile from './components/profiles/Profile';
 
 
 
@@ -47,6 +48,7 @@ const App = () => {
 								<Route path='/profileform' element={<ProfileForm />} />
 								<Route path='/profiles' element={<Profiles />} />
 								<Route path='/editprofile' element={<EditProfileForm />} />
+								<Route path='/profile/:id' element={<Profile />} />
 
 								
 							</Route>

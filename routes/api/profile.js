@@ -137,7 +137,7 @@ router.get('/user/:user_id', auth, async (req, res) => {
 		}).populate('user', ['name']);
 
 		if (!profile) {
-			return res.status(400).json({ msg: 'Profile not found' });
+			return res.status(400).json({ msg: 'Profile not found - TEST' });
 		}
 
 		res.json(profile);

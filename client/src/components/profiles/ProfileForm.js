@@ -42,6 +42,7 @@ const ProfileForm = ({createProfile}) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		
     const success = createProfile(formData);
 
     if(success){

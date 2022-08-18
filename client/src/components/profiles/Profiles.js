@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import Hourglass from '../layout/Hourglass';
+import SmallProfile from './SmallProfile';
 
 import { getProfiles } from '../../actions/profile'
 
@@ -18,8 +20,27 @@ const Profiles = ({
     <section className='background'>
 				<section className='dark-overlay'>
           <section className="profiles-container">
-					<h1>PROFILES UNDER CONSTRUCTION</h1>
-          <h1>TEST</h1>
+					
+          {loading ? (
+        <Hourglass />
+      ) : (
+        <Fragment>
+          <h1>Family</h1>
+          <p>
+            Here is everyone so far!
+          </p>
+          <div className="profiles">
+            {profiles.length > 0 ? (
+              profiles.map((profile) => (
+                <SmallProfile key={profile._id} profile={profile} />
+              ))
+            ) : (
+              <h4>No profiles found...</h4>
+            )}
+          </div>
+        </Fragment>
+      )}
+          
           </section>
 				</section>
 			</section>
