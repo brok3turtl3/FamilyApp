@@ -13,7 +13,7 @@ const Profiles = ({
 
   useEffect(() => {
    getProfiles(); 
-  }, [getProfiles])
+  }, [getProfiles]);
 
 
   return (

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { useNavigate } from 'react-router-dom';
 
+
 const EditProfileForm = ({
 	profile: { profile, loading },
 	createProfile,
