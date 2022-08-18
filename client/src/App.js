@@ -12,6 +12,7 @@ import ProfileForm from './components/profiles/ProfileForm';
 import Profiles from './components/profiles/Profiles';
 import EditProfileForm from './components/profiles/EditProfileForm';
 import Profile from './components/profiles/Profile';
+import Posts from './components/posts/Posts';
 
 
 
@@ -49,6 +50,7 @@ const App = () => {
 								<Route path='/profiles' element={<Profiles />} />
 								<Route path='/editprofile' element={<EditProfileForm />} />
 								<Route path='/profile/:id' element={<Profile />} />
+								<Route path='/posts' element={<Posts />} />
 
 								
 							</Route>
