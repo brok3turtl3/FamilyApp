@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getPosts } from '../../actions/post';
 import Hourglass from '../layout/Hourglass';
 import Post from './Post'
+import PostForm from './PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
 	useEffect(() => {
@@ -21,7 +22,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 						) : (
 							<Fragment>
 								<h1>TEST</h1>
-								{/* <PostForm /> */}
+								<PostForm />
 								<div className='profiles'>
 								{posts.length > 0 ? (
 									posts.map((post) => (

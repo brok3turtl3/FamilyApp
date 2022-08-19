@@ -10,6 +10,7 @@ const Homepage = ({
 	auth: { user },
 	profile: { profile, loading },
 }) => {
+	
 	useEffect(() => {
 		getCurrentProfile();
 	}, [getCurrentProfile]);
