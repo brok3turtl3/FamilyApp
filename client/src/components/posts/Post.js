@@ -6,12 +6,19 @@ import { connect } from 'react-redux';
 
 const Post = ({ auth, post: { _id, subject, text, name, user, likes, comments, date}}) => {
   return (
-    <div className='small-profile'>
-      <h2>{subject}</h2>
-      <h1>{text}</h1>
-      <h1>{name}</h1>
-    </div>
-    
+    // <div className='small-profile'>
+    //   <h2>{subject}</h2>
+    //   <h1>{text}</h1>
+    //   <h1>{name}</h1>
+    // </div>
+    <div class="posts">
+            <div class="subject">
+              <div>SUBJECT : {subject}</div>
+              <div>{name}</div>
+            </div>
+            
+            <div class="body">{text}</div>
+          </div>
   )
 }
 

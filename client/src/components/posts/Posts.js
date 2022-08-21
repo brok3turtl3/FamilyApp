@@ -13,15 +13,16 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 
 	return (
 		
-			<section className='background'>
-				<section className='dark-overlay'>
-					<div className='homepage-container'>
+			<section className='homepage'>
+				<section className='posts-overlay'>
+					<div className='posts-inner'>
 
 						{loading ? (
 							<Hourglass />
 						) : (
 							<Fragment>
-								<h1>TEST</h1>
+								<div class="title-bar">Forums</div>
+          <p class="medium-text">Get to know everyone! Leave a post or comment.</p>
 								<PostForm />
 								<div className='profiles'>
 								{posts.length > 0 ? (
