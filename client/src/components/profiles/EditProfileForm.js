@@ -73,9 +73,9 @@ const EditProfileForm = ({
 
 	return (
 		<Fragment>
-			<section className='background'>
-				<section className='dark-overlay'>
-					<section className='register-container'>
+			<section className='homepage'>
+				<section className='posts-overlay'>
+					<section className='posts-inner'>
 						<form className='register-form' onSubmit={handleSubmit}>
 							<h3>
 								Please enter any information you would like to add or update.

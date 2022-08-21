@@ -227,7 +227,7 @@ img {
 	color: var(--light-color);
 	display: flex;
 	flex-direction: column;
-	padding-top: 20%;
+	
 	width: 50%;
 	height: 100%;
 	max-width: 500px;
