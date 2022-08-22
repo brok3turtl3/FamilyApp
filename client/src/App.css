@@ -6,21 +6,7 @@
 	--success-color: #28a745;
 }
 
-textarea, input {
-	font-family: inherit;
-	font-size: 100%;
-  background-color: #626d78;
-  color: #f4f4f4;
-  width : 100%;
-  padding: 0 10px;
-  margin: 0 1rem;
-  box-sizing: border-box;
-  border: none;
-}
 
-textarea{
-  height: 5rem;
-}
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #17a2b8;
@@ -215,21 +201,20 @@ img {
 	height: 100%;
 	width: 100%;
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 0; 
+	left: 0; 
 	background-color: rgba(0, 0, 0, 0.6);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+
 }
 .register-form {
 	color: var(--light-color);
 	display: flex;
 	flex-direction: column;
-	
 	width: 50%;
-	height: 100%;
 	max-width: 500px;
 	min-width: 500px;
 }
@@ -399,5 +384,25 @@ overflow:auto;
 .medium-text{
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.posts-inner textarea, .posts-inner input {
+	font-family: inherit;
+	font-size: 100%;
+  background-color: #626d78;
+  color: #f4f4f4;
+  width : 100%;
+  padding: 0 10px;
+  margin: 0 1rem;
+  box-sizing: border-box;
+  border: none;
+}
+
+.posts-inner textarea{
+  height: 5rem;
+}
+
+.likes{
+	margin-right: 3rem;
 }
 
