@@ -13,14 +13,14 @@ const Post = ({
 	post: { _id, subject, text, name, user, likes, comments, date },
 }) => {
 	return (
-		<div class='posts'>
-			<div class='subject'>
+		<div className='posts'>
+			<div className='subject'>
 				<div>SUBJECT : {subject}</div>
 				<div>{name}</div>
 			</div>
-			<div class='body'>{text}</div>
+			<div className='body'>{text}</div>
 			<div className='post-buttons'>
-			<i className="fa-solid fa-thumbs-up likes"> {likes.length}</i>
+			 <i className="fa-solid fa-thumbs-up likes" >{' '}<span>{likes.length > 0 && <span>{likes.length}</span>}</span></i>
 			<button
 						className='btn'
 						type='button'
