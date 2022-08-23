@@ -5,7 +5,7 @@ import Navbar from '../src/components/layout/Navbar';
 import Landing from '../src/components/layout/Landing';
 import Login from '../src/components/layout/Login';
 import Register from '../src/components/layout/Register';
-import Alert from '../src/components/layout/Alert';
+
 import PrivateRoute from './utils/PrivateRoute';
 import Homepage from './components/layout/homepage/Homepage';
 import ProfileForm from './components/profiles/ProfileForm';
@@ -13,6 +13,7 @@ import Profiles from './components/profiles/Profiles';
 import EditProfileForm from './components/profiles/EditProfileForm';
 import Profile from './components/profiles/Profile';
 import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 
 
 
@@ -39,7 +40,7 @@ const App = () => {
 					
 					<Navbar />
 					<section className='sectionAlert'>
-						<Alert />
+						
 						<Routes>
 							<Route path='/' element={<Landing />} />
 							<Route path='/register' element={<Register />} />
@@ -51,6 +52,7 @@ const App = () => {
 								<Route path='/editprofile' element={<EditProfileForm />} />
 								<Route path='/profile/:id' element={<Profile />} />
 								<Route path='/posts' element={<Posts />} />
+								<Route path='/posts/:id' element={<Post />} />
 
 								
 							</Route>

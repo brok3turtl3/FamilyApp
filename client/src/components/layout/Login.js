@@ -65,7 +65,7 @@ const Login = ({ login, isAuthenticated }) => {
 
 							<button className="btn btn-primary login-button" type="submit">Submit</button>
 						</form>
-						<p>Need an account?<a href="/register"> Register here</a></p>
+						<p>Need an account?<Link to="/register"> Register here</Link></p>
 					</section>
 				</section>
 			</section>

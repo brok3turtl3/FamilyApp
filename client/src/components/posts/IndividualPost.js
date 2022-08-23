@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { deletePost, addLike, removeLike } from '../../actions/post';
 
-const Post = ({
+const IndividualPost = ({
 	deletePost,
 	addLike,
 	removeLike,
@@ -20,21 +20,19 @@ const Post = ({
 			</div>
 			<div className='body'>{text}</div>
 			<div className='post-buttons'>
-			 <i className="fa-solid fa-thumbs-up likes" >{' '}<span>{likes.length > 0 && <span>{likes.length}</span>}</span></i>
-			<button
-						className='btn'
-						type='button'
-						onClick={(e) => addLike(_id)}
-					>
-						Like
-					</button>
-					<button
-						className='btn'
-						type='button'
-						onClick={(e) => removeLike(_id)}
-					>
-						Unlike
-					</button>
+				<i className='fa-solid fa-thumbs-up likes'>
+					{' '}
+					<span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+				</i>
+				<button className='btn' type='button' onClick={(e) => addLike(_id)}>
+					Like
+				</button>
+				<button className='btn' type='button' onClick={(e) => removeLike(_id)}>
+					Unlike
+				</button>
+				<Link to={`/posts/${_id}`} className='btn' type='button'>
+					Comments
+				</Link>
 				{!auth.loading && user === auth.user._id && (
 					<button
 						className='btn'
@@ -49,7 +47,7 @@ const Post = ({
 	);
 };
 
-Post.propTypes = {
+IndividualPost.propTypes = {
 	post: PropTypes.object.isRequired,
 	auth: PropTypes.object.isRequired,
 	deletePost: PropTypes.func.isRequired,
@@ -62,5 +60,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
-	Post
+	IndividualPost
 );

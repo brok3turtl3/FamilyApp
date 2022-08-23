@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPosts } from '../../actions/post';
 import Hourglass from '../layout/Hourglass';
-import Post from './Post';
+import IndividualPost from './IndividualPost';
 import PostForm from './PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
@@ -19,14 +19,14 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 						<Hourglass />
 					) : (
 						<Fragment>
-							<div class='title-bar'>Forums</div>
-							<p class='medium-text'>
+							<div className='title-bar'>Forums</div>
+							<p className='medium-text'>
 								Get to know everyone! Leave a post or comment.
 							</p>
 							<PostForm />
 							<div className='profiles'>
 								{posts.length > 0 ? (
-									posts.map((post) => <Post key={post._id} post={post} />)
+									posts.map((post) => <IndividualPost key={post._id} post={post} />)
 								) : (
 									<h4>No posts found...</h4>
 								)}
