@@ -197,6 +197,60 @@ img {
 	justify-content: center;
 	text-align: center;
 }
+
+/* LOGIN FORM */
+
+.login-container {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.0);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+  
+}
+
+.login-form {
+	color: var(--light-color);
+	display: flex;
+	flex-direction: column;
+	
+	/* width: 60%; */
+	
+	max-width: 800px;
+	min-width: 300px;
+}
+
+.login-button{
+  font-size: 1.5rem;;
+  width: 30%;
+  margin: 1rem auto;
+  padding: .2rem;
+}
+
+.login-form .medium{
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: .5rem;
+}
+.login-form input{
+  font-size: 1.5rem;;
+  width: 70%;
+  margin: 1rem auto;
+  padding: .2rem;
+}
+
+.login-container p{
+color: var(--light-color);
+}
+
+
+
+
 .register-container {
 	height: 100%;
 	width: 100%;

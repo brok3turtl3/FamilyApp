@@ -37,48 +37,35 @@ const Login = ({ login, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<section className='homepage'>
-				<section className='dark-overlay'>
-					<section className='register-container'>
-						<form className='register-form' onSubmit={handleSubmit}>
-							<h3>Please enter your email and password to login.</h3>
-							<div className='fields'>
-								<div className='register-field'>
-									<label htmlFor='register-email'>
-										Email:
-										<input
-											name='email'
-											id='register-email'
-											type='email'
-											placeholder='Email Address'
-											value={email}
-											onChange={handleChange}
-											required
-										/>
-									</label>
-								</div>
-								<div className='register-field'>
-									<label htmlFor='register-password'>
-										Password:
-										<input
-											name='password'
-											id='register-password'
-											type='password'
-											placeholder='Password'
-											value={password}
-											onChange={handleChange}
-											required
-										/>
-									</label>
-								</div>
-							</div>
-							<button className='btn' type='submit'>
-								Submit
-							</button>
+			<section className="homepage">
+				<section className="dark-overlay">
+					<section className="login-container">
+						<form className="login-form" onSubmit={handleSubmit}>
+							<p className="medium">Please enter your email and password to login.</p>
+
+							<input
+								name="email"
+								id="login-email"
+								type="email"
+								value={email}
+								placeholder="Email Address"
+								onChange={handleChange}
+								required
+							/>
+
+							<input
+								name="password"
+								id="login-password"
+								type="password"
+								value={password}
+								placeholder="Password"
+								onChange={handleChange}
+								required
+							/>
+
+							<button className="btn btn-primary login-button" type="submit">Submit</button>
 						</form>
-						<p style={pstyles}>
-							Need an account?<Link to='/register'> Register here</Link>
-						</p>
+						<p>Need an account?<a href="/register"> Register here</a></p>
 					</section>
 				</section>
 			</section>
