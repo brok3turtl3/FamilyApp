@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { useNavigate } from 'react-router-dom';
 
-
 const EditProfileForm = ({
 	profile: { profile, loading },
 	createProfile,
@@ -73,63 +72,33 @@ const EditProfileForm = ({
 
 	return (
 		<Fragment>
-			<section className='homepage'>
-				<section className='posts-overlay'>
-					<section className='posts-inner'>
-						<form className='register-form' onSubmit={handleSubmit}>
-							<h3>
-								Please enter any information you would like to add or update.
-								Everything is optional.
-							</h3>
-							<div className='fields'>
+			<div className='homepage'>
+				<div className='profile-overlay'>
+					<div className='profile-container'>
+						<div className='heading'>Edit Profile</div>
+						<p className='medium-text'>
+							Please enter any information you would like to add or update.
+							Everything is optional.
+						</p>
+
+						<form className='edit-profile' onSubmit={handleSubmit}>
+							
+							<div className='fieldset-container'>
+
+								{/* GENERAL INFO FIELDSET */}
 								<fieldset>
 									<legend>General Information</legend>
-									{/* CITY LABEL AND INPUT */}
+
+									<input name='city' type='text' placeholder='City' value={city} onChange={handleChange}/>
+
 									<div className='register-field'>
-										<label htmlFor='profile-city'>City:</label>
-										<br></br>
-
-										<input
-											name='city'
-											id='profile-city'
-											type='text'
-											placeholder='City'
-											value={city}
-											onChange={handleChange}
-											// required
-										/>
-									</div>
-
-									{/* BIO LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-bio'>Bio:</label>
-										<br></br>
-
-										<textarea
-											name='bio'
-											id='profile-bio'
-											type='text'
-											placeholder='Bio'
-											value={bio}
-											onChange={handleChange}
-											required
-										></textarea>
-									</div>
-
-									{/* INTERESTS LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-bio'>
-											Interests:{' '}
-											<span className='small-text'>
-												(Please use a comma seperated list. eg: "soccer,
-												charities, working out" )
-											</span>
-										</label>
-										<br></br>
-
+										Interests:{' '}
+										<span className='small-text'>
+											(Please use a comma seperated list. eg: "soccer,
+											charities, working out" )
+										</span>
 										<input
 											name='interests'
-											id='profile-interests'
 											type='text'
 											placeholder='Interests'
 											value={interests}
@@ -137,139 +106,93 @@ const EditProfileForm = ({
 										/>
 									</div>
 
-									{/* DOB LABEL AND INPUT */}
 									<div className='register-field'>
 										<label htmlFor='profile-dob'>Date of Birth:</label>
-										<br></br>
 
 										<input
 											name='dob'
-											id='profile-dob'
 											type='date'
+											placeholder='Date of Birth'
+											onChange={handleChange}
 											//TODO*** FIGURE OUT HOW TO DISPLAY EXISTING DOB IN EDIT FORM
-											// value={dob}
-											onChange={handleChange}
+											value={dob}
 										/>
 									</div>
 								</fieldset>
-
+								{/* WORK AND EDUCATION FIELDSET */}
 								<fieldset>
-									<legend>Work Information</legend>
-									{/* COMPANY LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-company'>Company:</label>
-										<br></br>
+									<legend>Work and Education</legend>
 
-										<input
-											name='company'
-											id='profile-company'
-											type='text'
-											placeholder='Company'
-											value={company}
-											onChange={handleChange}
-										/>
+									<div className='register-field'>
+										<input name='company' type='text' placeholder='Company' value={company}
+											onChange={handleChange}/>
 									</div>
-									{/* POSITION LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-position'>Position:</label>
-										<br></br>
 
-										<input
-											name='position'
-											id='profile-position'
-											type='text'
-											placeholder='Position'
-											value={position}
-											onChange={handleChange}
-										/>
+									<div className='register-field'>
+										<input name='position' type='text' placeholder='Position' value={position}
+											onChange={handleChange}/>
+									</div>
+
+									<div className='register-field'>
+										<input name='school' type='text' placeholder='school' value={school}
+											onChange={handleChange}/>
+									</div>
+
+									<div className='register-field'>
+										<input name='program' type='text' placeholder='program' value={school}
+											onChange={handleChange}/>
 									</div>
 								</fieldset>
 
+								{/* BIO FIELDSET  */}
 								<fieldset>
-									<legend>Education</legend>
-									{/* SCHOOL LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-school'>School:</label>
-										<br></br>
+									<legend>Bio Info</legend>
 
-										<input
-											name='school'
-											id='profile-school'
-											type='text'
-											placeholder='school'
-											value={school}
-											onChange={handleChange}
-										/>
-									</div>
-									{/* PROGRAM LABELS AND INPUTS */}
 									<div className='register-field'>
-										<label htmlFor='profile-program'>Program:</label>
-										<br></br>
-
-										<input
-											name='program'
-											id='profile-program'
+										<textarea
+											name='bio'
 											type='text'
-											placeholder='program'
-											value={program}
+											placeholder='Introduce yourself!'
+											value={bio}
 											onChange={handleChange}
-										/>
+											rows='8'
+										></textarea>
 									</div>
 								</fieldset>
-
+								{/* SOCIALS FIELDSET */}
 								<fieldset>
 									<legend>Socials Information</legend>
-									{/* FACEBOOK LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-facebook'>Facebook:</label>
-										<br></br>
 
-										<input
-											name='facebook'
-											id='profile-facebook'
-											type='text'
-											placeholder='facebook'
-											value={facebook}
-											onChange={handleChange}
-										/>
+									<div className='register-field'>
+										<input name='facebook' type='text' placeholder='facebook' value={facebook}
+											onChange={handleChange}/>
 									</div>
-									{/* INSTAGRAM LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-instagram'>Instagram:</label>
-										<br></br>
 
+									<div className='register-field'>
 										<input
 											name='instagram'
-											id='profile-instagram'
 											type='text'
 											placeholder='instagram'
 											value={instagram}
 											onChange={handleChange}
 										/>
 									</div>
-									{/* TWITTER LABEL AND INPUT */}
-									<div className='register-field'>
-										<label htmlFor='profile-twitter'>Twitter:</label>
-										<br></br>
 
-										<input
-											name='twitter'
-											id='profile-twitter'
-											type='text'
-											placeholder='twitter'
-											value={twitter}
-											onChange={handleChange}
-										/>
+									<div className='register-field'>
+										<input name='twitter' type='text' placeholder='twitter' value={twitter}
+											onChange={handleChange}/>
 									</div>
 								</fieldset>
 							</div>
-							<button className='btn' type='submit'>
-								Submit
-							</button>
+							<div className='post-buttons'>
+								<button className='btn' type='submit'>
+									Submit
+								</button>
+							</div>
 						</form>
-					</section>
-				</section>
-			</section>
+					</div>
+				</div>
+			</div>
 		</Fragment>
 	);
 };
