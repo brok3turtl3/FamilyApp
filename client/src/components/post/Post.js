@@ -5,6 +5,7 @@ import Hourglass from '../layout/Hourglass';
 import { getPost } from '../../actions/post';
 import { useParams } from 'react-router-dom';
 import CommentForm from './CommentForm';
+import Comment from './Comment';
 
 const Post = ({
 	getPost,
@@ -31,6 +32,9 @@ const Post = ({
 						<div className='post-buttons'></div>
 					</div>
           <CommentForm postId={post._id}/>
+					{post.comments.map(comment => (
+						<Comment key={comment._id} comment={comment} postId={post._id} />
+					))}
           
 				</div>
 			</div>

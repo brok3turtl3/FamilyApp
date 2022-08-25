@@ -110,24 +110,7 @@
 .btn.btn-dark:hover {
 	background: #3f474e;
 }
-.btn.btn-success {
-	background-color: #28a745;
-	color: #fff;
-}
-.btn.btn-success:hover {
-	background: #2dbc4e;
-}
-.btn.btn-danger {
-	background-color: #dc3545;
-	color: #333;
-}
-.btn.btn-danger:hover {
-	background: #e04b59;
-}
-.btn:hover {
-	background-color: #626d78;
-	color: #fff;
-}
+
 .dark-overlay {
 	height: 100%;
 	width: 100%;
@@ -181,7 +164,7 @@ img {
 	color: #17a2b8;
 }
 .homepage {
-	background: url(./img/pexels-fauxels-3184183.jpg) no-repeat center
+	background: url(./images/pexels-fauxels-3184183.jpg) no-repeat center
 		center/cover;
 	position: relative;
 	height: 100vh;
@@ -249,7 +232,7 @@ color: var(--light-color);
 }
 
 
-
+/* REGSITER FORM */
 
 .register-container {
 	height: 100%;
@@ -257,46 +240,45 @@ color: var(--light-color);
 	position: absolute;
 	top: 0; 
 	left: 0; 
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.0);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 
 }
+
+.register-container p {
+	color: var(--light-color);
+}
 .register-form {
 	color: var(--light-color);
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+
+	/* width: 60%; */
+
 	max-width: 500px;
-	min-width: 500px;
+	min-width: 300px;
 }
-.register-form button {
-	margin-top: 2rem;
-}
-.register-form .register-field {
-	margin-left: 1rem;
-	margin-top: 1rem;
-}
-.register-form .register-field input {
+
+.register-button {
 	font-size: 1.5rem;
+	width: 30%;
+	margin: 1rem auto;
+	padding: 0.2rem;
 }
-.register-form #register-name {
-	margin-left: 2.7rem;
-}
-.register-form #register-email {
-	margin-left: 3rem;
-}
-.register-form #register-password {
-	margin-left: 1rem;
-}
-.register-form #register-password {
-	margin-left: 1rem;
-}
-.register-form .fields {
+
+.register-form .medium {
 	font-size: 1.5rem;
-	overflow: auto;
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+.register-form input {
+	font-size: 1.5rem;
+	width: 70%;
+	margin: 1rem auto;
+	padding: 0.2rem;
 }
 
 .small-text{
@@ -307,7 +289,7 @@ color: var(--light-color);
 
 
 .background {
-	background: url(./img/pexels-fauxels-3184183.jpg) no-repeat center
+	background: url(./images/pexels-fauxels-3184183.jpg) no-repeat center
 		center/cover;
     position: absolute;
     top: 0;

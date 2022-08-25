@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import Alert from '../layout/Alert'
 
 const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
@@ -66,6 +67,7 @@ const Login = ({ login, isAuthenticated }) => {
 							<button className="btn btn-primary login-button" type="submit">Submit</button>
 						</form>
 						<p>Need an account?<Link to="/register"> Register here</Link></p>
+						<Alert />
 					</section>
 				</section>
 			</section>

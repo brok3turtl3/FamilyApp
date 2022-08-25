@@ -46,32 +46,24 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<section className='background'>
+			<section className='homepage'>
 				<section className='dark-overlay'>
 					<section className='register-container'>
 						<form className='register-form' onSubmit={handleSubmit}>
-							<h3>
+							<p class="medium">
 								Please enter your name, email and password to register your
 								account for the site.
-							</h3>
-							<div className='fields'>
-								<div className='register-field'>
-									<label htmlFor='register-name'>
-										Name:
-										<input
+							</p>
+								<input
 											name='name'
 											id='register-name'
 											type='text'
 											placeholder='Name'
 											value={name}
 											onChange={handleChange}
-											// required
+											required
 										/>
-									</label>
-								</div>
-								<div className='register-field'>
-									<label htmlFor='register-email'>
-										Email:
+									
 										<input
 											name='email'
 											id='register-email'
@@ -79,13 +71,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 											placeholder='Email Address'
 											value={email}
 											onChange={handleChange}
-											// required
+											required
 										/>
-									</label>
-								</div>
-								<div className='register-field'>
-									<label htmlFor='register-password'>
-										Password:
+									
 										<input
 											name='password'
 											id='register-password'
@@ -93,12 +81,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 											placeholder='Password'
 											value={password}
 											onChange={handleChange}
-											// required
+											required
 										/>
-									</label>
-								</div>
-								<div className='register-field'>
-									<label htmlFor='register-password2'>Password:</label>
+									
 									<input
 										name='password2'
 										id='register-password2'
@@ -106,15 +91,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 										placeholder='Confirm your password'
 										value={password2}
 										onChange={handleChange}
-										// required
+										required
 									/>
-								</div>
-							</div>
-							<button className='btn' type='submit'>
+								
+							<button className='btn btn-primary register-button' type='submit'>
 								Submit
 							</button>
 						</form>
-						<p style={pstyles}>
+						<p>
 							Already have an account?<Link to='/login'> Sign in here</Link>
 						</p>
 					</section>
