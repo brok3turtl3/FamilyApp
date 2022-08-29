@@ -4,15 +4,8 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { useNavigate } from 'react-router-dom';
 
-const EditProfileForm = ({
-	profile: { profile, loading },
-	createProfile,
-	getCurrentProfile,
-}) => {
-	const navigate = useNavigate();
-
-	const [formData, setFormData] = useState({
-		city: '',
+const initialState = {
+	city: '',
 		bio: '',
 		company: '',
 		position: '',
@@ -23,25 +16,36 @@ const EditProfileForm = ({
 		facebook: '',
 		instagram: '',
 		twitter: '',
-	});
+}
+
+const EditProfileForm = ({
+	profile: { profile, loading },
+	createProfile,
+	getCurrentProfile,
+}) => {
+	const navigate = useNavigate();
+
+	const [formData, setFormData] = useState(initialState);
 
 	useEffect(() => {
-		getCurrentProfile();
-
-		setFormData({
-			city: loading || !profile.city ? '' : profile.city,
-			bio: loading || !profile.bio ? '' : profile.bio,
-			company: loading || !profile.company ? '' : profile.company,
-			position: loading || !profile.position ? '' : profile.position,
-			school: loading || !profile.school ? '' : profile.school,
-			program: loading || !profile.program ? '' : profile.program,
-			interests: loading || !profile.interests ? '' : profile.interests,
-			dob: loading || !profile.dob ? '' : profile.dob,
-			facebook: loading || !profile.facebook ? '' : profile.facebook,
-			instagram: loading || !profile.instagram ? '' : profile.instagram,
-			twitter: loading || !profile.twitter ? '' : profile.twitter,
-		});
-	}, [loading]);
+    if (!profile) getCurrentProfile();
+    if (!loading) {
+      const profileData = { ...initialState };
+      for (const key in profile) {
+        if (key in profileData) profileData[key] = profile[key];
+      }
+			for (const key in profile.work) {
+        if (key in profileData) profileData[key] = profile.work[key];
+      }
+			for (const key in profile.education) {
+        if (key in profileData) profileData[key] = profile.education[key];
+      }
+      for (const key in profile.social) {
+        if (key in profileData) profileData[key] = profile.social[key];
+      }
+      setFormData(profileData);
+    }
+  }, [loading, getCurrentProfile, profile]);
 
 	const {
 		city,
@@ -115,7 +119,7 @@ const EditProfileForm = ({
 											placeholder='Date of Birth'
 											onChange={handleChange}
 											//TODO*** FIGURE OUT HOW TO DISPLAY EXISTING DOB IN EDIT FORM
-											value={dob}
+											//value={dob}
 										/>
 									</div>
 								</fieldset>
@@ -134,12 +138,12 @@ const EditProfileForm = ({
 									</div>
 
 									<div className='register-field'>
-										<input name='school' type='text' placeholder='school' value={school}
+										<input name='school' type='text' placeholder='School' value={school}
 											onChange={handleChange}/>
 									</div>
 
 									<div className='register-field'>
-										<input name='program' type='text' placeholder='program' value={school}
+										<input name='program' type='text' placeholder='program' value={program}
 											onChange={handleChange}/>
 									</div>
 								</fieldset>

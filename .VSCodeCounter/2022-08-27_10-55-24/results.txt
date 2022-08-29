@@ -1,0 +1,108 @@
+Date : 2022-08-27 10:55:24
+Directory : c:\Users\sean_\Desktop\FamilyApp
+Total : 58 files,  35620 codes, 158 comments, 499 blanks, all 36277 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          9 |     32,765 |          0 |          6 |     32,771 |
+| JavaScript |         44 |      2,358 |        137 |        411 |      2,906 |
+| CSS        |          2 |        454 |         19 |         75 |        548 |
+| HTML       |          2 |         30 |          2 |          5 |         37 |
+| Markdown   |          1 |         13 |          0 |          2 |         15 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                               | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                  |         58 |     35,620 |        158 |        499 |     36,277 |
+| client                                                                             |         44 |     31,320 |         61 |        405 |     31,786 |
+| client\build                                                                       |          5 |         42 |          3 |          1 |         46 |
+| client\build\static                                                                |          2 |          2 |          3 |          0 |          5 |
+| client\build\static\css                                                            |          1 |          1 |          1 |          0 |          2 |
+| client\build\static\js                                                             |          1 |          1 |          2 |          0 |          3 |
+| client\public                                                                      |          2 |         54 |          2 |          6 |         62 |
+| client\src                                                                         |         35 |      2,241 |         56 |        396 |      2,693 |
+| client\src\GENERAL TODOS                                                           |          1 |         13 |          0 |          2 |         15 |
+| client\src\actions                                                                 |          5 |        360 |         32 |         66 |        458 |
+| client\src\components                                                              |         18 |      1,126 |          5 |        202 |      1,333 |
+| client\src\components\layout                                                       |          7 |        330 |          3 |         57 |        390 |
+| client\src\components\layout\homepage                                              |          1 |         46 |          0 |          8 |         54 |
+| client\src\components\post                                                         |          3 |        125 |          0 |         33 |        158 |
+| client\src\components\posts                                                        |          3 |        164 |          0 |         21 |        185 |
+| client\src\components\profiles                                                     |          5 |        507 |          2 |         91 |        600 |
+| client\src\reducers                                                                |          5 |        191 |          0 |         18 |        209 |
+| client\src\utils                                                                   |          2 |         24 |          0 |          8 |         32 |
+| config                                                                             |          3 |         21 |          2 |          6 |         29 |
+| middleware                                                                         |          1 |         15 |          3 |          2 |         20 |
+| models                                                                             |          3 |        125 |          0 |          9 |        134 |
+| routes                                                                             |          4 |        405 |         86 |         66 |        557 |
+| routes\api                                                                         |          4 |        405 |         86 |         66 |        557 |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                           | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\sean_\Desktop\FamilyApp\client\build\asset-manifest.json                  | JSON       |         14 |          0 |          0 |         14 |
+| c:\Users\sean_\Desktop\FamilyApp\client\build\index.html                           | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\sean_\Desktop\FamilyApp\client\build\manifest.json                        | JSON       |         25 |          0 |          1 |         26 |
+| c:\Users\sean_\Desktop\FamilyApp\client\build\static\css\main.883e3c3a.css         | CSS        |          1 |          1 |          0 |          2 |
+| c:\Users\sean_\Desktop\FamilyApp\client\build\static\js\main.0be59910.js           | JavaScript |          1 |          2 |          0 |          3 |
+| c:\Users\sean_\Desktop\FamilyApp\client\package-lock.json                          | JSON       |     28,933 |          0 |          1 |     28,934 |
+| c:\Users\sean_\Desktop\FamilyApp\client\package.json                               | JSON       |         50 |          0 |          1 |         51 |
+| c:\Users\sean_\Desktop\FamilyApp\client\public\index.html                          | HTML       |         29 |          2 |          5 |         36 |
+| c:\Users\sean_\Desktop\FamilyApp\client\public\manifest.json                       | JSON       |         25 |          0 |          1 |         26 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\App.css                                | CSS        |        453 |         18 |         75 |        546 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\App.js                                 | JavaScript |         53 |          1 |         15 |         69 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\GENERAL TODOS\TODOS.md                 | Markdown   |         13 |          0 |          2 |         15 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\actions\alert.js                       | JavaScript |         10 |          0 |          3 |         13 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\actions\auth.js                        | JavaScript |         83 |          4 |         16 |        103 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\actions\post.js                        | JavaScript |        163 |          8 |         23 |        194 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\actions\profile.js                     | JavaScript |         83 |         20 |         18 |        121 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\actions\types.js                       | JavaScript |         21 |          0 |          6 |         27 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\layout\Alert.js             | JavaScript |         19 |          0 |          5 |         24 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\layout\Hourglass.js         | JavaScript |         12 |          1 |          4 |         17 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\layout\Landing.js           | JavaScript |         22 |          0 |          2 |         24 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\layout\Login.js             | JavaScript |         73 |          1 |         14 |         88 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\layout\Navbar.js            | JavaScript |         54 |          0 |          8 |         62 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\layout\Register.js          | JavaScript |        104 |          1 |         16 |        121 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\layout\homepage\Homepage.js | JavaScript |         46 |          0 |          8 |         54 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\post\Comment.js             | JavaScript |         30 |          0 |         13 |         43 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\post\CommentForm.js         | JavaScript |         47 |          0 |         12 |         59 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\post\Post.js                | JavaScript |         48 |          0 |          8 |         56 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\posts\IndividualPost.js     | JavaScript |         60 |          0 |          5 |         65 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\posts\PostForm.js           | JavaScript |         58 |          0 |         10 |         68 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\posts\Posts.js              | JavaScript |         46 |          0 |          6 |         52 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\profiles\EditProfileForm.js | JavaScript |        183 |          1 |         29 |        213 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\profiles\Profile.js         | JavaScript |         38 |          0 |          7 |         45 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\profiles\ProfileForm.js     | JavaScript |        212 |          1 |         39 |        252 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\profiles\Profiles.js        | JavaScript |         49 |          0 |         12 |         61 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\components\profiles\SmallProfile.js    | JavaScript |         25 |          0 |          4 |         29 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\index.js                               | JavaScript |          9 |          0 |          5 |         14 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\reducers\alert.js                      | JavaScript |         13 |          0 |          3 |         16 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\reducers\auth.js                       | JavaScript |         50 |          0 |          5 |         55 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\reducers\index.js                      | JavaScript |         11 |          0 |          2 |         13 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\reducers\post.js                       | JavaScript |         78 |          0 |          4 |         82 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\reducers\profile.js                    | JavaScript |         39 |          0 |          4 |         43 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\store.js                               | JavaScript |         12 |          0 |          5 |         17 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\utils\PrivateRoute.js                  | JavaScript |         15 |          0 |          5 |         20 |
+| c:\Users\sean_\Desktop\FamilyApp\client\src\utils\setAuthToken.js                  | JavaScript |          9 |          0 |          3 |         12 |
+| c:\Users\sean_\Desktop\FamilyApp\config\db.js                                      | JavaScript |         13 |          2 |          6 |         21 |
+| c:\Users\sean_\Desktop\FamilyApp\config\default.json                               | JSON       |          4 |          0 |          0 |          4 |
+| c:\Users\sean_\Desktop\FamilyApp\config\production.json                            | JSON       |          4 |          0 |          0 |          4 |
+| c:\Users\sean_\Desktop\FamilyApp\index.js                                          | JavaScript |         24 |          6 |          9 |         39 |
+| c:\Users\sean_\Desktop\FamilyApp\middleware\auth.js                                | JavaScript |         15 |          3 |          2 |         20 |
+| c:\Users\sean_\Desktop\FamilyApp\models\Post.js                                    | JavaScript |         51 |          0 |          3 |         54 |
+| c:\Users\sean_\Desktop\FamilyApp\models\Profile.js                                 | JavaScript |         52 |          0 |          3 |         55 |
+| c:\Users\sean_\Desktop\FamilyApp\models\User.js                                    | JavaScript |         22 |          0 |          3 |         25 |
+| c:\Users\sean_\Desktop\FamilyApp\package-lock.json                                 | JSON       |      3,682 |          0 |          1 |      3,683 |
+| c:\Users\sean_\Desktop\FamilyApp\package.json                                      | JSON       |         28 |          0 |          1 |         29 |
+| c:\Users\sean_\Desktop\FamilyApp\routes\api\auth.js                                | JavaScript |         64 |         14 |         11 |         89 |
+| c:\Users\sean_\Desktop\FamilyApp\routes\api\posts.js                               | JavaScript |        167 |         28 |         21 |        216 |
+| c:\Users\sean_\Desktop\FamilyApp\routes\api\profile.js                             | JavaScript |        116 |         32 |         23 |        171 |
+| c:\Users\sean_\Desktop\FamilyApp\routes\api\users.js                               | JavaScript |         58 |         12 |         11 |         81 |
+| Total                                                                              |            |     35,620 |        158 |        499 |     36,277 |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

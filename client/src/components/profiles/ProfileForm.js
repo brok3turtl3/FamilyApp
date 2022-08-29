@@ -55,6 +55,18 @@ const ProfileForm = ({createProfile}) => {
 			<section className='background'>
 				<section className='dark-overlay'>
 					<section className='register-container'>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
+						<h1>placeholder</h1>
 						<form className='register-form' onSubmit={handleSubmit}>
 							<h3>
 								Please enter any information you would like to add or update. Everything is optional.
