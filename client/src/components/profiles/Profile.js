@@ -21,7 +21,9 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 					) : (
 						<Fragment>
 							<h1>{profile.user.name}'s page!</h1>
+							<p>{profile.city}</p>
 							<p>{profile.bio}</p>
+							
 						</Fragment>
 					)}
 				</section>

@@ -31,7 +31,7 @@ const IndividualPost = ({
 					Unlike
 				</button>
 				<Link to={`/posts/${_id}`} className='btn' type='button'>
-					Comments
+					Comments {comments.length}
 				</Link>
 				{!auth.loading && user === auth.user._id && (
 					<button

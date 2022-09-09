@@ -11,9 +11,9 @@ const SmallProfile = ({
 }) => {
 	return (
 		<div className='small-profile'>
-			<h2>{name}</h2>
-			<h1>{city}</h1>
-			<p>{bio}</p>
+			<div className="sm-pr-field"><h2>{name}</h2></div>
+			<div className="sm-pr-field"><h1>{city}</h1></div>
+			<div className="sm-pr-field"><p>{bio}</p></div>
 			<Link to={`/profile/${_id}`} className='btn btn-primary'>
 				Detailed Profile
 			</Link>

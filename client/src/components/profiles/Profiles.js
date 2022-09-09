@@ -18,15 +18,15 @@ const Profiles = ({
 
   return (
     <section className='background'>
-				<section className='dark-overlay'>
-          <section className="profiles-container">
+				<section className='posts-overlay'>
+          <section className="posts-inner">
 					
           {loading ? (
         <Hourglass />
       ) : (
         <Fragment>
-          <h1>Family</h1>
-          <p>
+          <div className="title-bar">Profiles</div>
+          <p className='medium-text'>
             Here is everyone so far!
           </p>
           <div className="profiles">

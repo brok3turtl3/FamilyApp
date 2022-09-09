@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addComment } from '../../actions/post';
 import Alert from '../layout/Alert';
+import { Link } from 'react-router-dom';
 
 const CommentForm = ({ addComment, postId }) => {
 	const [text, setText] = useState('');
@@ -38,6 +39,9 @@ const CommentForm = ({ addComment, postId }) => {
 				</div>
         <Alert />
 				<div className='post-buttons'>
+				<Link to="/posts" className='btn'>
+						Back to Forums
+					</Link>
 					<button className='btn' type='submit'>
 						Submit Comment
 					</button>
