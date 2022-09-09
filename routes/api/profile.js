@@ -33,12 +33,9 @@ router.get('/user', auth, async (req, res) => {
 
 router.post(
 	'/',
-	[auth, [check('bio', 'Bio is a required field').not().isEmpty()]],
+	auth,
+
 	async (req, res) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			return res.status(400).json({ errors: errors.array() });
-		}
 		//DESTRUCTURE VARIABLES FROM REQ.BODY FOR EASE OF USE AND CLARITY
 		const {
 			city,
