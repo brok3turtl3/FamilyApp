@@ -16,7 +16,8 @@ const IndividualPost = ({
 		<div className='posts'>
 			<div className='subject'>
 				<div>SUBJECT : {subject}</div>
-				<div>{name}</div>
+				<div>BY : {name}</div>
+				<div>POSTED ON : {date}</div>
 			</div>
 			<div className='body'>{text}</div>
 			<div className='post-buttons'>
