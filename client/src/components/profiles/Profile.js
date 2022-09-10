@@ -23,6 +23,14 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 							<h1>{profile.user.name}'s page!</h1>
 							<p>{profile.city}</p>
 							<p>{profile.bio}</p>
+							{profile.work?.company !== undefined ? (<p>{profile.work.company}</p>) : null}
+							{profile.work?.position !== undefined ? (<p>{profile.work.position}</p>) : null}
+							{profile.education?.school !== undefined ? (<p>{profile.education.school}</p>) : null}
+							{profile.education?.program !== undefined ? (<p>{profile.education.program}</p>) : null}
+							{profile.social?.facebook !== undefined ? (<p>{profile.social.facebook}</p>) : null}
+							{profile.social?.instagram !== undefined ? (<p>{profile.social.instagram}</p>) : null}
+							{profile.social?.twitter !== undefined ? (<p>{profile.social.twitter}</p>) : null}
+							
 							
 						</Fragment>
 					)}

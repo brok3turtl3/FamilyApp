@@ -130,6 +130,7 @@ body {
 	font-size: 1rem;
 	background-color: #fff;
 	color: #181010;
+	
 }
 a {
 	text-decoration: none;
@@ -506,6 +507,7 @@ overflow:auto;
   text-align: left;
   background-color: #626d78;
   line-height: 1.5;
+	/* white-space: pre-wrap; */
 }
 
 .post-buttons {

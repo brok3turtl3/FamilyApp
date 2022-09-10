@@ -39,7 +39,7 @@ const PostForm = ({ addPost }) => {
 				</div>
 				<div className='post-field'>
 					<label htmlFor='text'>MESSAGE:</label>
-
+					
 					<textarea
 						name='text'
 						id='text'

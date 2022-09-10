@@ -19,6 +19,7 @@ const IndividualPost = ({
 				<div>BY : {name}</div>
 				<div>POSTED ON : {date}</div>
 			</div>
+			
 			<div className='body'>{text}</div>
 			<div className='post-buttons'>
 				<i className='fa-solid fa-thumbs-up likes'>
