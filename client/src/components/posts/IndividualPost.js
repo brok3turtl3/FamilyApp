@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
-import { deletePost, addLike, removeLike } from '../../actions/post';
+import { editPost, deletePost, addLike, removeLike } from '../../actions/post';
 
 const IndividualPost = ({
 	deletePost,
@@ -36,6 +36,14 @@ const IndividualPost = ({
 					Comments {comments.length}
 				</Link>
 				{!auth.loading && user === auth.user._id && (
+<Fragment>
+					<button
+						className='btn'
+						type='button'
+						onClick={(e) => editPost(_id)}
+					>
+						Edit
+					</button>
 					<button
 						className='btn'
 						type='button'
@@ -43,6 +51,7 @@ const IndividualPost = ({
 					>
 						Delete Post
 					</button>
+					</Fragment>
 				)}
 			</div>
 		</div>
@@ -55,12 +64,13 @@ IndividualPost.propTypes = {
 	deletePost: PropTypes.func.isRequired,
 	addLike: PropTypes.func.isRequired,
 	removeLike: PropTypes.func.isRequired,
+	editPost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
+export default connect(mapStateToProps, { editPost, deletePost, addLike, removeLike })(
 	IndividualPost
 );

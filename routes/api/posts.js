@@ -212,4 +212,33 @@ router.delete('/comment/:postId/:commentId', auth, async (req, res) => {
 	}
 });
 
+//ENDPOINT 	PUT api/posts/edit/:postId
+//PURPOSE		Edit an existing post
+//ACCESS		Private
+
+router.put('/edit/:postId', auth, async (req, res) => {
+	try {
+		
+		//CHECK TO SEE IF POST EXISTS
+		const post = await Post.findById(req.params.postId);
+		if (!post) {
+			return res.status(404).json({ msg: 'Post not found' });
+		}
+
+		//CHECK TO SEE IF CURRENT USER MATCHES USERID FOR POST
+		if (post.user.toString() !== req.user.id) {
+			return res.status(401).json({ msg: 'User not authorized' });
+		}
+
+		post.text = req.body.text;
+		await post.save();
+		res.json(post);
+
+
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
 module.exports = router;

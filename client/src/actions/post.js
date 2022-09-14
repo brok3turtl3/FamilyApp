@@ -8,7 +8,8 @@ import {
 	UPDATE_LIKES,
 	GET_POST,
 	ADD_COMMENT,
-	DELETE_COMMENT
+	DELETE_COMMENT,
+	EDIT_POST
 } from './types';
 
 //GET ALL POSTS
@@ -69,6 +70,34 @@ export const addPost = (formData) => async (dispatch) => {
 		});
 
 		dispatch(setAlert('Post Created', 'success'));
+	} catch (error) {
+		dispatch({
+			type: POST_ERROR,
+			payload: {
+				msg: error.response.statusText,
+				status: error.response.status,
+			},
+		});
+	}
+};
+
+//EDIT POST
+export const editPost = (text, postId) => async (dispatch) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+
+		const res = await axios.put(`/api/posts/edit/${postId}`, text, config);
+
+		dispatch({
+			type: EDIT_POST,
+			payload: res.data,
+		});
+
+		dispatch(setAlert('Post Edited', 'success'));
 	} catch (error) {
 		dispatch({
 			type: POST_ERROR,
