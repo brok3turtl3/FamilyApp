@@ -2,67 +2,78 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Hourglass from '../layout/Hourglass';
-import { getPost } from '../../actions/post';
+import { editPost, getPost } from '../../actions/post';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
-
-const EditPostForm = ({
-	getPost,
-	auth,
-	post: { post, loading },
-}) => {
+const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 	const { id } = useParams();
-  const [text, setText] = useState('');
-	
-  useEffect(() => {
+	const [text, setText] = useState('');
+
+	useEffect(() => {
 		getPost(id);
-    setText(post.text)
-    
-	}, [getPost, id, post.text]);
-
-  
-
-	
+		console.log(id);
+		
+		// setText(post.text)
+	}, [getPost, id]);
 
 	const handleChange = (e) => {
 		setText(e.target.value);
 	};
 
-	return loading || post === null ? <Hourglass /> : 
-  
-  <Fragment>
-		<div className='homepage'>
-			<div className='posts-overlay'>
-				<div className='posts-inner'>
-					<div className='posts'>
-						<div className='subject'>
-							<div>SUBJECT : {post.subject}</div>
-							<div>{post.name}</div>
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		editPost(id, {text});
+		setText('');
+	};
+
+	return loading || post === null ? (
+		<Hourglass />
+	) : (
+		<Fragment>
+			<div className='homepage'>
+				<div className='posts-overlay'>
+					<div className='posts-inner'>
+						<div className='posts'>
+							<form onSubmit={handleSubmit}>
+							<div className='subject'>
+								<div>SUBJECT : {post.subject}</div>
+								<div>{post.name}</div>
+							</div>
+							<div className='body'>
+								
+									<textarea
+										name=''
+										id=''
+										cols='30'
+										rows='10'
+										value={text}
+										onChange={handleChange}
+									></textarea>
+								
+							</div>
+
+							<div className='post-buttons'>
+								<Link to='/posts' className='btn'>
+									Back to Forums
+								</Link>
+								<button className='btn' type='submit'>
+									Submit Edit
+								</button>
+							</div>
+							</form>
 						</div>
-						<div className='body'>
-              <textarea name="" id="" cols="30" rows="10" value={text} onChange={handleChange}></textarea></div>
-              <div className='post-buttons'>
-				<Link to="/posts" className='btn'>
-						Back to Forums
-					</Link>
-					<button className='btn' type='submit'>
-						Submit Edit
-					</button>
-				</div>
 					</div>
-          
-          
 				</div>
 			</div>
-		</div>
-	</Fragment>
+		</Fragment>
+	);
 };
 
 EditPostForm.propTypes = {
 	getPost: PropTypes.func.isRequired,
 	post: PropTypes.object.isRequired,
+	editPost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -70,4 +81,4 @@ const mapStateToProps = (state) => ({
 	auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getPost })(EditPostForm);
+export default connect(mapStateToProps, { getPost, editPost })(EditPostForm);

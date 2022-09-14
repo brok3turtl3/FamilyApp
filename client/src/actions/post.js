@@ -82,7 +82,7 @@ export const addPost = (formData) => async (dispatch) => {
 };
 
 //EDIT POST
-export const editPost = (text, postId) => async (dispatch) => {
+export const editPost = (postId, text) => async (dispatch) => {
 	try {
 		const config = {
 			headers: {

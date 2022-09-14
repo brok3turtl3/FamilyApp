@@ -36,14 +36,10 @@ const IndividualPost = ({
 					Comments {comments.length}
 				</Link>
 				{!auth.loading && user === auth.user._id && (
-<Fragment>
-					<button
-						className='btn'
-						type='button'
-						onClick={(e) => editPost(_id)}
-					>
-						Edit
-					</button>
+					<Fragment>
+					<Link to={`/posts/edit/${_id}`} className='btn' type='button'>
+					Edit
+				</Link>
 					<button
 						className='btn'
 						type='button'
