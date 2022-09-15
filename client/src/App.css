@@ -552,3 +552,14 @@ overflow:auto;
 	margin-right: 3rem;
 }
 
+.profile-img{
+	height:200px;
+	width:200px;
+	
+}
+.profile-img img{
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	object-position: center;
+}

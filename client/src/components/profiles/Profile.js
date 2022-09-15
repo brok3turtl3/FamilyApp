@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Hourglass from '../layout/Hourglass';
 import { getProfileById } from '../../actions/profile';
 
+
 const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 	const { id } = useParams();
 
@@ -23,6 +24,11 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 							<h1>{profile.user.name}'s page!</h1>
 							<p>{profile.city}</p>
 							<p>{profile.bio}</p>
+							
+							{profile.image !== null ? (
+							<div className="profile-img">
+							<img src={`../../${profile.image}`} alt="Placeholder"></img>
+							</div>) : null}
 							{profile.work?.company !== undefined ? (<p>{profile.work.company}</p>) : null}
 							{profile.work?.position !== undefined ? (<p>{profile.work.position}</p>) : null}
 							{profile.education?.school !== undefined ? (<p>{profile.education.school}</p>) : null}
@@ -30,6 +36,8 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 							{profile.social?.facebook !== undefined ? (<p>{profile.social.facebook}</p>) : null}
 							{profile.social?.instagram !== undefined ? (<p>{profile.social.instagram}</p>) : null}
 							{profile.social?.twitter !== undefined ? (<p>{profile.social.twitter}</p>) : null}
+							
+
 							
 							
 						</Fragment>

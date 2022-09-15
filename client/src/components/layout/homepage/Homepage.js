@@ -10,7 +10,6 @@ const Homepage = ({
 	auth: { user },
 	profile: { profile, loading },
 }) => {
-	
 	useEffect(() => {
 		getCurrentProfile();
 	}, [getCurrentProfile]);
@@ -24,14 +23,33 @@ const Homepage = ({
 			<section className='homepage'>
 				<section className='dark-overlay'>
 					<section className='homepage-container'>
-					<h1>Welcome {user && user.name}</h1>
-					{profile !== null ? (
-						<Fragment><div>{profile.bio}</div><div><Link to="/editprofile" className="btn btn-primary">Edit Profile</Link></div></Fragment> ) : (<Fragment>
-							<p>You do not have a profile created, please add some information</p>
-							<Link to='/profileform' className='btn btn-primary'>Create Profile</Link>
-						</Fragment>)
-					}
-					
+						<h1>Welcome {user && user.name}</h1>
+						{profile !== null ? (
+							<Fragment>
+								{profile?.image !== null ? (
+									<div className='profile-img'>
+										<img src={`../../${profile.image}`} alt='Placeholder'></img>
+									</div>
+								) : (
+									<p>TEST</p>
+								)}
+								<div>{profile.bio}</div>
+								<div>
+									<Link to='/editprofile' className='btn btn-primary'>
+										Edit Profile
+									</Link>
+								</div>
+							</Fragment>
+						) : (
+							<Fragment>
+								<p>
+									You do not have a profile created, please add some information
+								</p>
+								<Link to='/profileform' className='btn btn-primary'>
+									Create Profile
+								</Link>
+							</Fragment>
+						)}
 					</section>
 				</section>
 			</section>

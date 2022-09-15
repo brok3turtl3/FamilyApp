@@ -91,10 +91,12 @@ export const createProfile =
 					'Content-Type': 'application/json',
 				},
 			};
-
+console.log('This is inside the action -')
+console.log(formData)
 			//SEND POST REQUEST WITH INFO TO DB WITH AXIOS
 			const res = await axios.post('/api/profile', formData, config);
-
+			console.log('This is server response data for /api/profile')
+console.log(res.data);
 			dispatch({
 				type: GET_PROFILE,
 				payload: res.data,

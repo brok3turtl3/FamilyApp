@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Hourglass from '../../components/layout/Hourglass';
 
 const initialState = {
 	city: '',
 		bio: '',
+		image: 'test',
 		company: '',
 		position: '',
 		school: '',
@@ -26,6 +29,8 @@ const EditProfileForm = ({
 	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState(initialState);
+	const [uploading, setUploading] = useState(false);
+	
 
 	useEffect(() => {
     if (!profile) getCurrentProfile();
@@ -50,6 +55,7 @@ const EditProfileForm = ({
 	const {
 		city,
 		bio,
+		image,
 		company,
 		position,
 		school,
@@ -65,8 +71,39 @@ const EditProfileForm = ({
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
+	const uploadFileHandler = async (e) => {
+		console.log('uploadFileHandler Hit!')
+		const file = e.target.files[0];
+		
+		const imgData = new FormData();
+		imgData.append('image', file);
+		
+		setUploading(true);
+		
+
+		try {
+			const config = {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			};
+
+			const {data} = await axios.post('/api/upload', imgData, config);
+			console.log('Here is the path for pic');
+			console.log(data);
+			setFormData({...formData, [e.target.name]: data})
+			console.log(formData);
+			setUploading(false);
+
+		} catch (error) {
+			console.error(error);
+			setUploading(false);
+		}
+	}
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log(formData);
 		const success = createProfile(formData, true);
 
 		if (success) {
@@ -122,6 +159,17 @@ const EditProfileForm = ({
 											//value={dob}
 										/>
 									</div>
+
+									<div className='register-field'>
+										<label htmlFor='image'>Upload profile image</label>
+
+										<input type="file" name="image" placeholder='Image URL' onChange={uploadFileHandler}/>
+										{uploading && <Hourglass />}
+
+									</div>
+
+
+
 								</fieldset>
 								{/* WORK AND EDUCATION FIELDSET */}
 								<fieldset>

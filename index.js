@@ -1,6 +1,13 @@
-const { application } = require('express');
-const express = require('express');
-const connectDB = require('./config/db');
+import path from 'path';
+
+import express from 'express';
+import {connectDB}  from './config/db.js';
+
+import usersRoutes from './routes/api/usersRoutes.js'
+import authRoutes from './routes/api/authRoutes.js'
+import postsRoutes from './routes/api/postsRoutes.js'
+import profileRoutes from './routes/api/profileRoutes.js'
+import uploadRoutes from './routes/api/uploadRoutes.js'
 
 const app = express();
 
@@ -15,10 +22,15 @@ app.use(express.json({ extended: false }));
 // });
 
 //GIVE ACCESS TO ALL ROUTES
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
+app.use('/api/users', usersRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/posts', postsRoutes);
+app.use('/api/upload', uploadRoutes);
+
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 console.log(process.env.NODE_ENV);
 

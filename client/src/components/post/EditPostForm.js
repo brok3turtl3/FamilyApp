@@ -6,16 +6,18 @@ import { editPost, getPost } from '../../actions/post';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+
 const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 	const { id } = useParams();
 	const [text, setText] = useState('');
 
+	
+
 	useEffect(() => {
-		getPost(id);
-		console.log(id);
 		
-		// setText(post.text)
-	}, [getPost, id]);
+		getPost(id);
+		
+	}, []);
 
 	const handleChange = (e) => {
 		setText(e.target.value);
@@ -23,7 +25,7 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		editPost(id, {text});
+		editPost(id, { text });
 		setText('');
 	};
 
@@ -36,12 +38,11 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 					<div className='posts-inner'>
 						<div className='posts'>
 							<form onSubmit={handleSubmit}>
-							<div className='subject'>
-								<div>SUBJECT : {post.subject}</div>
-								<div>{post.name}</div>
-							</div>
-							<div className='body'>
-								
+								<div className='subject'>
+									<div>SUBJECT : {post.subject}</div>
+									<div>{post.name}</div>
+								</div>
+								<div className='body'>
 									<textarea
 										name=''
 										id=''
@@ -50,17 +51,16 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 										value={text}
 										onChange={handleChange}
 									></textarea>
-								
-							</div>
+								</div>
 
-							<div className='post-buttons'>
-								<Link to='/posts' className='btn'>
-									Back to Forums
-								</Link>
-								<button className='btn' type='submit'>
-									Submit Edit
-								</button>
-							</div>
+								<div className='post-buttons'>
+									<Link to='/posts' className='btn'>
+										Back to Forums
+									</Link>
+									<button className='btn' type='submit'>
+										Submit Edit
+									</button>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -73,7 +73,7 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 EditPostForm.propTypes = {
 	getPost: PropTypes.func.isRequired,
 	post: PropTypes.object.isRequired,
-	editPost: PropTypes.func.isRequired
+	editPost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const config = require('config');
+import mongoose from 'mongoose';
+import config from 'config';
 const db = config.get('MONGO_URI');
 
 
 //USING ASYNC FUNCTIONS FOR ANYTHING THAT WILL BE RETURNING PROMISES
-const connectDB = async () => {
+export const connectDB = async () => {
 
   try {
     await mongoose.connect(db);
@@ -17,4 +17,4 @@ const connectDB = async () => {
   }
 }
 
-module.exports = connectDB;
+

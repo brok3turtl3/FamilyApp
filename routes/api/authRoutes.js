@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const auth = require('../../middleware/auth');
-const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const config = require('config');
-const { check, validationResult } = require('express-validator');
+import auth from '../../middleware/auth.js';
+import User from '../../models/User.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import config from 'config';
+import { check, validationResult } from 'express-validator';
 
 //ROUTE  		GET api/auth
 //PURPOSE   Get user with current jwt
@@ -85,4 +85,4 @@ router.post(
 	}
 );
 
-module.exports = router;
+export default router;

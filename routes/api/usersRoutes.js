@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { check, validationResult } = require('express-validator');
-const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const config = require('config');
+import { check, validationResult } from 'express-validator';
+import User from '../../models/User.js';
+import bcrypt from'bcryptjs';
+import jwt from 'jsonwebtoken';
+import config from 'config';
 
 //ROUTE   	POST api/users
 //PURPOSE   Register User
@@ -77,4 +77,4 @@ router.post(
 	}
 );
 
-module.exports = router;
+export default router;

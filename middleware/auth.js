@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const config = require('config');
+import jwt from 'jsonwebtoken';
+import config from 'config';
 
-module.exports = function(req, res, next) {
+const auth = (req, res, next) => {
   //GET TOKEN FROM HEADER
   const token = req.header('x-auth-token');
   //CHECK IF NO TOKEN IN HEADER
@@ -18,3 +18,5 @@ module.exports = function(req, res, next) {
     res.status(401).json({ msg: 'Token is not valid'})
   }
 }
+
+export default auth;

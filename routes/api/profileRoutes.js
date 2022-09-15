@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const auth = require('../../middleware/auth');
-const Profile = require('../../models/Profile');
-const User = require('../../models/User');
-const { check, validationResult } = require('express-validator');
+import auth from '../../middleware/auth.js';
+import Profile from '../../models/Profile.js';
+import User from '../../models/User.js';
+import { check, validationResult } from 'express-validator';
 
 //ENDPOINT  GET api/profile/user
 //PURPOSE   Retrieve current users profile
@@ -40,6 +40,7 @@ router.post(
 		const {
 			city,
 			company,
+			image,
 			position,
 			school,
 			program,
@@ -58,6 +59,7 @@ router.post(
 		if (bio) profileFields.bio = bio;
 		if (interests) profileFields.interests = interests;
 		if (dob) profileFields.dob = dob;
+		if (image) profileFields.image = image;
 
 		//TODO*** FIGURE OUT WHY THIS CAUSES AN ERROR WHEN PROFILE IS UPDATED
 		// if (interests) {
@@ -164,4 +166,4 @@ router.delete('/', auth, async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;

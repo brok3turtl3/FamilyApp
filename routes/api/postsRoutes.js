@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const auth = require('../../middleware/auth');
-const Post = require('../../models/Post');
-const User = require('../../models/User');
-const Profile = require('../../models/Profile');
-const { check, validationResult } = require('express-validator');
+import auth from '../../middleware/auth.js';
+import Post from '../../models/Post.js';
+import User from '../../models/User.js';
+import Profile from '../../models/Profile.js';
+import { check, validationResult } from 'express-validator';
 
 //ENDPOINT  POST api/posts
 //PURPOSE   Add a new post
@@ -241,4 +241,4 @@ router.put('/edit/:postId', auth, async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;
