@@ -448,6 +448,12 @@ overflow:auto;
 	padding: 1rem;
 	
 	background-color: #3f474e;
+	display: flex;
+}
+
+.sm-pr-info{
+	align-self: center;
+	margin: 0 auto;
 }
 
 .sm-pr-field{
