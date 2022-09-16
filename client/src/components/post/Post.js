@@ -27,6 +27,7 @@ const Post = ({
 						<div className='subject'>
 							<div>SUBJECT : {post.subject}</div>
 							<div>{post.name}</div>
+							<div>{post.date.substring(0,10)}</div>
 						</div>
 						<div className='body'>{post.text}</div>
 						<div className='post-buttons'></div>

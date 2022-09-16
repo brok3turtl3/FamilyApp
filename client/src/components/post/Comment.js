@@ -17,6 +17,7 @@ const Comment = ({postId, deleteComment, comment: { _id, text, name, user, date}
 						<div className='subject'>
 							
 							<div>{name}</div>
+              <div>{date.substring(0,10)}</div>
 						</div>
 						<div className='body'>{text}</div>
 						{!auth.loading && user === auth.user._id && (

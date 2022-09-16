@@ -1,3 +1,5 @@
+
+***TODO*** Set up as an App for mobiles
 ***TODO*** Notifications system
 ***TODO*** Allow users to change name or email
 ***TODO*** Forgot password reset ability

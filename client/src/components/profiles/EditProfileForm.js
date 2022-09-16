@@ -148,7 +148,7 @@ const EditProfileForm = ({
 									</div>
 
 									<div className='register-field'>
-										<label htmlFor='profile-dob'>Date of Birth:</label>
+										<label htmlFor='profile-dob'>Date of Birth: {dob !== null ? (<Fragment>{dob.substring(0,10)}</Fragment>) : (<Fragment>TEST2</Fragment>)}</label>
 
 										<input
 											name='dob'
