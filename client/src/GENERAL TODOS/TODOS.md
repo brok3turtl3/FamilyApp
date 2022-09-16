@@ -1,3 +1,7 @@
+***TODO*** Notifications system
+***TODO*** Allow users to change name or email
+***TODO*** Forgot password reset ability
+***TODO*** Improve user feedback on register/login page errors
 ***TODO*** Work on the interests list and splitting / sorting...
 ***TODO*** Work on Alert system - Needs better implementation to avoid "screen bumping"
 ***TODO*** Style individual profile pages.
@@ -6,7 +10,7 @@
 ***TODO*** Add formatting to inputs for posts and comments
 ***TODO*** Clean up CSS styling. Too many redundent rules.
 ***TODO*** Work on responsive styling for mobile screens.
-***TODO*** Add image uploads for profile pics.  ***URGENT***
+COMPLETE*** Add image uploads for profile pics.  ***URGENT***
 ***TODO** Add date stamps to comments
 ***TODO*** Format date stamps on posts and comments
 COMPLETE*** Fix and restyle create profile component.  ***URGENT***

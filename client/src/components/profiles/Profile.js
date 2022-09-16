@@ -14,28 +14,56 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 	}, [getProfileById, id]);
 
 	return (
-		<section className='background'>
-			<section className='dark-overlay'>
-				<section className='homepage-container'>
+		<section className='homepage'>
+			<section className='profile-overlay'>
+				<section className='profile-container'>
 					{profile === null ? (
 						<Hourglass />
 					) : (
 						<Fragment>
-							<h1>{profile.user.name}'s page!</h1>
-							<p>{profile.city}</p>
-							<p>{profile.bio}</p>
-							
+							<div className="profile-banner">
 							{profile.image !== null ? (
 							<div className="profile-img">
 							<img src={`../../${profile.image}`} alt="Placeholder"></img>
 							</div>) : null}
-							{profile.work?.company !== undefined ? (<p>{profile.work.company}</p>) : null}
-							{profile.work?.position !== undefined ? (<p>{profile.work.position}</p>) : null}
-							{profile.education?.school !== undefined ? (<p>{profile.education.school}</p>) : null}
-							{profile.education?.program !== undefined ? (<p>{profile.education.program}</p>) : null}
-							{profile.social?.facebook !== undefined ? (<p>{profile.social.facebook}</p>) : null}
-							{profile.social?.instagram !== undefined ? (<p>{profile.social.instagram}</p>) : null}
-							{profile.social?.twitter !== undefined ? (<p>{profile.social.twitter}</p>) : null}
+    <p>{profile.user.name}'s Profile</p>
+  </div>
+    <div className="profile-info">
+      <div className="profile-info-section">
+        <fieldset>
+          <legend>GENERAL INFORMATION</legend>
+        <p>City: {profile.city}</p>
+        <p>Birthday: {profile.dob.substring(0,10)}</p>
+        <p>Interests: {profile.interests}</p>
+        
+      </fieldset>
+      </div>
+      <div className="profile-info-section">
+        <fieldset>
+          <legend>WORK AND EDUCATION</legend>
+        <p>Company: {profile.work?.company !== undefined ? (<Fragment>{profile.work.company}</Fragment>) : null}</p>
+        <p>Position: {profile.work?.position !== undefined ? (<Fragment>{profile.work.position}</Fragment>) : null}</p>
+        <p>School: {profile.education?.school !== undefined ? (<Fragment>{profile.education.school}</Fragment>) : null}</p>
+        <p>Program: {profile.education?.program !== undefined ? (<Fragment>{profile.education.program}</Fragment>) : null}</p>
+      </fieldset>
+      </div>
+      <div className="profile-info-section">
+        <fieldset>
+          <legend>BIO</legend>
+        <p>{profile.bio}</p>
+        
+      </fieldset>
+      </div>
+      <div className="profile-info-section">
+        <fieldset>
+          <legend>SOCIALS</legend>
+        <p>Facebook: {profile.social?.facebook !== undefined ? (<Fragment>{profile.social.facebook}</Fragment>) : null}</p>
+        <p>Instagram: {profile.social?.instagram !== undefined ? (<Fragment>{profile.social.instagram}</Fragment>) : null}</p>
+        <p>Twitter: {profile.social?.twitter !== undefined ? (<Fragment>{profile.social.twitter}</Fragment>) : null}</p>
+      </fieldset>
+      </div>
+
+    </div>
 							
 
 							

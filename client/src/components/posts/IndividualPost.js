@@ -17,7 +17,7 @@ const IndividualPost = ({
 			<div className='subject'>
 				<div>SUBJECT : {subject}</div>
 				<div>BY : {name}</div>
-				<div>POSTED ON : {date}</div>
+				<div>POSTED ON : {date.substring(0,10)}</div>
 			</div>
 			
 			<div className='body'>{text}</div>
