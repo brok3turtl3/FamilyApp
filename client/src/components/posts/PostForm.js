@@ -2,11 +2,13 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
+import SimpleFileUpload from 'react-simple-file-upload';
 
 const PostForm = ({ addPost }) => {
 	const [formData, setFormData] = useState({
 		subject: '',
 		text: '',
+		image: ''
 	});
 
 	const { subject, text } = formData;
@@ -18,8 +20,13 @@ const PostForm = ({ addPost }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addPost(formData);
-		setFormData({ subject: '', text: '' });
+		setFormData({ subject: '', text: '', image: '' });
 	};
+
+	function handleFile(url) {
+		console.log('The URL of the file is ' + url);
+		setFormData({...formData, image: url});
+	}
 
 	return (
 		<Fragment>
@@ -50,6 +57,15 @@ const PostForm = ({ addPost }) => {
 						required
 					></textarea>
 				</div>
+				<div>
+				<SimpleFileUpload
+										apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
+										onSuccess={handleFile}
+									/>
+									<p>Upload a pic</p>
+									<p>Click to browse or drag and drop</p>
+				</div>
+				
 				<div className='post-buttons'>
 					<button className='btn' type='submit'>
 						Submit Post

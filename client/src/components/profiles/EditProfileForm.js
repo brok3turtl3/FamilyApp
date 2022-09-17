@@ -178,7 +178,7 @@ const EditProfileForm = ({
 										apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
 										onSuccess={handleFile}
 									/>
-									<p>Upload a profile pic</p>
+									<p>Upload a pic</p>
 									<p>Click to browse or drag and drop</p>
 
 									

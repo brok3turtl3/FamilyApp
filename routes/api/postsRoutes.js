@@ -24,15 +24,26 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
+		const {
+			subject,
+			text,
+			image
+		} = req.body;
+
 		try {
 			const user = await User.findById(req.user.id).select('-password');
 
-			const postFields = {
-				subject: req.body.subject,
-				text: req.body.text,
-				name: user.name,
-				user: req.user.id,
-			};
+			const postFields = {};
+
+
+				if (subject) postFields.subject = subject;
+				if (text) postFields.text = text;
+				if (image) postFields.image = image;
+				postFields.name = user.name;
+				postFields.user = req.user.id;
+				
+
+
 			const newPost = new Post(postFields);
 			await newPost.save();
 			res.json(newPost);

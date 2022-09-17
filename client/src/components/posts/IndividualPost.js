@@ -10,7 +10,7 @@ const IndividualPost = ({
 	addLike,
 	removeLike,
 	auth,
-	post: { _id, subject, text, name, user, likes, comments, date },
+	post: { _id, subject, text, name, user, likes, comments, date, image},
 }) => {
 	return (
 		<div className='posts'>
@@ -21,6 +21,7 @@ const IndividualPost = ({
 			</div>
 			
 			<div className='body'>{text}</div>
+			{image ? (<img src={image} alt="ph"></img>) : null}
 			<div className='post-buttons'>
 				<i className='fa-solid fa-thumbs-up likes'>
 					{' '}
