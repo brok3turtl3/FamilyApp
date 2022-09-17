@@ -28,7 +28,7 @@ const Homepage = ({
 							<Fragment>
 								{profile?.image !== null ? (
 									<div className='profile-img'>
-										<img src={`../../${profile.image}`} alt='Placeholder'></img>
+										<img src={`${profile.image}`} alt='Placeholder'></img>
 									</div>
 								) : (
 									<p>TEST</p>

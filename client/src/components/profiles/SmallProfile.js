@@ -14,7 +14,7 @@ const SmallProfile = ({
 		<div className='small-profile'>
 {image !== null ? (
 							<div className="profile-img">
-							<img src={`../../${image}`} alt="Placeholder"></img>
+							<img src={`${image}`} alt="Placeholder"></img>
 							</div>) : null}
 			<div className="sm-pr-info">
 			<div className="sm-pr-field"><h2>{name}</h2></div>

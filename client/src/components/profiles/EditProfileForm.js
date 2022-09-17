@@ -5,21 +5,22 @@ import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Hourglass from '../../components/layout/Hourglass';
+import SimpleFileUpload from 'react-simple-file-upload';
 
 const initialState = {
 	city: '',
-		bio: '',
-		image: 'test',
-		company: '',
-		position: '',
-		school: '',
-		program: '',
-		interests: '',
-		dob: '',
-		facebook: '',
-		instagram: '',
-		twitter: '',
-}
+	bio: '',
+	image: 'test',
+	company: '',
+	position: '',
+	school: '',
+	program: '',
+	interests: '',
+	dob: '',
+	facebook: '',
+	instagram: '',
+	twitter: '',
+};
 
 const EditProfileForm = ({
 	profile: { profile, loading },
@@ -30,27 +31,26 @@ const EditProfileForm = ({
 
 	const [formData, setFormData] = useState(initialState);
 	const [uploading, setUploading] = useState(false);
-	
 
 	useEffect(() => {
-    if (!profile) getCurrentProfile();
-    if (!loading) {
-      const profileData = { ...initialState };
-      for (const key in profile) {
-        if (key in profileData) profileData[key] = profile[key];
-      }
+		if (!profile) getCurrentProfile();
+		if (!loading) {
+			const profileData = { ...initialState };
+			for (const key in profile) {
+				if (key in profileData) profileData[key] = profile[key];
+			}
 			for (const key in profile.work) {
-        if (key in profileData) profileData[key] = profile.work[key];
-      }
+				if (key in profileData) profileData[key] = profile.work[key];
+			}
 			for (const key in profile.education) {
-        if (key in profileData) profileData[key] = profile.education[key];
-      }
-      for (const key in profile.social) {
-        if (key in profileData) profileData[key] = profile.social[key];
-      }
-      setFormData(profileData);
-    }
-  }, [loading, getCurrentProfile, profile]);
+				if (key in profileData) profileData[key] = profile.education[key];
+			}
+			for (const key in profile.social) {
+				if (key in profileData) profileData[key] = profile.social[key];
+			}
+			setFormData(profileData);
+		}
+	}, [loading, getCurrentProfile, profile]);
 
 	const {
 		city,
@@ -72,34 +72,32 @@ const EditProfileForm = ({
 	};
 
 	const uploadFileHandler = async (e) => {
-		console.log('uploadFileHandler Hit!')
+		console.log('uploadFileHandler Hit!');
 		const file = e.target.files[0];
-		
+
 		const imgData = new FormData();
 		imgData.append('image', file);
-		
+
 		setUploading(true);
-		
 
 		try {
 			const config = {
 				headers: {
-					'Content-Type': 'multipart/form-data'
-				}
+					'Content-Type': 'multipart/form-data',
+				},
 			};
 
-			const {data} = await axios.post('/api/upload', imgData, config);
+			const { data } = await axios.post('/api/upload', imgData, config);
 			console.log('Here is the path for pic');
 			console.log(data);
-			setFormData({...formData, [e.target.name]: data})
+			setFormData({ ...formData, [e.target.name]: data });
 			console.log(formData);
 			setUploading(false);
-
 		} catch (error) {
 			console.error(error);
 			setUploading(false);
 		}
-	}
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -110,6 +108,11 @@ const EditProfileForm = ({
 			navigate('/homepage');
 		}
 	};
+
+	function handleFile(url) {
+		console.log('The URL of the file is ' + url);
+		setFormData({...formData, image: url});
+	}
 
 	return (
 		<Fragment>
@@ -123,14 +126,18 @@ const EditProfileForm = ({
 						</p>
 
 						<form className='edit-profile' onSubmit={handleSubmit}>
-							
 							<div className='fieldset-container'>
-
 								{/* GENERAL INFO FIELDSET */}
 								<fieldset>
 									<legend>General Information</legend>
 
-									<input name='city' type='text' placeholder='City' value={city} onChange={handleChange}/>
+									<input
+										name='city'
+										type='text'
+										placeholder='City'
+										value={city}
+										onChange={handleChange}
+									/>
 
 									<div className='register-field'>
 										Interests:{' '}
@@ -148,7 +155,14 @@ const EditProfileForm = ({
 									</div>
 
 									<div className='register-field'>
-										<label htmlFor='profile-dob'>Date of Birth: {dob !== null ? (<Fragment>{dob.substring(0,10)}</Fragment>) : (<Fragment>TEST2</Fragment>)}</label>
+										<label htmlFor='profile-dob'>
+											Date of Birth:{' '}
+											{dob !== null ? (
+												<Fragment>{dob.substring(0, 10)}</Fragment>
+											) : (
+												<Fragment>TEST2</Fragment>
+											)}
+										</label>
 
 										<input
 											name='dob'
@@ -160,39 +174,57 @@ const EditProfileForm = ({
 										/>
 									</div>
 
-									<div className='register-field'>
-										<label htmlFor='image'>Upload profile image</label>
+									<SimpleFileUpload
+										apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
+										onSuccess={handleFile}
+									/>
+									<p>Upload a profile pic</p>
+									<p>Click to browse or drag and drop</p>
 
-										<input type="file" name="image" placeholder='Image URL' onChange={uploadFileHandler}/>
-										{uploading && <Hourglass />}
-
-									</div>
-
-
-
+									
 								</fieldset>
 								{/* WORK AND EDUCATION FIELDSET */}
 								<fieldset>
 									<legend>Work and Education</legend>
 
 									<div className='register-field'>
-										<input name='company' type='text' placeholder='Company' value={company}
-											onChange={handleChange}/>
+										<input
+											name='company'
+											type='text'
+											placeholder='Company'
+											value={company}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
-										<input name='position' type='text' placeholder='Position' value={position}
-											onChange={handleChange}/>
+										<input
+											name='position'
+											type='text'
+											placeholder='Position'
+											value={position}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
-										<input name='school' type='text' placeholder='School' value={school}
-											onChange={handleChange}/>
+										<input
+											name='school'
+											type='text'
+											placeholder='School'
+											value={school}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
-										<input name='program' type='text' placeholder='program' value={program}
-											onChange={handleChange}/>
+										<input
+											name='program'
+											type='text'
+											placeholder='program'
+											value={program}
+											onChange={handleChange}
+										/>
 									</div>
 								</fieldset>
 
@@ -216,8 +248,13 @@ const EditProfileForm = ({
 									<legend>Socials Information</legend>
 
 									<div className='register-field'>
-										<input name='facebook' type='text' placeholder='facebook' value={facebook}
-											onChange={handleChange}/>
+										<input
+											name='facebook'
+											type='text'
+											placeholder='facebook'
+											value={facebook}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
@@ -231,8 +268,13 @@ const EditProfileForm = ({
 									</div>
 
 									<div className='register-field'>
-										<input name='twitter' type='text' placeholder='twitter' value={twitter}
-											onChange={handleChange}/>
+										<input
+											name='twitter'
+											type='text'
+											placeholder='twitter'
+											value={twitter}
+											onChange={handleChange}
+										/>
 									</div>
 								</fieldset>
 							</div>
