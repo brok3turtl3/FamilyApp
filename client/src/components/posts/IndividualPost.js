@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { editPost, deletePost, addLike, removeLike } from '../../actions/post';
+import Linkify from 'react-linkify';
 
 const IndividualPost = ({
 	deletePost,
@@ -19,8 +20,13 @@ const IndividualPost = ({
 				<div>BY : {name}</div>
 				<div>POSTED ON : {date.substring(0,10)}</div>
 			</div>
-			
+			<Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
+        <a target="blank" style={{color: 'yellow'}} href={decoratedHref} key={key}>
+            {decoratedText}
+        </a>
+    )}>
 			<div className='body'>{text}</div>
+			</Linkify>
 			{image ? (<img src={image} alt="ph"></img>) : null}
 			<div className='post-buttons'>
 				<i className='fa-solid fa-thumbs-up likes'>
