@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import Alert from './Alert';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
@@ -26,16 +27,16 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
 		if (password !== password2) {
 			setAlert('Passwords do not match', 'danger');
-		} else {
+		} else if( password.length < 6 || password2.length < 6) {
+			setAlert('Passwords must be at least 6 characters', 'danger')
+		}
+		else {
 			register({ name, email, password });
 			navigate('/homepage');
 		}
 	};
 
-	const pstyles = {
-		color: 'white',
-		marginTop: '3rem',
-	};
+	
 
 	//REDIRECT IF LOGGED IN
 	useEffect(() => {
@@ -50,10 +51,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 				<section className='dark-overlay'>
 					<section className='register-container'>
 						<form className='register-form' onSubmit={handleSubmit}>
-							<p class="medium">
+							<p className="medium">
 								Please enter your name, email and password to register your
 								account for the site.
 							</p>
+							<Alert></Alert>
 								<input
 											name='name'
 											id='register-name'

@@ -1,4 +1,5 @@
 
+***TODO*** Add an image Model to store all images and associate with the user that posted.
 ***TODO*** Set up as an App for mobiles
 ***TODO*** Notifications system
 ***TODO*** Allow users to change name or email
@@ -6,15 +7,15 @@
 ***TODO*** Improve user feedback on register/login page errors
 ***TODO*** Work on the interests list and splitting / sorting...
 ***TODO*** Work on Alert system - Needs better implementation to avoid "screen bumping"
-***TODO*** Style individual profile pages.
+COMPLETE*** Style individual profile pages.
 ***TODO*** Restyle and add more attractive and intuitive navigation features.
 ***TODO*** Add an edit button for comments and posts
-***TODO*** Add formatting to inputs for posts and comments
+COMPLETE*** Add formatting to inputs for posts and comments
 ***TODO*** Clean up CSS styling. Too many redundent rules.
 ***TODO*** Work on responsive styling for mobile screens.
 COMPLETE*** Add image uploads for profile pics.  ***URGENT***
-***TODO** Add date stamps to comments
-***TODO*** Format date stamps on posts and comments
+COMPLETE*** Add date stamps to comments
+COMPLETE*** Format date stamps on posts and comments
 COMPLETE*** Fix and restyle create profile component.  ***URGENT***
 COMPLETE*** Restyle all profiles component
 COMPLETE*** Restyle register component to match login.
