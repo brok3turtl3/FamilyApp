@@ -3,7 +3,7 @@ const router = express.Router();
 import auth from '../../middleware/auth.js';
 import Post from '../../models/Post.js';
 import User from '../../models/User.js';
-import Profile from '../../models/Profile.js';
+
 import { check, validationResult } from 'express-validator';
 
 //ENDPOINT  POST api/posts

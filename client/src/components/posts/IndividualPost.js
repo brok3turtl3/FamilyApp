@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
+
 import { connect } from 'react-redux';
 import { editPost, deletePost, addLike, removeLike } from '../../actions/post';
 import Linkify from 'react-linkify';
+
 
 const IndividualPost = ({
 	deletePost,

@@ -21,6 +21,13 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const EDIT_POST = 'EDIT_POST';
 
+export const GET_BUGS = 'GET_BUGS';
+export const BUG_ERROR = 'BUG_ERROR';
+export const ADD_BUG = 'ADD_BUG';
+export const DELETE_BUG = 'DELETE_BUG';
+export const GET_BUG = 'GET_BUG';
+
+
 
 
 

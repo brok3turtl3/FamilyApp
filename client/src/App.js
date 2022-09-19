@@ -15,7 +15,7 @@ import Profile from './components/profiles/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import EditPostForm from './components/post/EditPostForm';
-
+import Bugs from './components/bugs/Bugs';
 
 
 
@@ -55,6 +55,7 @@ const App = () => {
 								<Route path='/posts' element={<Posts />} />
 								<Route path='/posts/:id' element={<Post />} />
 								<Route path='/posts/edit/:id' element={<EditPostForm />} />
+								<Route path='/bugs' element={<Bugs />} />
 
 								
 							</Route>
