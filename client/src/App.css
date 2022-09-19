@@ -13,6 +13,11 @@
   opacity: 1; /* Firefox */
 }
 
+.warning {
+	color: yellow;
+	margin: 0 auto;
+}
+
 .alert {
 	
 	z-index: 1;

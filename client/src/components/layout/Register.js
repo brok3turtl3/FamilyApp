@@ -55,6 +55,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 								Please enter your name, email and password to register your
 								account for the site.
 							</p>
+							<div className="warning">DONT NOT FORGET YOUR PASSWORD!!!</div>
+							<div className="warning">There is currently no means by which to recover it</div>
 							<Alert></Alert>
 								<input
 											name='name'
