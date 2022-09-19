@@ -15,10 +15,7 @@ const Login = ({ login, isAuthenticated }) => {
 	const { email, password } = formData;
 	const navigate = useNavigate();
 
-	const pstyles = {
-		color: 'white',
-		marginTop: '3rem',
-	};
+	
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -24,25 +24,18 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const {
-			subject,
-			text,
-			image
-		} = req.body;
+		const { subject, text, image } = req.body;
 
 		try {
 			const user = await User.findById(req.user.id).select('-password');
 
 			const postFields = {};
 
-
-				if (subject) postFields.subject = subject;
-				if (text) postFields.text = text;
-				if (image) postFields.image = image;
-				postFields.name = user.name;
-				postFields.user = req.user.id;
-				
-
+			if (subject) postFields.subject = subject;
+			if (text) postFields.text = text;
+			if (image) postFields.image = image;
+			postFields.name = user.name;
+			postFields.user = req.user.id;
 
 			const newPost = new Post(postFields);
 			await newPost.save();
@@ -117,6 +110,7 @@ router.delete('/:postId', auth, async (req, res) => {
 //ACCESS    Private
 router.put('/like/:postId', auth, async (req, res) => {
 	try {
+		console.log('TEST-LIKES');
 		const post = await Post.findById(req.params.postId);
 		//CHECK TO SEE IF POST IS ALREADY LIKED
 		if (
@@ -125,7 +119,9 @@ router.put('/like/:postId', auth, async (req, res) => {
 		) {
 			return res.status(400).json({ msg: 'Post already liked' });
 		}
-		post.likes.unshift({ user: req.user.id });
+		console.log('TEST-LIKES');
+		console.log(req.user.name);
+		post.likes.unshift({ user: req.user.id, name: req.user.name });
 		await post.save();
 		res.json(post.likes);
 	} catch (error) {
@@ -229,7 +225,6 @@ router.delete('/comment/:postId/:commentId', auth, async (req, res) => {
 
 router.put('/edit/:postId', auth, async (req, res) => {
 	try {
-		
 		//CHECK TO SEE IF POST EXISTS
 		const post = await Post.findById(req.params.postId);
 		if (!post) {
@@ -244,8 +239,6 @@ router.put('/edit/:postId', auth, async (req, res) => {
 		post.text = req.body.text;
 		await post.save();
 		res.json(post);
-
-
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');

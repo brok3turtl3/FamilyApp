@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
 
 import { connect } from 'react-redux';
 import { editPost, deletePost, addLike, removeLike } from '../../actions/post';
@@ -14,6 +15,17 @@ const IndividualPost = ({
 	auth,
 	post: { _id, subject, text, name, user, likes, comments, date, image},
 }) => {
+
+	const  [isHovering, setisHovering] = useState();
+
+	const handleMouseOver = () => {
+		setisHovering(true);
+	}
+
+	const handleMouseOut = () => {
+		setisHovering(false);
+	}
+
 	return (
 		<div className='posts'>
 			<div className='subject'>
@@ -30,9 +42,10 @@ const IndividualPost = ({
 			</Linkify>
 			{image ? (<img src={image} alt="ph"></img>) : null}
 			<div className='post-buttons'>
+			{isHovering && <div className="likes-display"> {likes.map((like) => <div >{like.name}</div>)} </div>}
 				<i className='fa-solid fa-thumbs-up likes'>
 					{' '}
-					<span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+					<span>{likes.length > 0 && <span onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>{likes.length}</span>}</span>
 				</i>
 				<button className='btn' type='button' onClick={(e) => addLike(_id)}>
 					Like

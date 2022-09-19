@@ -134,6 +134,7 @@ export const deletePost = (id) => async (dispatch) => {
 //ADD LIKE
 export const addLike = (postId) => async (dispatch) => {
 	try {
+		
 		const res = await axios.put(`/api/posts/like/${postId}`);
 		dispatch({
 			type: UPDATE_LIKES,
