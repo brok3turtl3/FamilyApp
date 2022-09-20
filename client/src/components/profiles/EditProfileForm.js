@@ -10,7 +10,7 @@ import SimpleFileUpload from 'react-simple-file-upload';
 const initialState = {
 	city: '',
 	bio: '',
-	image: 'test',
+	image: '',
 	company: '',
 	position: '',
 	school: '',
@@ -30,7 +30,7 @@ const EditProfileForm = ({
 	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState(initialState);
-	const [uploading, setUploading] = useState(false);
+	// const [uploading, setUploading] = useState(false);
 
 	useEffect(() => {
 		if (!profile) getCurrentProfile();
@@ -71,33 +71,33 @@ const EditProfileForm = ({
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-	const uploadFileHandler = async (e) => {
-		console.log('uploadFileHandler Hit!');
-		const file = e.target.files[0];
+	// const uploadFileHandler = async (e) => {
+	// 	console.log('uploadFileHandler Hit!');
+	// 	const file = e.target.files[0];
 
-		const imgData = new FormData();
-		imgData.append('image', file);
+	// 	const imgData = new FormData();
+	// 	imgData.append('image', file);
 
-		setUploading(true);
+	// 	setUploading(true);
 
-		try {
-			const config = {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
-			};
+	// 	try {
+	// 		const config = {
+	// 			headers: {
+	// 				'Content-Type': 'multipart/form-data',
+	// 			},
+	// 		};
 
-			const { data } = await axios.post('/api/upload', imgData, config);
-			console.log('Here is the path for pic');
-			console.log(data);
-			setFormData({ ...formData, [e.target.name]: data });
-			console.log(formData);
-			setUploading(false);
-		} catch (error) {
-			console.error(error);
-			setUploading(false);
-		}
-	};
+	// 		const { data } = await axios.post('/api/upload', imgData, config);
+	// 		console.log('Here is the path for pic');
+	// 		console.log(data);
+	// 		setFormData({ ...formData, [e.target.name]: data });
+	// 		console.log(formData);
+	// 		setUploading(false);
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 		setUploading(false);
+	// 	}
+	// };
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

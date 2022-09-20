@@ -48,8 +48,18 @@ const PostSchema = new Schema({
 				type: Date,
 				default: Date.now,
 			},
+			
 		},
 	],
+	viewed: [
+		{
+			
+			userId: {
+				type: String
+			}
+		},
+	],
+	
 	date: {
 		type: Date,
 		default: Date.now,

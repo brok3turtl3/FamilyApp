@@ -13,7 +13,7 @@ const IndividualPost = ({
 	addLike,
 	removeLike,
 	auth,
-	post: { _id, subject, text, name, user, likes, comments, date, image},
+	post: { _id, subject, text, name, user, likes, viewed, comments, date, image},
 }) => {
 
 	const  [isHovering, setisHovering] = useState();
@@ -26,7 +26,14 @@ const IndividualPost = ({
 		setisHovering(false);
 	}
 
+	
+
+	
+	
+
 	return (
+
+		
 		<div className='posts'>
 			<div className='subject'>
 				<div>SUBJECT : {subject}</div>
