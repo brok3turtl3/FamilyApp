@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile} from '../../actions/profile'
 import { useNavigate } from 'react-router-dom'
+import SimpleFileUpload from 'react-simple-file-upload'
 
 const ProfileForm = ({createProfile}) => {
 
@@ -12,6 +13,7 @@ const ProfileForm = ({createProfile}) => {
 		city: '',
 		bio: '',
 		company: '',
+		image: '',
 		position: '',
 		school: '',
 		program: '',
@@ -26,6 +28,7 @@ const ProfileForm = ({createProfile}) => {
 		city,
 		bio,
 		company,
+		image,
 		position,
 		school,
 		program,
@@ -49,6 +52,11 @@ const ProfileForm = ({createProfile}) => {
       navigate('/homepage')
     }
 	};
+
+	function handleFile(url) {
+		console.log('The URL of the file is ' + url);
+		setFormData({...formData, image: url});
+	}
 
 	return (
 		<Fragment>
@@ -162,6 +170,15 @@ const ProfileForm = ({createProfile}) => {
 										<input name='twitter' type='text' placeholder='twitter' value={twitter}
 											onChange={handleChange}/>
 									</div>
+								</fieldset>
+								<fieldset>
+									<legend>Upload a photo</legend>
+									<SimpleFileUpload
+										apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
+										onSuccess={handleFile}
+									/>
+									<p>Upload a pic</p>
+									<p>Click to browse or drag and drop</p>
 								</fieldset>
 							</div>
 							<div className='post-buttons'>
