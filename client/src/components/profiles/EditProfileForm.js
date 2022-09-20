@@ -10,7 +10,7 @@ import SimpleFileUpload from 'react-simple-file-upload';
 const initialState = {
 	city: '',
 	bio: '',
-	image: '',
+	image: 'test',
 	company: '',
 	position: '',
 	school: '',
