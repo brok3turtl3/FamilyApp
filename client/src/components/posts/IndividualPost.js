@@ -36,9 +36,9 @@ const IndividualPost = ({
 		
 		<div className='posts'>
 			<div className='subject'>
-				<div>SUBJECT : {subject}</div>
-				<div>BY : {name}</div>
-				<div>POSTED ON : {date.substring(0,10)}</div>
+				
+				<div>{name}</div>
+				<div>{date.substring(0,10)}</div>
 			</div>
 			<Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
         <a target="blank" style={{color: 'yellow'}} href={decoratedHref} key={key}>
@@ -47,29 +47,29 @@ const IndividualPost = ({
     )}>
 			<div className='body'>{text}</div>
 			</Linkify>
-			{image ? (<img src={image} alt="ph"></img>) : null}
+			{image ? (<img className='post-image' src={image} alt="ph"></img>) : null}
 			<div className='post-buttons'>
 			{isHovering && <div className="likes-display"> {likes.map((like) => <div >{like.name}</div>)} </div>}
 				<i className='fa-solid fa-thumbs-up likes'>
 					{' '}
 					<span>{likes.length > 0 && <span onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>{likes.length}</span>}</span>
 				</i>
-				<button className='btn' type='button' onClick={(e) => addLike(_id)}>
+				<button className='btn btn-primary' type='button' onClick={(e) => addLike(_id)}>
 					Like
 				</button>
-				<button className='btn' type='button' onClick={(e) => removeLike(_id)}>
+				<button className='btn btn-primary' type='button' onClick={(e) => removeLike(_id)}>
 					Unlike
 				</button>
-				<Link to={`/posts/${_id}`} className='btn' type='button'>
+				<Link to={`/posts/${_id}`} className='btn btn-primary' type='button'>
 					Comments {comments.length}
 				</Link>
 				{!auth.loading && user === auth.user._id && (
 					<Fragment>
-					<Link to={`/posts/edit/${_id}`} className='btn' type='button'>
+					<Link to={`/posts/edit/${_id}`} className='btn btn-primary' type='button'>
 					Edit
 				</Link>
 					<button
-						className='btn'
+						className='btn btn-primary'
 						type='button'
 						onClick={(e) => deletePost(_id)}
 					>

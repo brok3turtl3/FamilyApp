@@ -31,7 +31,7 @@ const BugForm = ({ addBug }) => {
 	return (
 		<Fragment>
 			<form className='submit-post' onSubmit={handleSubmit}>
-				<div className='post-field'>
+				{/* <div className='post-field'>
 					<label htmlFor='subject'>SUBJECT:</label>
 
 					<input
@@ -43,7 +43,7 @@ const BugForm = ({ addBug }) => {
 						onChange={handleChange}
 						required
 					/>
-				</div>
+				</div> */}
 				<div className='post-field'>
 					<label htmlFor='text'>MESSAGE:</label>
 					
@@ -51,7 +51,7 @@ const BugForm = ({ addBug }) => {
 						name='text'
 						id='text'
 						type='text'
-						placeholder='What do you what to share'
+						placeholder='What do you what to suggest/report?'
 						value={text}
 						onChange={handleChange}
 						required
@@ -67,7 +67,7 @@ const BugForm = ({ addBug }) => {
 				</div>
 				
 				<div className='post-buttons'>
-					<button className='btn' type='submit'>
+					<button className='btn btn-primary' type='submit'>
 						Submit Post
 					</button>
 				</div>
