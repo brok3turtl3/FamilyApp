@@ -12,7 +12,7 @@ const PostSchema = new Schema({
 	},
 	subject: {
 		type: String,
-		required: true,
+		required: false,
 	},
 	name: {
 		type: String,
@@ -27,8 +27,8 @@ const PostSchema = new Schema({
 				ref: 'users',
 			},
 			name: {
-				type: String
-			}
+				type: String,
+			},
 		},
 	],
 	comments: [
@@ -48,18 +48,16 @@ const PostSchema = new Schema({
 				type: Date,
 				default: Date.now,
 			},
-			
 		},
 	],
 	viewed: [
 		{
-			
 			userId: {
-				type: String
-			}
+				type: String,
+			},
 		},
 	],
-	
+
 	date: {
 		type: Date,
 		default: Date.now,

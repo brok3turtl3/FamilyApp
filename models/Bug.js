@@ -10,10 +10,7 @@ const BugSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	subject: {
-		type: String,
-		required: true,
-	},
+	
 	name: {
 		type: String,
 	},

@@ -52,7 +52,7 @@ const IndividualBug = ({
 IndividualBug.propTypes = {
 	bug: PropTypes.object.isRequired,
 	auth: PropTypes.object.isRequired,
-	deletePost: PropTypes.func.isRequired,
+	deleteBug: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

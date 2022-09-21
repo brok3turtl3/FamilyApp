@@ -11,13 +11,7 @@ import { check, validationResult } from 'express-validator';
 //ACCESS    Private
 router.post(
 	'/',
-	[
-		auth,
-		[
-			check('subject', 'Subect is required').not().isEmpty(),
-			check('text', 'Post message is required').not().isEmpty(),
-		],
-	],
+	[auth, [check('text', 'Post message is required').not().isEmpty()]],
 	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {

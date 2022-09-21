@@ -12,27 +12,20 @@ import { check, validationResult } from 'express-validator';
 //ACCESS    Private
 router.post(
 	'/',
-	[
-		auth,
-		[
-			check('subject', 'Subect is required').not().isEmpty(),
-			check('text', 'Post message is required').not().isEmpty(),
-		],
-	],
+	[auth, [check('text', 'Post message is required').not().isEmpty()]],
 	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { subject, text, image } = req.body;
+		const { text, image } = req.body;
 
 		try {
 			const user = await User.findById(req.user.id).select('-password');
 
 			const bugFields = {};
 
-			if (subject) bugFields.subject = subject;
 			if (text) bugFields.text = text;
 			if (image) bugFields.image = image;
 			bugFields.name = user.name;
@@ -61,8 +54,6 @@ router.get('/', auth, async (req, res) => {
 	}
 });
 
-
-
 //ENDPOINT  DELETE api/bugs/:bugId
 //PURPOSE   Delete a bug post by ID
 //ACCESS    Private
@@ -88,11 +79,5 @@ router.delete('/:bugId', auth, async (req, res) => {
 		res.status(500).send('Server Error');
 	}
 });
-
-
-
-
-
-
 
 export default router;
