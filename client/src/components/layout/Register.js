@@ -49,14 +49,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 		<Fragment>
 			<section className='homepage'>
 				<section className='dark-overlay'>
-					<section className='register-container'>
-						<form className='register-form' onSubmit={handleSubmit}>
+					<section className='auth-container'>
+						<form className='auth-form' onSubmit={handleSubmit}>
 							<p className="medium">
 								Please enter your name, email and password to register your
 								account for the site.
 							</p>
-							<div className="warning">DONT NOT FORGET YOUR PASSWORD!!!</div>
-							<div className="warning">There is currently no means by which to recover it</div>
+							<div className="warning normal">DONT NOT FORGET YOUR PASSWORD!!!</div>
+							<div className="warning normal">There is currently no means by which to recover it</div>
 							<Alert></Alert>
 								<input
 											name='name'
@@ -97,10 +97,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 										onChange={handleChange}
 										required
 									/>
-								
-							<button className='btn btn-primary register-button' type='submit'>
+							<div className='auth-button'>
+							<button className='btn btn-primary' type='submit'>
 								Submit
 							</button>
+							</div>	
 						</form>
 						<p>
 							Already have an account?<Link to='/login'> Sign in here</Link>

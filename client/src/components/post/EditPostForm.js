@@ -6,17 +6,12 @@ import { editPost, getPost } from '../../actions/post';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
 const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 	const { id } = useParams();
 	const [text, setText] = useState('');
 
-	
-
 	useEffect(() => {
-		
 		getPost(id);
-		
 	}, []);
 
 	const handleChange = (e) => {
@@ -39,8 +34,9 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 						<div className='posts'>
 							<form onSubmit={handleSubmit}>
 								<div className='subject'>
-									<div>SUBJECT : {post.subject}</div>
 									<div>{post.name}</div>
+									<div>{post.date.substring(0, 10)}</div>
+									<div>{post.text}</div>
 								</div>
 								<div className='body'>
 									<textarea

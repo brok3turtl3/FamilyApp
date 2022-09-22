@@ -141,7 +141,7 @@ const EditProfileForm = ({
 
 									<div className='register-field'>
 										Interests:{' '}
-										<span className='small-text'>
+										<span className='normal'>
 											(Please use a comma seperated list. eg: "soccer,
 											charities, working out" )
 										</span>

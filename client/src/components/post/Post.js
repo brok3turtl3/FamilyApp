@@ -25,7 +25,7 @@ const Post = ({
 				<div className='posts-inner'>
 					<div className='posts'>
 						<div className='subject'>
-							<div>SUBJECT : {post.subject}</div>
+							
 							<div>{post.name}</div>
 							<div>{post.date.substring(0,10)}</div>
 						</div>

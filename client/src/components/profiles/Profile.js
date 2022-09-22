@@ -14,7 +14,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 	}, [getProfileById, id]);
 
 	return (
-		<section className='homepage'>
+		<section  className='homepage'>
 			<section className='profile-overlay'>
 				<section className='profile-container'>
 					{profile === null ? (

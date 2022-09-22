@@ -26,6 +26,10 @@ const IndividualPost = ({
 		setisHovering(false);
 	}
 
+	const toggleHovering = () => {
+		setisHovering(!isHovering)
+	}
+
 	
 
 	
@@ -52,7 +56,7 @@ const IndividualPost = ({
 			{isHovering && <div className="likes-display"> {likes.map((like) => <div >{like.name}</div>)} </div>}
 				<i className='fa-solid fa-thumbs-up likes'>
 					{' '}
-					<span>{likes.length > 0 && <span onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>{likes.length}</span>}</span>
+					<span>{likes.length > 0 && <span onClick={toggleHovering} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>{likes.length}</span>}</span>
 				</i>
 				<button className='btn btn-primary' type='button' onClick={(e) => addLike(_id)}>
 					Like

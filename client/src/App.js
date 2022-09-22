@@ -40,7 +40,7 @@ const App = () => {
 				<Fragment>
 					
 					<Navbar />
-					<section className='sectionAlert'>
+					
 						
 						<Routes>
 							<Route path='/' element={<Landing />} />
@@ -61,7 +61,7 @@ const App = () => {
 							</Route>
 							
 						</Routes>
-					</section>
+					
 				</Fragment>
 			</Router>
 		</Provider>

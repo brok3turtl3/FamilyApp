@@ -37,8 +37,8 @@ const Login = ({ login, isAuthenticated }) => {
 		<Fragment>
 			<section className="homepage">
 				<section className="dark-overlay">
-					<section className="login-container">
-						<form className="login-form" onSubmit={handleSubmit}>
+					<section className="auth-container">
+						<form className="auth-form" onSubmit={handleSubmit}>
 							<p className="medium">Please enter your email and password to login.</p>
 
 							<input
@@ -61,7 +61,11 @@ const Login = ({ login, isAuthenticated }) => {
 								required
 							/>
 
-							<button className="btn btn-primary login-button" type="submit">Submit</button>
+<div className='auth-button'>
+							<button className='btn btn-primary' type='submit'>
+								Submit
+							</button>
+							</div>
 						</form>
 						<p>Need an account?<Link to="/register"> Register here</Link></p>
 						<Alert />
