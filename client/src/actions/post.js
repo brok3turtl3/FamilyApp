@@ -170,6 +170,27 @@ export const removeLike = (postId) => async (dispatch) => {
 	}
 };
 
+
+
+//TOGGLE LIKE
+export const toggleLike = (postId) => async (dispatch) => {
+	try {
+		const res = await axios.put(`/api/posts/toggle-like/${postId}`);
+		dispatch({
+			type: UPDATE_LIKES,
+			payload: { postId, likes: res.data },
+		});
+	} catch (error) {
+		dispatch({
+			type: POST_ERROR,
+			payload: {
+				msg: error.response.statusText,
+				status: error.response.status,
+			},
+		});
+	}
+};
+
 //ADD COMMENT
 export const addComment = (postId, formData) => async (dispatch) => {
 	try {

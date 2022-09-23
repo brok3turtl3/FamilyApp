@@ -1,16 +1,22 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { editPost, deletePost, addLike, removeLike } from '../../actions/post';
+import {
+	editPost,
+	deletePost,
+	addLike,
+	removeLike,
+	toggleLike,
+} from '../../actions/post';
 import Linkify from 'react-linkify';
 import { ResultWithContext } from 'express-validator/src/chain';
 
 const IndividualPost = ({
 	deletePost,
-	addLike,
-	removeLike,
+
+	toggleLike,
 	auth,
 	post: {
 		_id,
@@ -26,6 +32,7 @@ const IndividualPost = ({
 	},
 }) => {
 	const [isHovering, setisHovering] = useState();
+	const navigate = useNavigate();
 
 	const handleMouseOver = () => {
 		setisHovering(true);
@@ -39,41 +46,41 @@ const IndividualPost = ({
 		setisHovering(!isHovering);
 	};
 
-	const linkStyle = {
-		color: 'white'
+	const navigateComments = () => {
+		navigate(`/posts/${_id}`);
+	};
 
-	}
+	const linkStyle = {
+		color: 'white',
+	};
 
 	return (
 		<div className='posts'>
 			<div className='subject'>
-				
-				
 				<div className='img-thumb'>
 					<img src='' alt='PH'></img>
 				</div>
 
-				<div className="poster-info">
+				<div className='poster-info'>
 					<div>{name}</div>
 					<div>{date.substring(0, 10)}</div>
 				</div>
 
-				<div className="post-delete">
+				<div className='post-delete'>
 					{!auth.loading && user === auth.user._id && (
 						<Fragment>
-<Link style={linkStyle}  to={`/posts/edit/${_id}`}
-							
-							type='button'>
-						<i className="fa-solid fa-pen hover"></i>
-</Link>
+							<Link style={linkStyle} to={`/posts/edit/${_id}`} type='button'>
+								<i className='fa-solid fa-pen hover'></i>
+							</Link>
 
-						<i
-							onClick={(e) => deletePost(_id)}
-							className='fa-solid fa-trash hover-danger'
-						>
-							{' '}
-							X
-						</i></Fragment>
+							<i
+								onClick={(e) => deletePost(_id)}
+								className='fa-solid fa-trash hover-danger'
+							>
+								{' '}
+								X
+							</i>
+						</Fragment>
 					)}
 				</div>
 			</div>
@@ -92,6 +99,16 @@ const IndividualPost = ({
 				<div className='body'>{text}</div>
 			</Linkify>
 			{image ? <img className='post-image' src={image} alt='ph'></img> : null}
+			{likes.length > 0 ? (
+				<div
+					className='likes-counter'
+					onClick={toggleHovering}
+					onMouseOver={handleMouseOver}
+					onMouseOut={handleMouseOut}
+				>
+					<i className='fa-solid fa-thumbs-up'><span className='fa'>{likes.length}</span></i>
+				</div>
+			) : null}
 			<div className='post-buttons'>
 				{isHovering && (
 					<div className='likes-display'>
@@ -101,43 +118,21 @@ const IndividualPost = ({
 						))}{' '}
 					</div>
 				)}
-				<i
-					className='fa-solid fa-thumbs-up likes hover'
-					onClick={(e) => addLike(_id)}
-				>
-					<span>
+				<span>
+					<i
+						className='fa-solid fa-thumbs-up likes hover'
+						onClick={(e) => toggleLike(_id)}
+					>
 						{' '}
-						{likes.length > 0 && (
-							<span
-								onClick={toggleHovering}
-								onMouseOver={handleMouseOver}
-								onMouseOut={handleMouseOut}
-							>
-								{likes.length}
-							</span>
-						)}
-					</span>
-				</i>
-
-				<button
-					className='btn btn-primary'
-					type='button'
-					onClick={(e) => addLike(_id)}
-				>
-					Like
-				</button>
-
-				<button
-					className='btn btn-primary'
-					type='button'
-					onClick={(e) => removeLike(_id)}
-				>
-					Unlike
-				</button>
-				<Link to={`/posts/${_id}`} className='btn btn-primary' type='button'>
-					Comments {comments.length}
-				</Link>
-				
+						<span className='fa'>Like</span>
+					</i>
+				</span>
+				<span onClick={navigateComments}>
+					<i className='fa-solid fa-comments likes hover'>
+						{' '}
+						<span className='fa'>Comments {comments.length}</span>
+					</i>
+				</span>
 			</div>
 		</div>
 	);
@@ -147,8 +142,8 @@ IndividualPost.propTypes = {
 	post: PropTypes.object.isRequired,
 	auth: PropTypes.object.isRequired,
 	deletePost: PropTypes.func.isRequired,
-	addLike: PropTypes.func.isRequired,
-	removeLike: PropTypes.func.isRequired,
+
+	toggleLike: PropTypes.func.isRequired,
 	editPost: PropTypes.func.isRequired,
 };
 
@@ -159,6 +154,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
 	editPost,
 	deletePost,
-	addLike,
-	removeLike,
+
+	toggleLike,
 })(IndividualPost);

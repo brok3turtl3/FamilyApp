@@ -150,6 +150,39 @@ router.put('/unlike/:postId', auth, async (req, res) => {
 	}
 });
 
+//ENDPOINT  PUT api/posts/toggle-like/:postId
+//PURPOSE   Like or un-like a post.
+//ACCESS    Private
+router.put('/toggle-like/:postId', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.postId);
+
+		if (
+			post.likes.filter((like) => like.user.toString() === req.user.id)
+				.length === 0
+		) {
+			post.likes.unshift({ user: req.user.id, name: req.user.name });
+		await post.save();
+		res.json(post.likes);
+		}else {
+			const removeIndex = post.likes
+			.map((like) => like.user.toString())
+			.indexOf(req.user.id);
+		post.likes.splice(removeIndex, 1);
+		await post.save();
+
+		res.json(post.likes);
+		}
+
+		
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+
+
 //ENDPOINT  POST api/posts/comment/:postId
 //PURPOSE   Comment on a post
 //ACCESS    Private
