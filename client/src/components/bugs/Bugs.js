@@ -19,8 +19,8 @@ const Bugs = ({ getBugs, bug: { bugs, loading } }) => {
 						<Hourglass />
 					) : (
 						<Fragment>
-							<div className='title-bar'>Feedback</div>
-							<p className='medium-text'>
+							<div className='large'>Feedback</div>
+							<p className='medium'>
 								Tell me what you would like added or what is broken!
 							</p>
 							<BugForm />

@@ -25,7 +25,7 @@ const Profiles = ({
         <Hourglass />
       ) : (
         <Fragment>
-          <div className="title-bar">Profiles</div>
+          <div className="large">Profiles</div>
           <p className='medium'>
             Here is everyone so far!
           </p>

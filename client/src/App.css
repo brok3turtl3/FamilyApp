@@ -88,6 +88,22 @@ html {
 	background: var(--dark-color);
 }
 
+.hover {
+	cursor: pointer;
+}
+.hover:hover{
+	
+	color: var(--primary-color);
+}
+
+.hover-danger {
+	cursor: pointer;
+}
+.hover-danger:hover{
+	
+	color: var(--danger-color);
+}
+
 .dark-overlay {
 	height: 100%;
 	width: 100%;
@@ -483,8 +499,30 @@ img {
 }
 
 .subject {
+	display: flex;
+	flex-direction: row;
 	margin: 1rem;
-	text-align: left;
+	
+	
+}
+.post-delete {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-left: auto;
+	
+	
+	justify-content: space-evenly;
+}
+.poster-info{
+	padding-left: 1rem;
+	align-self: center;
+}
+
+.img-thumb{
+	height: 100px;
+	width: 100px;
+	background-color: var(--primary-color);
 }
 
 .body {
@@ -510,10 +548,7 @@ img {
 	/* border: #f4f4f4 solid 1px; */
 }
 
-.title-bar {
-	font-size: 3rem;
-	margin-bottom: 2rem;
-}
+
 
 
 
@@ -542,12 +577,17 @@ img {
 	height: 200px;
 	width: 200px;
 }
+
+
 .profile-img img {
 	width: 200px;
 	height: 200px;
 	object-fit: cover;
 	object-position: center;
 	border-radius: 2rem;
+	
+	
+	
 }
 
 .simple-file-container {
@@ -658,6 +698,14 @@ img {
 		margin-right: 2rem;
 		text-align: right;
 	} */
+
+	.img-thumb{
+		min-width: 75px;
+		min-height: 75px;
+		height: 75px;
+		width: 75px;
+		background-color: var(--primary-color);
+	}
 
 
 	

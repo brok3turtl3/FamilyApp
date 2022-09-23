@@ -14,8 +14,31 @@ const IndividualBug = ({
 	return (
 		<div className='posts'>
 			<div className='subject'>
-				<div>{name}</div>
-				<div>{date.substring(0, 10)}</div>
+				
+				
+				<div className='img-thumb'>
+					<img src='' alt='PH'></img>
+				</div>
+
+				<div className="poster-info">
+					<div>{name}</div>
+					<div>{date.substring(0, 10)}</div>
+				</div>
+
+				<div className="post-delete">
+					{!auth.loading && user === auth.user._id && (
+						<Fragment>
+
+
+						<i
+							onClick={(e) => deleteBug(_id)}
+							className='fa-solid fa-trash hover-danger'
+						>
+							{' '}
+							X
+						</i></Fragment>
+					)}
+				</div>
 			</div>
 			<Linkify
 				componentDecorator={(decoratedHref, decoratedText, key) => (
@@ -33,17 +56,7 @@ const IndividualBug = ({
 			</Linkify>
 			{image ? <img src={image} alt='ph'></img> : null}
 			<div className='post-buttons'>
-				{!auth.loading && user === auth.user._id && (
-					<Fragment>
-						<button
-							className='btn'
-							type='button'
-							onClick={(e) => deleteBug(_id)}
-						>
-							Delete Post
-						</button>
-					</Fragment>
-				)}
+				
 			</div>
 		</div>
 	);

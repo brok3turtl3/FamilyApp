@@ -19,8 +19,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 						<Hourglass />
 					) : (
 						<Fragment>
-							<div className='title-bar'>Forums</div>
-							<p className='medium-text'>
+							<div className='large'>Forums</div>
+							<p className='medium'>
 								Get to know everyone! Leave a post or comment.
 							</p>
 							<PostForm />
