@@ -16,7 +16,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 	return (
 		<section  className='homepage'>
 			<section className='profile-overlay'>
-				<section className='profile-container'>
+				<section className='profile-container margin-top'>
 					{profile === null ? (
 						<Hourglass />
 					) : (
@@ -26,7 +26,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 							<div className="profile-img">
 							<img src={`${profile.image}`} alt="Placeholder"></img>
 							</div>) : null}
-    <p>{profile.user.name}'s Profile</p>
+    <p className='medium'>{profile.user.name}'s Profile</p>
   </div>
     <div className="profile-info">
       <div className="profile-info-section">
