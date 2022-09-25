@@ -3,7 +3,11 @@ import {
 	ADD_NOTIFICATION,
 	DELETE_NOTIFICATION,
 	NOTIFICATION_ERROR,
+	GET_NOTIFICATIONS,
+	USER_LOADED
 } from './types';
+
+import setAuthToken from '../utils/setAuthToken';
 
 //ADD NOTIFICATION
 
@@ -48,6 +52,40 @@ export const deleteNotification = (notificationId) => async (dispatch) => {
 		});
 
 		
+	} catch (error) {
+		dispatch({
+			type: NOTIFICATION_ERROR,
+			payload: {
+				msg: error.response.statusText,
+				status: error.response.status,
+			},
+		});
+	}
+};
+
+//UPDATE NOTIFICATIONS
+
+export const updateNotifications = () => async (dispatch) => {
+  console.log('Update Notifications hit!')
+
+	if (localStorage.token) {
+		setAuthToken(localStorage.token);
+	}
+
+	try {
+		const res = await axios.get('/api/auth');
+		dispatch({
+			type: USER_LOADED,
+			payload: res.data,
+		});
+		console.log("here is response data")
+		console.log(res.data.notifications);
+		dispatch({
+			type: GET_NOTIFICATIONS,
+			payload: res.data.notifications
+		})
+
+  
 	} catch (error) {
 		dispatch({
 			type: NOTIFICATION_ERROR,

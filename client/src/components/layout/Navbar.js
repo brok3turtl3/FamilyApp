@@ -1,15 +1,23 @@
-import React, { Fragment, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link, useNavigate,  } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { PropTypes } from 'prop-types';
 import { DELETE_NOTIFICATION } from '../../actions/types';
-import { deleteNotification } from '../../actions/notifications';
+import { deleteNotification, updateNotifications } from '../../actions/notifications';
 
 
-const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifications}, logout, deleteNotification }) => {
+const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifications}, logout, deleteNotification, updateNotifications }) => {
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			console.log('TEST');
+			updateNotifications();
+		}, 3000);
+		return () => clearInterval(interval);
+	},[])
 
 	const [showNotifications, setshowNotifications] = useState();
 
@@ -23,6 +31,7 @@ navigate(`/posts/${_id}`)
 	}
 
 	const authLinks = (
+		<Fragment>
 		<ul>
 			<li>
 				<Link to='/homepage'>Homepage</Link>
@@ -40,22 +49,24 @@ navigate(`/posts/${_id}`)
 				<a onClick={logout} href='#!'>
 					Logout
 				</a>
-			</li>{showNotifications && notifications.length > 0 && (
-					<div className='notifications-display'>
-						{' '}
-						{notifications.map((notification) => (
-							<div key={notification.id} className="notification hover" onClick={() => {
-								setshowNotifications(!showNotifications);
-								navigate(`/posts/${notification.postId}`);
-						deleteNotification(notification._id);
-						}}>{`${notification.name} ${notification.type}`} </div>
-						))}{' '}
-					</div>
-				)}
+			</li>
 			{ notifications.length > 0 ? <div className="notifications"><i className="fa-solid fa-bell fa-shake hover" onClick={handleBellClick}></i> {notifications.length}</div> : null }
 			
-			
 		</ul>
+		<div>
+		{showNotifications && notifications.length > 0 && (
+			<div className='notifications-display'>
+				<p>Click to view post</p>
+				{notifications.map((notification) => (
+					<div key={notification._id} className="notification" onClick={() => {
+						setshowNotifications(!showNotifications);
+						navigate(`/posts/${notification.postId}`);
+				deleteNotification(notification._id);
+				}}>{`${notification.name} ${notification.type}`} </div>
+				))}{' '}
+			</div>
+		)}
+	</div></Fragment>
 	);
 
 	const guestLinks = (
@@ -91,7 +102,8 @@ navigate(`/posts/${_id}`)
 
 Navbar.propTypes = {
 	logout: PropTypes.func.isRequired,
-	deleteNotification: PropTypes.func.isRequired
+	deleteNotification: PropTypes.func.isRequired,
+	updateNotifications: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -99,4 +111,4 @@ const mapStateToProps = (state) => ({
 	notifications: state.notifications
 });
 
-export default connect(mapStateToProps, { logout, deleteNotification })(Navbar);
+export default connect(mapStateToProps, { logout, deleteNotification, updateNotifications })(Navbar);
