@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { addComment } from '../../actions/post';
 import Alert from '../layout/Alert';
 import { Link } from 'react-router-dom';
+import { addNotification } from '../../actions/notifications';
 
-const CommentForm = ({ addComment, postId }) => {
+const CommentForm = ({ addComment, postId, addNotification }) => {
 	const [text, setText] = useState('');
 
 	
@@ -17,6 +18,8 @@ const CommentForm = ({ addComment, postId }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addComment(postId, {text});
+		console.log(postId);
+		addNotification(postId, 'commented on your post')
 		setText('');
 	};
 
@@ -53,6 +56,7 @@ const CommentForm = ({ addComment, postId }) => {
 
 CommentForm.propTypes = {
 	addComment: PropTypes.func.isRequired,
+	addNotification: PropTypes.func.isRequired
   
 };
 
@@ -60,4 +64,4 @@ const mapStateToProps = state => ({
   post: state.post
 })
 
-export default connect(mapStateToProps, { addComment })(CommentForm);
+export default connect(mapStateToProps, { addComment, addNotification })(CommentForm);

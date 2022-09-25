@@ -8,7 +8,9 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT,
-	CLEAR_PROFILE
+	CLEAR_PROFILE,
+	CLEAR_NOTIFICATIONS,
+	GET_NOTIFICATIONS
 } from './types';
 
 import setAuthToken from '../utils/setAuthToken';
@@ -25,6 +27,12 @@ export const loadUser = () => async (dispatch) => {
 			type: USER_LOADED,
 			payload: res.data,
 		});
+		console.log("here is response data")
+		console.log(res.data.notifications);
+		dispatch({
+			type: GET_NOTIFICATIONS,
+			payload: res.data.notifications
+		})
 
 		
 	} catch (error) {
@@ -82,6 +90,7 @@ export const login = (email, password) => async (dispatch) => {
 			payload: res.data,
 		});
 		dispatch(loadUser());
+		
 	} catch (error) {
 		const errors = error.response.data.errors;
 		if (errors) {
@@ -97,6 +106,7 @@ export const login = (email, password) => async (dispatch) => {
 //LOGOUT USER
 export const logout = () => (dispatch) => {
 	dispatch({ type: CLEAR_PROFILE});
+	dispatch({ type: CLEAR_NOTIFICATIONS});
 	dispatch({ type: LOGOUT });
 	
 };
