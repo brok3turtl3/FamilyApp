@@ -1,7 +1,9 @@
 import express from 'express';
 const router = express.Router();
 import { check, validationResult } from 'express-validator';
+import auth from '../../middleware/auth.js';
 import User from '../../models/User.js';
+import Post from '../../models/Post.js';
 import bcrypt from'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
@@ -73,6 +75,76 @@ router.post(
         );
 		} catch (err) {
 			console.error(err.message);
+			res.status(500).send('Server Error');
+		}
+	}
+);
+
+//ENDPOINT  POST api/users/addNotification/:postId
+//PURPOSE   Notify User of interactions with posts
+//ACCESS    Private
+router.post(
+	'/addNotification/:postId',
+	auth, 
+	async (req, res) => {
+		
+
+		try {
+			const post = await Post.findById(req.params.postId);
+			const user = await User.findById(post.user).select('-password');
+
+			//MAKE SURE IT IS NOT A DUPLICATE NOTIFICATION
+			
+			
+
+			const newNotification = {
+				name: req.user.name,
+				userId: req.user.id,
+				type: req.body.type,
+				postId: req.params.postId
+			};
+
+			user.notifications.unshift(newNotification);
+
+			await user.save();
+			res.json(user.notifications);
+		} catch (error) {
+			console.error(error.message);
+			res.status(500).send('Server Error');
+		}
+	}
+);
+
+//ENDPOINT  DELETE api/users/deleteNotification/:notificationId
+//PURPOSE   Remove notification from users alerts
+//ACCESS    Private
+router.delete(
+	'/deleteNotification/:notificationId',
+	auth, 
+	async (req, res) => {
+		
+
+		try {
+			console.log("DELETE HIT!")
+			const user = await User.findById(req.user.id).select('-password');
+			console.log(user);
+			console.log(req.params.notificationId);
+			const notification = user.notifications.find(
+				(notification) => notification.id === req.params.notificationId
+			);
+
+			if (!notification) {
+				return res.status(404).json({msg: 'Notification does not exist'})
+			}
+
+			const indexToRemove = user.notifications.indexOf(notification);
+			user.notifications.splice(indexToRemove, 1);
+			await user.save();
+			res.json(user.notifications);
+
+						
+		} catch (error) {
+			console.error(error.message);
 			res.status(500).send('Server Error');
 		}
 	}

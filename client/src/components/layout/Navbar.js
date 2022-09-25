@@ -1,10 +1,27 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { PropTypes } from 'prop-types';
+import { DELETE_NOTIFICATION } from '../../actions/types';
+import { deleteNotification } from '../../actions/notifications';
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+
+const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifications}, logout, deleteNotification }) => {
+
+	const navigate = useNavigate();
+
+	const [showNotifications, setshowNotifications] = useState();
+
+	const handleBellClick = () => {
+		setshowNotifications(!showNotifications);
+		console.log(showNotifications);
+	}
+
+	const handleNotificationClick = (_id) => {
+navigate(`/posts/${_id}`)
+	}
+
 	const authLinks = (
 		<ul>
 			<li>
@@ -23,7 +40,21 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 				<a onClick={logout} href='#!'>
 					Logout
 				</a>
-			</li>
+			</li>{showNotifications && notifications.length > 0 && (
+					<div className='notifications-display'>
+						{' '}
+						{notifications.map((notification) => (
+							<div key={notification.id} className="notification hover" onClick={() => {
+								setshowNotifications(!showNotifications);
+								navigate(`/posts/${notification.postId}`);
+						deleteNotification(notification._id);
+						}}>{`${notification.name} ${notification.type}`} </div>
+						))}{' '}
+					</div>
+				)}
+			{ notifications.length > 0 ? <div className="notifications"><i className="fa-solid fa-bell fa-shake hover" onClick={handleBellClick}></i> {notifications.length}</div> : null }
+			
+			
 		</ul>
 	);
 
@@ -37,6 +68,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 			</li>
 		</ul>
 	);
+
+	
 
 	return (
 		<nav className='navbar'>
@@ -58,10 +91,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
 Navbar.propTypes = {
 	logout: PropTypes.func.isRequired,
+	deleteNotification: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
+	notifications: state.notifications
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout, deleteNotification })(Navbar);

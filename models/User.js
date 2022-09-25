@@ -15,7 +15,23 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	
+	notifications: [
+		{
+			name: {
+				type: String,
+			},
+			userId: {
+				type: String
+			},
+			type: {
+				type: String,
+			},
+			postId: {
+				type: String,
+			},
+		},
+	],
+
 	date: {
 		type: Date,
 		default: Date.now,

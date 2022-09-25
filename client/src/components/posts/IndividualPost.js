@@ -3,19 +3,14 @@ import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import {
-	editPost,
-	deletePost,
-	addLike,
-	removeLike,
-	toggleLike,
-} from '../../actions/post';
+import { editPost, deletePost, toggleLike } from '../../actions/post';
+
+import { addNotification } from '../../actions/notifications';
 import Linkify from 'react-linkify';
-import { ResultWithContext } from 'express-validator/src/chain';
 
 const IndividualPost = ({
 	deletePost,
-
+	addNotification,
 	toggleLike,
 	auth,
 	post: {
@@ -48,6 +43,13 @@ const IndividualPost = ({
 
 	const navigateComments = () => {
 		navigate(`/posts/${_id}`);
+	};
+
+	const handleLikeClick = () => {
+		toggleLike(_id);
+// console.log(auth.user)
+// console.log(`Value of user in Post submission ${user}`)
+		addNotification( _id, 'liked your post');
 	};
 
 	const linkStyle = {
@@ -106,7 +108,9 @@ const IndividualPost = ({
 					onMouseOver={handleMouseOver}
 					onMouseOut={handleMouseOut}
 				>
-					<i className='fa-solid fa-thumbs-up'><span className='fa'>{likes.length}</span></i>
+					<i className='fa-solid fa-thumbs-up'>
+						<span className='fa'>{likes.length}</span>
+					</i>
 				</div>
 			) : null}
 			<div className='post-buttons'>
@@ -121,7 +125,7 @@ const IndividualPost = ({
 				<span>
 					<i
 						className='fa-solid fa-thumbs-up likes hover'
-						onClick={(e) => toggleLike(_id)}
+						onClick={handleLikeClick}
 					>
 						{' '}
 						<span className='fa'>Like</span>
@@ -142,7 +146,7 @@ IndividualPost.propTypes = {
 	post: PropTypes.object.isRequired,
 	auth: PropTypes.object.isRequired,
 	deletePost: PropTypes.func.isRequired,
-
+	addNotification: PropTypes.func.isRequired,
 	toggleLike: PropTypes.func.isRequired,
 	editPost: PropTypes.func.isRequired,
 };
@@ -154,6 +158,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
 	editPost,
 	deletePost,
-
+	addNotification,
 	toggleLike,
 })(IndividualPost);
