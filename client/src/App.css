@@ -570,7 +570,7 @@ img {
 	display: flex;
 	flex-direction: row;
 	margin: 1rem;
-	border: #17a2b8 1px solid;
+	
 	
 	
 	
@@ -595,7 +595,7 @@ img {
 	height: 120px;
 	width: auto;
 	align-self: center;
-	border: #17a2b8 1px solid;
+	
 	display: flex;
 }
 
