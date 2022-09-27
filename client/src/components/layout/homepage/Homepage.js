@@ -30,10 +30,8 @@ const Homepage = ({
 									<div className='profile-img'>
 										<img src={`${profile.image}`} alt='Placeholder'></img>
 									</div>
-								) : (
-									<p>TEST</p>
-								)}
-								<div>{profile.bio}</div>
+								) : null}
+								
 								<div>
 									<Link to='/editprofile' className='btn btn-primary'>
 										Edit Profile

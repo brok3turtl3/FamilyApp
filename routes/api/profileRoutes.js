@@ -97,13 +97,34 @@ router.post(
 					{ new: true }
 				);
 
+				//ADD IMAGE TO USER INFO
+			console.log('profileRoute HIT!')
+			User.findOneAndUpdate({_id: req.user.id}, {profilePic: image}, (err, data) => {
+				if(err){
+					console.log(err)
+				}else{
+					console.log(data)
+				}
+			})
+
 				return res.json(profile);
 			}
 
 			//IF NO PROFILE EXISTS THEN CREATE NEW PROFILE
 			profile = new Profile(profileFields);
 			await profile.save();
+			User.findOneAndUpdate({_id: req.user.id}, {profilePic: image}, (err, data) => {
+				if(err){
+					console.log(err)
+				}else{
+					console.log(data)
+				}
+			})
+			
+
 			res.json(profile);
+
+						
 		} catch (error) {
 			console.error(error.message);
 			res.status(500).send('Server Error');

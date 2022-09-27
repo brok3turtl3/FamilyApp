@@ -13,7 +13,7 @@ const ProfileForm = ({createProfile}) => {
 		city: '',
 		bio: '',
 		company: '',
-		image: '',
+		image: 'https://cdn-jzo7ptov.files-simplefileupload.com/static/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOW9UQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--04bdbbf1d069b7afaf9f6059ddf144e3629636ba/Avatar.png',
 		position: '',
 		school: '',
 		program: '',
@@ -76,9 +76,9 @@ const ProfileForm = ({createProfile}) => {
 								{/* GENERAL INFO FIELDSET */}
 								<fieldset>
 									<legend>General Information</legend>
-
+<div className="register-field">
 									<input name='city' type='text' placeholder='City' value={city} onChange={handleChange}/>
-
+</div>
 									<div className='register-field'>
 										Interests:{' '}
 										<span className='normal'>
@@ -127,7 +127,7 @@ const ProfileForm = ({createProfile}) => {
 									</div>
 
 									<div className='register-field'>
-										<input name='program' type='text' placeholder='program' value={program}
+										<input name='program' type='text' placeholder='Program' value={program}
 											onChange={handleChange}/>
 									</div>
 								</fieldset>

@@ -30,6 +30,7 @@ router.post(
 			if (image) postFields.image = image;
 			postFields.name = user.name;
 			postFields.user = req.user.id;
+			postFields.posterImage = user.profilePic;
 
 			const newPost = new Post(postFields);
 			await newPost.save();

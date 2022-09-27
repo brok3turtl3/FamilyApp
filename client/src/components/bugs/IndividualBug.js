@@ -16,7 +16,7 @@ const IndividualBug = ({
 			<div className='subject'>
 				
 				
-				<div className='img-thumb'>
+				<div className='post-img-thumb'>
 					<img src='' alt='PH'></img>
 				</div>
 

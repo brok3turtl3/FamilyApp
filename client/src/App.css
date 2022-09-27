@@ -19,11 +19,6 @@ html {
 }
 
 
-::placeholder {
-	/* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: --primary-color;
-	opacity: 0.6;
-}
 
 .warning {
 	color: yellow;
@@ -229,6 +224,17 @@ img {
 	min-width: 300px;
 }
 
+.auth-form input::-webkit-input-placeholder{
+	color: black;
+	opacity: 0.4;
+	
+}
+.auth-form input::-ms-input-placeholder{
+	color: black;
+	opacity: 0.4;
+	
+}
+
 .auth-button {
 	margin: 1rem auto;
 	text-align: center;
@@ -282,6 +288,24 @@ img {
 	margin: 0 1rem;
 	box-sizing: border-box;
 	border: none;
+	
+}
+.register-field input::-webkit-input-placeholder{
+	color: white;
+	opacity: .5;
+}
+.register-field input::-ms-input-placeholder{
+	color: white;
+	opacity: .5;
+}
+
+.register-field textarea::-webkit-input-placeholder{
+	color: white;
+	opacity: .5;
+}
+.register-field textarea::-ms-input-placeholder{
+	color: white;
+	opacity: .5;
 }
 
 .edit-profile textarea {
@@ -295,6 +319,8 @@ img {
 	box-sizing: border-box;
 	border: none;
 }
+
+
 .edit-profile input {
 	font-size: 1rem;
 	width: 70%;
@@ -509,12 +535,22 @@ img {
 	height: auto;
 	display: flex;
 	flex-direction: column;
-	width: 80%;
+	width: 60%;
 	margin: 4rem auto;
 	align-items: center;
 	
 	text-align: center;
 	padding-top: 2rem;
+}
+
+.main-posts {
+	padding-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-around;
+	overflow: auto;
 }
 
 .post-field {
@@ -534,6 +570,8 @@ img {
 	display: flex;
 	flex-direction: row;
 	margin: 1rem;
+	border: #17a2b8 1px solid;
+	
 	
 	
 }
@@ -551,10 +589,27 @@ img {
 	align-self: center;
 }
 
-.img-thumb{
-	height: 100px;
+
+
+.post-img-thumb {
+	height: 120px;
+	width: auto;
+	align-self: center;
+	border: #17a2b8 1px solid;
+	display: flex;
+}
+
+
+.post-img-thumb img {
 	width: 100px;
-	background-color: var(--primary-color);
+	height: 100px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 2rem;
+	align-self: center;
+	
+	
+	
 }
 
 .body {
@@ -610,7 +665,7 @@ img {
 
 .profile-img {
 	height: 200px;
-	width: 200px;
+	width: auto;
 }
 
 
@@ -797,6 +852,22 @@ img {
 		font-size: 2rem;
 		background-color: #0e1318;
 		margin-right: 2rem;
+	}
+
+	/* POSTS */
+
+	.posts-inner {
+	
+		color: var(--light-color);
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		width: 80%;
+		margin: 4rem auto;
+		align-items: center;
+		
+		text-align: center;
+		padding-top: 2rem;
 	}
 	.notifications-display {
 		color: --light-color;

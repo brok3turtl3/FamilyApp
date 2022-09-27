@@ -30,7 +30,7 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 		//DESTRUCTURE DATA FROM REQ.BODY FOR EASE OF USE
-		const { name, email, password } = req.body;
+		const { name, email, password, profilePic } = req.body;
 
 		try {
 			//SEE IF USER EXISTS
@@ -48,6 +48,7 @@ router.post(
 				name,
 				email,
 				password,
+				profilePic
 			});
 
 			//ENCRYPT PASSWORD AND SAVE USER
@@ -61,7 +62,7 @@ router.post(
 			const payload = {
 				user: {
 					id: user.id,
-					name: user.name
+					name: user.name,
 				},
 			};
 

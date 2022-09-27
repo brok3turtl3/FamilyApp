@@ -221,7 +221,7 @@ const EditProfileForm = ({
 										<input
 											name='program'
 											type='text'
-											placeholder='program'
+											placeholder='Program'
 											value={program}
 											onChange={handleChange}
 										/>

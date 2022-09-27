@@ -24,7 +24,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 								Get to know everyone! Leave a post or comment.
 							</p>
 							<PostForm />
-							<div className='profiles'>
+							<div className='main-posts'>
 								{posts.length > 0 ? (
 									posts.map((post) => <IndividualPost key={post._id} post={post} />)
 								) : (

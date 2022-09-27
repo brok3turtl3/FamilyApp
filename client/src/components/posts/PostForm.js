@@ -31,19 +31,7 @@ const PostForm = ({ addPost }) => {
 	return (
 		<Fragment>
 			<form className='submit-post' onSubmit={handleSubmit}>
-				{/* <div className='post-field'>
-					<label htmlFor='subject'>SUBJECT:</label>
-
-					<input
-						name='subject'
-						id='subject'
-						type='text'
-						placeholder='Subject'
-						value={subject}
-						onChange={handleChange}
-						required
-					/>
-				</div> */}
+				
 				<div className='post-field'>
 					<label htmlFor='text'>MESSAGE:</label>
 					

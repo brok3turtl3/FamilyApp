@@ -12,11 +12,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 		email: '',
 		password: '',
 		password2: '',
+		profilePic: 'https://cdn-jzo7ptov.files-simplefileupload.com/static/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOW9UQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--04bdbbf1d069b7afaf9f6059ddf144e3629636ba/Avatar.png'
 	});
 
 	let navigate = useNavigate();
 
-	const { name, email, password, password2 } = formData;
+	const { name, email, password, password2, profilePic } = formData;
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,7 +32,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 			setAlert('Passwords must be at least 6 characters', 'danger')
 		}
 		else {
-			register({ name, email, password });
+			register({ name, email, password, profilePic });
 			navigate('/homepage');
 		}
 	};

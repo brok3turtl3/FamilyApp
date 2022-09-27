@@ -24,6 +24,7 @@ const IndividualPost = ({
 		comments,
 		date,
 		image,
+		posterImage
 	},
 }) => {
 	const [isHovering, setisHovering] = useState();
@@ -59,8 +60,8 @@ const IndividualPost = ({
 	return (
 		<div className='posts'>
 			<div className='subject'>
-				<div className='img-thumb'>
-					<img src='' alt='PH'></img>
+				<div className='post-img-thumb'>
+					<img src={posterImage} alt='PH'></img>
 				</div>
 
 				<div className='poster-info'>
