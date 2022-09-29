@@ -60,10 +60,12 @@ const IndividualPost = ({
 	return (
 		<div className='posts'>
 			<div className='subject'>
-				<div className='post-img-thumb'>
-					<img src={posterImage} alt='PH'></img>
-				</div>
 
+				<Link to={`/profile/${user}`} >
+				<div className='post-img-thumb '>
+					<img src={posterImage} alt='PH' className='profile-link'></img>
+				</div>
+</Link>
 				<div className='poster-info'>
 					<div>{name}</div>
 					<div>{date.substring(0, 10)}</div>

@@ -508,6 +508,10 @@ img {
 	margin-bottom: 1rem;
 }
 
+.profile-link:hover{
+	border:yellow 1px solid;
+}
+
 /* POSTS PAGES */
 
 .posts-overlay {
