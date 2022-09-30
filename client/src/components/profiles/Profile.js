@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Hourglass from '../layout/Hourglass';
 import { getProfileById } from '../../actions/profile';
+import './Profile.css'
 
 
 const Profile = ({ getProfileById, profile: { profile }, auth }) => {
@@ -26,7 +27,10 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 							<div className="profile-img">
 							<img src={`${profile.image}`} alt="Placeholder"></img>
 							</div>) : null}
-    <p className='medium'>{profile.user.name}'s Profile</p>
+    <div className='profile-banner-info'>
+    <p className='medium m-bottom'>{profile.user.name}'s Profile</p>
+    {profile.smallBio ? (<p>{profile.smallBio}</p>) : null}
+    </div>
   </div>
     <div className="profile-info">
       <div className="profile-info-section">
@@ -40,11 +44,12 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
       </div>
       <div className="profile-info-section">
         <fieldset>
-          <legend>WORK AND EDUCATION</legend>
+          <legend>WORK / EDUCATION AND SMALL BIO</legend>
         <p>Company: {profile.work?.company !== undefined ? (<Fragment>{profile.work.company}</Fragment>) : null}</p>
         <p>Position: {profile.work?.position !== undefined ? (<Fragment>{profile.work.position}</Fragment>) : null}</p>
         <p>School: {profile.education?.school !== undefined ? (<Fragment>{profile.education.school}</Fragment>) : null}</p>
         <p>Program: {profile.education?.program !== undefined ? (<Fragment>{profile.education.program}</Fragment>) : null}</p>
+        
       </fieldset>
       </div>
       <div className="profile-info-section">

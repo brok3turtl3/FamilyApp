@@ -1,19 +1,20 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile} from '../../actions/profile'
-import { useNavigate } from 'react-router-dom'
-import SimpleFileUpload from 'react-simple-file-upload'
+import { createProfile } from '../../actions/profile';
+import { useNavigate } from 'react-router-dom';
+import SimpleFileUpload from 'react-simple-file-upload';
 
-const ProfileForm = ({createProfile}) => {
-
-  const navigate = useNavigate();
+const ProfileForm = ({ createProfile }) => {
+	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState({
 		city: '',
 		bio: '',
+		smallBio: '',
 		company: '',
-		image: 'https://cdn-jzo7ptov.files-simplefileupload.com/static/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOW9UQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--04bdbbf1d069b7afaf9f6059ddf144e3629636ba/Avatar.png',
+		image:
+			'https://cdn-jzo7ptov.files-simplefileupload.com/static/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOW9UQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--04bdbbf1d069b7afaf9f6059ddf144e3629636ba/Avatar.png',
 		position: '',
 		school: '',
 		program: '',
@@ -27,6 +28,7 @@ const ProfileForm = ({createProfile}) => {
 	const {
 		city,
 		bio,
+		smallBio,
 		company,
 		image,
 		position,
@@ -45,17 +47,17 @@ const ProfileForm = ({createProfile}) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		
-    const success = createProfile(formData);
 
-    if(success){
-      navigate('/homepage')
-    }
+		const success = createProfile(formData);
+
+		if (success) {
+			navigate('/homepage');
+		}
 	};
 
 	function handleFile(url) {
 		console.log('The URL of the file is ' + url);
-		setFormData({...formData, image: url});
+		setFormData({ ...formData, image: url });
 	}
 
 	return (
@@ -64,21 +66,25 @@ const ProfileForm = ({createProfile}) => {
 				<div className='profile-overlay'>
 					<div className='profile-container'>
 						<div className='heading'>Create Profile</div>
-						<p className='medium-text'>
+						<p className='medium-text m-bottom'>
 							Please enter any information you would like to add or update.
 							Everything is optional.
 						</p>
 
 						<form className='edit-profile' onSubmit={handleSubmit}>
-							
 							<div className='fieldset-container'>
-
 								{/* GENERAL INFO FIELDSET */}
 								<fieldset>
 									<legend>General Information</legend>
-<div className="register-field">
-									<input name='city' type='text' placeholder='City' value={city} onChange={handleChange}/>
-</div>
+									<div className='register-field'>
+										<input
+											name='city'
+											type='text'
+											placeholder='City'
+											value={city}
+											onChange={handleChange}
+										/>
+									</div>
 									<div className='register-field'>
 										Interests:{' '}
 										<span className='normal'>
@@ -109,32 +115,64 @@ const ProfileForm = ({createProfile}) => {
 								</fieldset>
 								{/* WORK AND EDUCATION FIELDSET */}
 								<fieldset>
-									<legend>Work and Education</legend>
+									<legend>Work / Education and Thumbnail Bio</legend>
 
 									<div className='register-field'>
-										<input name='company' type='text' placeholder='Company' value={company}
-											onChange={handleChange}/>
+										<input
+											name='company'
+											type='text'
+											placeholder='Company'
+											value={company}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
-										<input name='position' type='text' placeholder='Position' value={position}
-											onChange={handleChange}/>
+										<input
+											name='position'
+											type='text'
+											placeholder='Position'
+											value={position}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
-										<input name='school' type='text' placeholder='School' value={school}
-											onChange={handleChange}/>
+										<input
+											name='school'
+											type='text'
+											placeholder='School'
+											value={school}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
-										<input name='program' type='text' placeholder='Program' value={program}
-											onChange={handleChange}/>
+										<input
+											name='program'
+											type='text'
+											placeholder='Program'
+											value={program}
+											onChange={handleChange}
+										/>
+									</div>
+
+									<div className='register-field'>
+										<textarea
+											name='smallBio'
+											type='text'
+											placeholder='Provide a few lines about yourself for your small profile on Profiles page ( 200 characters max)'
+											value={smallBio}
+											onChange={handleChange}
+											maxLength='150'
+											rows='8'
+										></textarea>
 									</div>
 								</fieldset>
 
 								{/* BIO FIELDSET  */}
 								<fieldset>
-									<legend>Bio Info</legend>
+									<legend>Detailed Bio Info</legend>
 
 									<div className='register-field'>
 										<textarea
@@ -152,8 +190,13 @@ const ProfileForm = ({createProfile}) => {
 									<legend>Socials Information</legend>
 
 									<div className='register-field'>
-										<input name='facebook' type='text' placeholder='facebook' value={facebook}
-											onChange={handleChange}/>
+										<input
+											name='facebook'
+											type='text'
+											placeholder='facebook'
+											value={facebook}
+											onChange={handleChange}
+										/>
 									</div>
 
 									<div className='register-field'>
@@ -167,8 +210,13 @@ const ProfileForm = ({createProfile}) => {
 									</div>
 
 									<div className='register-field'>
-										<input name='twitter' type='text' placeholder='twitter' value={twitter}
-											onChange={handleChange}/>
+										<input
+											name='twitter'
+											type='text'
+											placeholder='twitter'
+											value={twitter}
+											onChange={handleChange}
+										/>
 									</div>
 								</fieldset>
 								<fieldset>
@@ -195,9 +243,7 @@ const ProfileForm = ({createProfile}) => {
 };
 
 ProfileForm.propTypes = {
-  createProfile: PropTypes.func.isRequired
+	createProfile: PropTypes.func.isRequired,
 };
 
-
-
-export default connect(null, { createProfile})(ProfileForm);
+export default connect(null, { createProfile })(ProfileForm);

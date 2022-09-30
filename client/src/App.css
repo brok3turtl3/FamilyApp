@@ -63,6 +63,10 @@ html {
 	font-size: 0.5rem;
 }
 
+.m-bottom {
+	margin-bottom: 1rem;
+}
+
 .btn {
 	display: inline-block;
 	background: #f4f4f4;
@@ -360,14 +364,22 @@ img {
 .profile-banner {
 	display: flex;
 	margin: 0 auto;
-}
-.profile-banner p {
+	border:yellow 1px solid;
+	justify-content: center;
 	
-
-	text-align: center;
-	margin: auto;
-	margin-left: 2rem;
 }
+
+.profile-banner-info {
+	border: #17a2b8 1px solid;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 50%;
+	margin-left: 2rem;
+	
+}
+
+
 
 .profile-banner img {
 	border: #17a2b8 1px solid;
@@ -377,6 +389,8 @@ img {
 	font-size: 2rem;
 	background-color: #0e1318;
 }
+
+
 
 .profile-info {
 	/* border: #17a2b8 1px solid; */
@@ -388,9 +402,13 @@ img {
 	margin-top: 2rem;
 }
 
+
+
+
+
 .profile-info-section {
 	/* padding: 1rem; */
-	/* border: #17a2b8 1px solid; */
+	border: #17a2b8 1px solid;
 	height: auto;
 	min-width: 40%;
 	width: 400px;
@@ -670,6 +688,8 @@ img {
 .profile-img {
 	height: 200px;
 	width: auto;
+	border: #17a2b8 1px solid;
+	align-self: center;
 }
 
 
@@ -771,6 +791,7 @@ img {
 		display: flex;
 		
 	}
+
 	
 	.sm-pr-info {
 		
@@ -828,21 +849,40 @@ img {
 	}
 
 
-	.profile-banner {
-		display: flex;
-		
-		
-		margin: 0 auto;
-	}
-	.profile-banner p {
+	
+	.profile-banner-info p {
 		
 	border: #17a2b8 solid 1px;
 		text-align: center;
 		margin: auto;
-		margin-right: 1rem;
-		max-width: 40%;
+		margin-right: 0 auto;
+		max-width: 100%;
 		
 	}
+
+	.profile-banner {
+		display: flex;
+		margin: 0 auto;
+		border:yellow 1px solid;
+		justify-content: center;
+		
+		
+	}
+	
+	.profile-banner-info {
+		border: blue 1px solid;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		/* max-width: 50%; */
+		margin-left: 1rem;
+		text-align: center;
+		
+	}
+	
+	
+	
+	
 
 	.margin-top{
 		margin-top: 10rem;
@@ -850,9 +890,9 @@ img {
 	
 	.profile-banner img {
 		border: #17a2b8 1px solid;
-		min-width: 150px;
-		max-width: 150px;
-		min-height: 150px;
+		min-width: 125px;
+		max-width: 125px;
+		min-height: 125px;
 		font-size: 2rem;
 		background-color: #0e1318;
 		margin-right: 2rem;

@@ -10,6 +10,7 @@ import SimpleFileUpload from 'react-simple-file-upload';
 const initialState = {
 	city: '',
 	bio: '',
+	smallBio: '',
 	image: '',
 	company: '',
 	position: '',
@@ -55,6 +56,7 @@ const EditProfileForm = ({
 	const {
 		city,
 		bio,
+		smallBio,
 		image,
 		company,
 		position,
@@ -111,7 +113,7 @@ const EditProfileForm = ({
 
 	function handleFile(url) {
 		console.log('The URL of the file is ' + url);
-		setFormData({...formData, image: url});
+		setFormData({ ...formData, image: url });
 	}
 
 	return (
@@ -120,7 +122,7 @@ const EditProfileForm = ({
 				<div className='profile-overlay'>
 					<div className='profile-container'>
 						<div className='heading'>Edit Profile</div>
-						<p className='medium-text'>
+						<p className='medium-text m-bottom'>
 							Please enter any information you would like to add or update.
 							Everything is optional.
 						</p>
@@ -180,12 +182,10 @@ const EditProfileForm = ({
 									/>
 									<p>Upload a pic</p>
 									<p>Click to browse or drag and drop</p>
-
-									
 								</fieldset>
 								{/* WORK AND EDUCATION FIELDSET */}
 								<fieldset>
-									<legend>Work and Education</legend>
+									<legend>Work / Education and Thumbnail Bio</legend>
 
 									<div className='register-field'>
 										<input
@@ -226,13 +226,30 @@ const EditProfileForm = ({
 											onChange={handleChange}
 										/>
 									</div>
+
+									<div className='register-field'>
+										<textarea
+											name='smallBio'
+											type='text'
+											placeholder='Provide a few lines about yourself for your small profile on Profiles page ( 200 characters max)'
+											value={smallBio}
+											onChange={handleChange}
+											maxLength='150'
+											rows='8'
+										></textarea>
+									</div>
 								</fieldset>
 
 								{/* BIO FIELDSET  */}
 								<fieldset>
-									<legend>Bio Info</legend>
+									<legend>Profile Page Detailed Bio Info</legend>
 
 									<div className='register-field'>
+										<div className='normal m-bottom'>
+											*** Until we have a genealogy section in place it would be
+											a good idea to mention a couple of connections to help
+											people place you in the family***
+										</div>
 										<textarea
 											name='bio'
 											type='text'

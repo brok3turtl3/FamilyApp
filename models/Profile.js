@@ -12,6 +12,9 @@ const ProfileSchema = new Schema({
 	bio: {
 		type: String,
 	},
+	smallBio: {
+		type: String
+	},
 	image: {
 		type: String
 	},

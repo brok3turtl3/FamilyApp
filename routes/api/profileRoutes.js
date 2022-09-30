@@ -45,6 +45,7 @@ router.post(
 			school,
 			program,
 			bio,
+			smallBio,
 			interests,
 			dob,
 			twitter,
@@ -57,6 +58,7 @@ router.post(
 		profileFields.user = req.user.id;
 		if (city) profileFields.city = city;
 		if (bio) profileFields.bio = bio;
+		if (smallBio) profileFields.smallBio = smallBio;
 		if (interests) profileFields.interests = interests;
 		if (dob) profileFields.dob = dob;
 		if (image) profileFields.image = image;
