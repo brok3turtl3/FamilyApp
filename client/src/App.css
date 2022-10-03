@@ -368,13 +368,13 @@ img {
 .profile-banner {
 	display: flex;
 	margin: 0 auto;
-	border:yellow 1px solid;
+	/* border:yellow 1px solid; */
 	justify-content: center;
 	
 }
 
 .profile-banner-info {
-	border: #17a2b8 1px solid;
+	/* border: #17a2b8 1px solid; */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -386,7 +386,7 @@ img {
 
 
 .profile-banner img {
-	border: #17a2b8 1px solid;
+	/* border: #17a2b8 1px solid; */
 	min-width: 200px;
 	max-width: 200px;
 	min-height: 200px;
@@ -412,7 +412,7 @@ img {
 
 .profile-info-section {
 	/* padding: 1rem; */
-	border: #17a2b8 1px solid;
+	/* border: #17a2b8 1px solid; */
 	height: auto;
 	min-width: 40%;
 	width: 400px;
@@ -692,7 +692,7 @@ img {
 .profile-img {
 	height: 200px;
 	width: auto;
-	border: #17a2b8 1px solid;
+	/* border: #17a2b8 1px solid; */
 	align-self: center;
 }
 
