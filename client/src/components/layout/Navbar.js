@@ -11,13 +11,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifica
 
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			console.log('TEST');
-			updateNotifications();
-		}, 3000);
-		return () => clearInterval(interval);
-	},[])
+	
+	// useEffect(() => {
+		
+	// 		const interval = setInterval(() => {
+	// 		console.log('TEST');
+	// 		updateNotifications();
+	// 	}, 3000);
+	// 	return () => clearInterval(interval);
+	// },[])
+
 
 	const [showNotifications, setshowNotifications] = useState();
 

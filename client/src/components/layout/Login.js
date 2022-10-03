@@ -60,6 +60,7 @@ const Login = ({ login, isAuthenticated }) => {
 								onChange={handleChange}
 								required
 							/>
+							<p className='center-text'>Forgot Password?<Link to="/password-reset">Click here</Link></p>
 
 <div className='auth-button'>
 							<button className='btn btn-primary' type='submit'>

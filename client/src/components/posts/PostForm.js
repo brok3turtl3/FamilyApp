@@ -49,6 +49,7 @@ const PostForm = ({ addPost }) => {
 				<SimpleFileUpload 
 										apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
 										onSuccess={handleFile}
+										preview={false}
 									/>
 									<p>Upload a pic</p>
 									<p>Click to browse or drag and drop</p>

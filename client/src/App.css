@@ -67,6 +67,10 @@ html {
 	margin-bottom: 1rem;
 }
 
+.center-text {
+	margin: 0 auto;
+}
+
 .btn {
 	display: inline-block;
 	background: #f4f4f4;

@@ -5,6 +5,7 @@ import Navbar from '../src/components/layout/Navbar';
 import Landing from '../src/components/layout/Landing';
 import Login from '../src/components/layout/Login';
 import Register from '../src/components/layout/Register';
+import PasswordReset from './components/PasswordReset';
 
 import PrivateRoute from './utils/PrivateRoute';
 import Homepage from './components/layout/homepage/Homepage';
@@ -46,6 +47,7 @@ const App = () => {
 							<Route path='/' element={<Landing />} />
 							<Route path='/register' element={<Register />} />
 							<Route path='/login' element={<Login />} />
+							<Route path='/password-reset' element={<PasswordReset />} />
 							<Route element={<PrivateRoute />}>
 								<Route path='/homepage' element={<Homepage />} />
 								<Route path='/profileform' element={<ProfileForm />} />

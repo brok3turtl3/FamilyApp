@@ -17,6 +17,8 @@ connectDB();
 
 //INITIALIZE MIDDLEWARE
 app.use(express.json({ extended: false }));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false}));
 
 // app.get('/', (req, res) => {
 // 	res.send('API running!');

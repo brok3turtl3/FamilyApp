@@ -10,7 +10,7 @@ import {
 	LOGOUT,
 	CLEAR_PROFILE,
 	CLEAR_NOTIFICATIONS,
-	GET_NOTIFICATIONS
+	GET_NOTIFICATIONS, 
 } from './types';
 
 import setAuthToken from '../utils/setAuthToken';
@@ -110,3 +110,30 @@ export const logout = () => (dispatch) => {
 	dispatch({ type: LOGOUT });
 	
 };
+
+//FORGOTTEN PASSWORD
+export const forgotPassword = (email) => async (dispatch) => {
+	console.log('Forgot Password action HIT!')
+	console.log(email);
+
+	const config = {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	};
+	const body = JSON.stringify({email});
+	
+	try {
+		const res = await axios.post('api/auth/forgot-password', body, config);
+	console.log(res.data);
+	
+} catch (error) {
+	console.log('Error on ForgotPassword func');	
+	const errors = error.response.data.errors;
+			if (errors) {
+				errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+			}
+	}
+	
+
+}
