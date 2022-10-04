@@ -22,6 +22,7 @@ router.post(
 			'password',
 			'Please enter a password with 6 or more characters'
 		).isLength({ min: 6 }),
+		check('regCode', 'Please enter a code with 16 characters').isLength({min: 16})
 	],
 	async (req, res) => {
 		//CALL VALIDATOR ON REQ AND IF THERE ARE ERRORS RETURN BAD REQ STATUS AND JSON OBJECT WITH ERROR MESSAGES
@@ -30,9 +31,20 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 		//DESTRUCTURE DATA FROM REQ.BODY FOR EASE OF USE
-		const { name, email, password, profilePic } = req.body;
+		const { name, email, password, regCode, profilePic } = req.body;
+		
 
 		try {
+
+			//CHECK TO SEE IF REG CODE IS VALID
+			const validCode = config.get('validCode');
+			if(regCode !== validCode){
+				return res
+					.status(400)
+					.json({ errors: [{ msg: 'Registration code is not valid.' }] });
+			}
+
+
 			//SEE IF USER EXISTS
 			//USING EMAIL INSTEAD OF EMAIL: EMAIL
 			//USING AWAIT TO WAIT FOR SERVER RESPONSE
@@ -43,6 +55,9 @@ router.post(
 					.status(400)
 					.json({ errors: [{ msg: 'User already exists' }] });
 			}
+
+			
+
 
 			user = new User({
 				name,

@@ -15,11 +15,14 @@ import {
 
 import setAuthToken from '../utils/setAuthToken';
 
+
 //LOAD USER
 export const loadUser = () => async (dispatch) => {
 	if (localStorage.token) {
 		setAuthToken(localStorage.token);
 	}
+
+	
 
 	try {
 		const res = await axios.get('/api/auth');
@@ -44,15 +47,18 @@ export const loadUser = () => async (dispatch) => {
 
 //REGISTER NEW USERS
 export const register =
-	({ name, email, password, profilePic }) =>
+	({ name, email, password, regCode, profilePic }) =>
 	async (dispatch) => {
+
+		
+
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
 			},
 		};
 
-		const body = JSON.stringify({ name, email, password, profilePic });
+		const body = JSON.stringify({ name, email, password, regCode, profilePic });
 
 		try {
 			const res = await axios.post('/api/users', body, config);
@@ -61,6 +67,7 @@ export const register =
 				payload: res.data,
 			});
 			dispatch(loadUser());
+			
 		} catch (error) {
 			const errors = error.response.data.errors;
 			if (errors) {

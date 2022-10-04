@@ -12,12 +12,13 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 		email: '',
 		password: '',
 		password2: '',
+		regCode: '',
 		profilePic: 'https://cdn-jzo7ptov.files-simplefileupload.com/static/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOW9UQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--04bdbbf1d069b7afaf9f6059ddf144e3629636ba/Avatar.png'
 	});
 
 	let navigate = useNavigate();
 
-	const { name, email, password, password2, profilePic } = formData;
+	const { name, email, password, password2, regCode, profilePic } = formData;
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,8 +33,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 			setAlert('Passwords must be at least 6 characters', 'danger')
 		}
 		else {
-			register({ name, email, password, profilePic });
-			navigate('/homepage');
+			register({ name, email, password, regCode, profilePic });
+			
 		}
 	};
 
@@ -56,8 +57,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 								Please enter your name, email and password to register your
 								account for the site.
 							</p>
-							<div className="warning normal">DONT NOT FORGET YOUR PASSWORD!!!</div>
-							<div className="warning normal">There is currently no means by which to recover it</div>
+							
 							<Alert></Alert>
 								<input
 											name='name'
@@ -95,6 +95,16 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 										type='password'
 										placeholder='Confirm your password'
 										value={password2}
+										onChange={handleChange}
+										required
+									/>
+
+<input
+										name='regCode'
+										id='regCode'
+										type='text'
+										placeholder='Enter registration code'
+										value={regCode}
 										onChange={handleChange}
 										required
 									/>

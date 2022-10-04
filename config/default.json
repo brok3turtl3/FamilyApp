@@ -1,4 +1,5 @@
 {
   "MONGO_URI": "mongodb+srv://admin:Fir816-Orm293@cluster0.p44e0ne.mongodb.net/?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken" 
+  "jwtSecret": "mysecrettoken",
+  "validCode": "CQ7KNEPN8SZR6T04" 
 }
