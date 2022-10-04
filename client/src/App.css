@@ -791,7 +791,7 @@ img {
 		border-radius: 2rem;
 		padding: 1rem;
 		
-		background-color: #3f474e;
+		/* background-color: #3f474e; */
 		display: flex;
 		
 	}
@@ -856,7 +856,7 @@ img {
 	
 	.profile-banner-info p {
 		
-	border: #17a2b8 solid 1px;
+	/* border: #17a2b8 solid 1px; */
 		text-align: center;
 		margin: auto;
 		margin-right: 0 auto;
@@ -867,14 +867,14 @@ img {
 	.profile-banner {
 		display: flex;
 		margin: 0 auto;
-		border:yellow 1px solid;
+		/* border:yellow 1px solid; */
 		justify-content: center;
 		
 		
 	}
 	
 	.profile-banner-info {
-		border: blue 1px solid;
+		/* border: blue 1px solid; */
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -893,12 +893,12 @@ img {
 	}
 	
 	.profile-banner img {
-		border: #17a2b8 1px solid;
+		/* border: #17a2b8 1px solid; */
 		min-width: 125px;
 		max-width: 125px;
 		min-height: 125px;
 		font-size: 2rem;
-		background-color: #0e1318;
+		/* background-color: #0e1318; */
 		margin-right: 2rem;
 	}
 

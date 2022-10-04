@@ -37,7 +37,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
         <fieldset>
           <legend>GENERAL INFORMATION</legend>
         <p>City: {profile.city}</p>
-        <p>Birthday: {profile.dob.substring(0,10)}</p>
+        <p>Birthday: {profile.dob ? (<Fragment>{profile.dob.substring(0,10)}</Fragment>) : null}</p>
         <p>Interests: {profile.interests}</p>
         
       </fieldset>
