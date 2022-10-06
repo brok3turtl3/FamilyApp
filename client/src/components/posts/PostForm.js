@@ -6,12 +6,12 @@ import SimpleFileUpload from 'react-simple-file-upload';
 
 const PostForm = ({ addPost }) => {
 	const [formData, setFormData] = useState({
-		subject: '',
+		
 		text: '',
 		image: '',
 	});
 
-	const { subject, text, image } = formData;
+	const {  text, image } = formData;
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +20,7 @@ const PostForm = ({ addPost }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addPost(formData);
-		setFormData({ subject: '', text: '', image: '' });
+		setFormData({ text: '', image: '' });
 	};
 
 	function handleFile(url) {

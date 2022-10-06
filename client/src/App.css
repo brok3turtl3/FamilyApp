@@ -731,6 +731,10 @@ width: 100px;
 	width: 100px;
 }
 
+.reaction-counters{
+	display: flex;
+}
+
 .likes-counter{
 	
 	text-align: left;

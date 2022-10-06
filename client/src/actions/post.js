@@ -6,6 +6,7 @@ import {
 	GET_POSTS,
 	POST_ERROR,
 	UPDATE_LIKES,
+	UPDATE_LAUGHS,
 	GET_POST,
 	ADD_COMMENT,
 	DELETE_COMMENT,
@@ -179,6 +180,25 @@ export const toggleLike = (postId) => async (dispatch) => {
 		dispatch({
 			type: UPDATE_LIKES,
 			payload: { postId, likes: res.data },
+		});
+	} catch (error) {
+		dispatch({
+			type: POST_ERROR,
+			payload: {
+				msg: error.response.statusText,
+				status: error.response.status,
+			},
+		});
+	}
+};
+
+//TOGGLE LAUGH
+export const toggleLaugh = (postId) => async (dispatch) => {
+	try {
+		const res = await axios.put(`/api/posts/toggle-laugh/${postId}`);
+		dispatch({
+			type: UPDATE_LAUGHS,
+			payload: { postId, laughs: res.data },
 		});
 	} catch (error) {
 		dispatch({

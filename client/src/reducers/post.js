@@ -4,6 +4,7 @@ import {
 	ADD_POST,
 	DELETE_POST,
 	UPDATE_LIKES,
+	UPDATE_LAUGHS,
 	GET_POST,
 	ADD_COMMENT,
 	DELETE_COMMENT,
@@ -73,6 +74,14 @@ export default function (state = initialState, action) {
 				...state,
 				posts: state.posts.map((post) =>
 					post._id === payload.postId ? { ...post, likes: payload.likes } : post
+				),
+				loading: false,
+			};
+			case UPDATE_LAUGHS:
+			return {
+				...state,
+				posts: state.posts.map((post) =>
+					post._id === payload.postId ? { ...post, laughs: payload.laughs } : post
 				),
 				loading: false,
 			};

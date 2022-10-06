@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { editPost, deletePost, toggleLike } from '../../actions/post';
+import { editPost, deletePost, toggleLike, toggleLaugh } from '../../actions/post';
 
 import { addNotification } from '../../actions/notifications';
 import Linkify from 'react-linkify';
@@ -12,6 +12,7 @@ const IndividualPost = ({
 	deletePost,
 	addNotification,
 	toggleLike,
+	toggleLaugh,
 	auth,
 	post: {
 		_id,
@@ -20,26 +21,40 @@ const IndividualPost = ({
 		name,
 		user,
 		likes,
+		laughs,
 		viewed,
 		comments,
 		date,
 		image,
-		posterImage
+		posterImage,
 	},
 }) => {
-	const [isHovering, setisHovering] = useState();
+	const [likeHovering, setlikeHovering] = useState();
+	const [laughHovering, setlaughHovering] = useState();
 	const navigate = useNavigate();
 
-	const handleMouseOver = () => {
-		setisHovering(true);
+	const handleLikeMouseOver = () => {
+		setlikeHovering(true);
 	};
 
-	const handleMouseOut = () => {
-		setisHovering(false);
+	const handleLikeMouseOut = () => {
+		setlikeHovering(false);
 	};
 
-	const toggleHovering = () => {
-		setisHovering(!isHovering);
+	const toggleLikeHovering = () => {
+		setlikeHovering(!likeHovering);
+	};
+
+	const handleLaughMouseOver = () => {
+		setlaughHovering(true);
+	};
+
+	const handleLaughMouseOut = () => {
+		setlaughHovering(false);
+	};
+
+	const toggleLaughHovering = () => {
+		setlaughHovering(!likeHovering);
 	};
 
 	const navigateComments = () => {
@@ -48,9 +63,18 @@ const IndividualPost = ({
 
 	const handleLikeClick = () => {
 		toggleLike(_id);
-// console.log(auth.user)
-// console.log(`Value of user in Post submission ${user}`)
-		addNotification( _id, 'liked your post');
+		// console.log(auth.user)
+		// console.log(`Value of user in Post submission ${user}`)
+		addNotification(_id, 'liked your post');
+	};
+
+	const handleLaughClick = () => {
+		console.log('Handle Laugh HIT!!!');
+		toggleLaugh(_id);
+		console.log('Handle Laugh HIT!!!');
+		console.log(auth.user)
+		console.log(`Value of user in Post submission ${user}`)
+		addNotification(_id, 'laughed at your post');
 	};
 
 	const linkStyle = {
@@ -60,12 +84,11 @@ const IndividualPost = ({
 	return (
 		<div className='posts'>
 			<div className='subject'>
-
-				<Link to={`/profile/${user}`} >
-				<div className='post-img-thumb '>
-					<img src={posterImage} alt='PH' className='profile-link'></img>
-				</div>
-</Link>
+				<Link to={`/profile/${user}`}>
+					<div className='post-img-thumb '>
+						<img src={posterImage} alt='PH' className='profile-link'></img>
+					</div>
+				</Link>
 				<div className='poster-info'>
 					<div>{name}</div>
 					<div>{date.substring(0, 10)}</div>
@@ -104,24 +127,50 @@ const IndividualPost = ({
 				<div className='body'>{text}</div>
 			</Linkify>
 			{image ? <img className='post-image' src={image} alt='ph'></img> : null}
+
+			{/* LIKE AND LAUGHS COUNTERS */}
+			<div className="reaction-counters">
 			{likes.length > 0 ? (
 				<div
 					className='likes-counter'
-					onClick={toggleHovering}
-					onMouseOver={handleMouseOver}
-					onMouseOut={handleMouseOut}
+					onClick={toggleLikeHovering}
+					onMouseOver={handleLikeMouseOver}
+					onMouseOut={handleLikeMouseOut}
 				>
 					<i className='fa-solid fa-thumbs-up'>
 						<span className='fa'>{likes.length}</span>
 					</i>
 				</div>
 			) : null}
+
+{laughs.length > 0 ? (
+				<div
+					className='likes-counter'
+					onClick={toggleLaughHovering}
+					onMouseOver={handleLaughMouseOver}
+					onMouseOut={handleLaughMouseOut}
+				>
+					<i className='fa-solid fa-face-laugh-squint'>
+						<span className='fa'>{laughs.length}</span>
+					</i>
+				</div>
+			) : null}
+			</div>
+			
 			<div className='post-buttons'>
-				{isHovering && (
+				{likeHovering && (
 					<div className='likes-display'>
 						{' '}
 						{likes.map((like) => (
 							<div key={like.name}>{like.name}</div>
+						))}{' '}
+					</div>
+				)}
+				{laughHovering && (
+					<div className='likes-display'>
+						{' '}
+						{laughs.map((laugh) => (
+							<div key={laugh.name}>{laugh.name}</div>
 						))}{' '}
 					</div>
 				)}
@@ -132,6 +181,10 @@ const IndividualPost = ({
 					>
 						{' '}
 						<span className='fa'>Like</span>
+					</i>
+				</span>
+				<span>
+					<i className='fa-solid fa-face-laugh-squint likes hover' onClick={handleLaughClick}><span className='fa'>Laugh</span>
 					</i>
 				</span>
 				<span onClick={navigateComments}>
@@ -151,6 +204,7 @@ IndividualPost.propTypes = {
 	deletePost: PropTypes.func.isRequired,
 	addNotification: PropTypes.func.isRequired,
 	toggleLike: PropTypes.func.isRequired,
+	toggleLaugh: PropTypes.func.isRequired,
 	editPost: PropTypes.func.isRequired,
 };
 
@@ -163,4 +217,5 @@ export default connect(mapStateToProps, {
 	deletePost,
 	addNotification,
 	toggleLike,
+	toggleLaugh
 })(IndividualPost);

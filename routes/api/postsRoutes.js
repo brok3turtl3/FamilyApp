@@ -182,6 +182,37 @@ router.put('/toggle-like/:postId', auth, async (req, res) => {
 	}
 });
 
+//ENDPOINT  PUT api/posts/toggle-laugh/:postId
+//PURPOSE   Laugh at or un-laugh at a post.
+//ACCESS    Private
+router.put('/toggle-laugh/:postId', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.postId);
+
+		if (
+			post.laughs.filter((laugh) => laugh.user.toString() === req.user.id)
+				.length === 0
+		) {
+			post.laughs.unshift({ user: req.user.id, name: req.user.name });
+		await post.save();
+		res.json(post.laughs);
+		}else {
+			const removeIndex = post.laughs
+			.map((laugh) => laugh.user.toString())
+			.indexOf(req.user.id);
+		post.laughs.splice(removeIndex, 1);
+		await post.save();
+
+		res.json(post.laughs);
+		}
+
+		
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
 
 
 //ENDPOINT  POST api/posts/comment/:postId

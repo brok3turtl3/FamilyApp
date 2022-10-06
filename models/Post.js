@@ -34,6 +34,17 @@ const PostSchema = new Schema({
 			},
 		},
 	],
+	laughs: [
+		{
+			user: {
+				type: Schema.Types.ObjectId,
+				ref: 'users',
+			},
+			name: {
+				type: String,
+			},
+		},
+	],
 	comments: [
 		{
 			user: {

@@ -3,7 +3,7 @@ import { Link, useNavigate,  } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { PropTypes } from 'prop-types';
-import { DELETE_NOTIFICATION } from '../../actions/types';
+
 import { deleteNotification, updateNotifications } from '../../actions/notifications';
 
 
@@ -29,9 +29,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifica
 		console.log(showNotifications);
 	}
 
-	const handleNotificationClick = (_id) => {
-navigate(`/posts/${_id}`)
-	}
+	
 
 	const authLinks = (
 		<Fragment>
