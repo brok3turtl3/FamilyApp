@@ -536,6 +536,25 @@ img {
 
 /* POSTS PAGES */
 
+.post-pic-section{
+	display: flex;
+	justify-content: center;
+	
+}
+
+.post-pic-current{
+	display: flex;
+	flex-direction: column;
+	
+}
+.post-pic-img{
+width: 100px;
+	height: 100px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 2rem;
+	align-self: center;}
+
 .posts-overlay {
 	height: 100%;
 	width: 100%;
