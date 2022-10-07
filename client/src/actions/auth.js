@@ -133,6 +133,8 @@ export const forgotPassword = (email) => async (dispatch) => {
 	try {
 		const res = await axios.post('api/auth/forgot-password', body, config);
 	console.log(res.data);
+	dispatch(setAlert('Link sent', 'success'));
+	console.log('Set Alert should have been hit')
 	
 } catch (error) {
 	console.log('Error on ForgotPassword func');	
