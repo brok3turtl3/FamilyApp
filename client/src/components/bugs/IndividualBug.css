@@ -1,0 +1,63 @@
+.bugs{
+    margin-top: 1rem;
+	width: 80%;
+	background-color: #3f474e;
+
+	border-radius: 2rem;
+	/* border: #f4f4f4 solid 1px; */  
+}
+
+.bug-subject{
+    display: flex;
+	flex-direction: row;
+	margin: 1rem;
+}
+.bug-img-thumb{
+    height: 120px;
+	width: auto;
+	align-self: center;
+	
+	display: flex;
+}
+
+.post-img-thumb img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 2rem;
+	align-self: center;
+	
+	
+	
+}
+
+.bug-poster-info{
+    padding-left: 1rem;
+	align-self: center;
+}
+
+.bug-delete{
+    display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-left: auto;
+	
+	
+	justify-content: space-evenly;
+}
+
+.bug-body{
+    margin: 1rem;
+	text-align: left;
+
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+.bug-buttons{
+    margin-bottom: 1rem;
+	margin-right: 2rem;
+	text-align: right;
+	padding-top: .2rem;
+}
+

@@ -1,9 +1,18 @@
 
 ***TODO*** Add an image Model to store all images and associate with the user that posted.
 ***TODO*** Set up as an App for mobiles
-***TODO*** Notifications system
-***TODO*** Allow users to change name or email
-***TODO*** Forgot password reset ability
+***TODO*** Direct messaging
+***TODO*** Figure out CORB handling
+***TODO*** Evolve Feedback forums to offer simliar function to regular forums
+***TODO*** Clean up codebase - get rid of un-needed/un-used code
+***TODO*** Upload multiple photos
+***TODO*** Individual user page with their posts, detailed profile, pics they have posted etc.
+***TODO*** Likes on comments
+***TODO*** Profile pic on comments
+***TODO*** Move CSS to individual pages for clarity
+COMPLETE*** Notifications system
+COMNPLETE*** Allow users to change name or email
+COMPLETE*** Forgot password reset ability
 ***TODO*** Improve user feedback on register/login page errors
 ***TODO*** Work on the interests list and splitting / sorting...
 ***TODO*** Work on Alert system - Needs better implementation to avoid "screen bumping"

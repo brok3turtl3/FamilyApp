@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBug } from '../../actions/bug';
 import SimpleFileUpload from 'react-simple-file-upload';
+import  './BugForm.css';
 
 const BugForm = ({ addBug }) => {
 	const [formData, setFormData] = useState({
@@ -31,19 +32,7 @@ const BugForm = ({ addBug }) => {
 	return (
 		<Fragment>
 			<form className='submit-post' onSubmit={handleSubmit}>
-				{/* <div className='post-field'>
-					<label htmlFor='subject'>SUBJECT:</label>
-
-					<input
-						name='subject'
-						id='subject'
-						type='text'
-						placeholder='Subject'
-						value={subject}
-						onChange={handleChange}
-						required
-					/>
-				</div> */}
+				
 				<div className='post-field'>
 					<label htmlFor='text'>MESSAGE:</label>
 					

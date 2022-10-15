@@ -30,6 +30,7 @@ router.post(
 			if (image) bugFields.image = image;
 			bugFields.name = user.name;
 			bugFields.user = req.user.id;
+			bugFields.posterImage = user.profilePic;
 
 			const newBug = new Bug(bugFields);
 			await newBug.save();

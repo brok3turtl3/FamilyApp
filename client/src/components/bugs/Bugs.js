@@ -5,6 +5,7 @@ import { getBugs } from '../../actions/bug';
 import Hourglass from '../layout/Hourglass';
 import IndividualBug from './IndividualBug';
 import BugForm from './BugForm';
+import './Bugs.css';
 
 const Bugs = ({ getBugs, bug: { bugs, loading } }) => {
 	useEffect(() => {
@@ -12,7 +13,7 @@ const Bugs = ({ getBugs, bug: { bugs, loading } }) => {
 	}, [getBugs]);
 
 	return (
-		<section className='homepage'>
+		<section className='background'>
 			<section className='posts-overlay'>
 				<div className='posts-inner'>
 					{loading ? (
