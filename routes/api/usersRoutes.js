@@ -4,7 +4,7 @@ import { check, validationResult } from 'express-validator';
 import auth from '../../middleware/auth.js';
 import User from '../../models/User.js';
 import Post from '../../models/Post.js';
-import bcrypt from'bcryptjs';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
@@ -22,7 +22,9 @@ router.post(
 			'password',
 			'Please enter a password with 6 or more characters'
 		).isLength({ min: 6 }),
-		check('regCode', 'Please enter a code with 16 characters').isLength({min: 16})
+		check('regCode', 'Please enter a code with 16 characters').isLength({
+			min: 16,
+		}),
 	],
 	async (req, res) => {
 		//CALL VALIDATOR ON REQ AND IF THERE ARE ERRORS RETURN BAD REQ STATUS AND JSON OBJECT WITH ERROR MESSAGES
@@ -32,18 +34,15 @@ router.post(
 		}
 		//DESTRUCTURE DATA FROM REQ.BODY FOR EASE OF USE
 		const { name, email, password, regCode, profilePic } = req.body;
-		
 
 		try {
-
 			//CHECK TO SEE IF REG CODE IS VALID
 			const validCode = config.get('validCode');
-			if(regCode !== validCode){
+			if (regCode !== validCode) {
 				return res
 					.status(400)
 					.json({ errors: [{ msg: 'Registration code is not valid.' }] });
 			}
-
 
 			//SEE IF USER EXISTS
 			//USING EMAIL INSTEAD OF EMAIL: EMAIL
@@ -56,14 +55,11 @@ router.post(
 					.json({ errors: [{ msg: 'User already exists' }] });
 			}
 
-			
-
-
 			user = new User({
 				name,
 				email,
 				password,
-				profilePic
+				profilePic,
 			});
 
 			//ENCRYPT PASSWORD AND SAVE USER
@@ -81,14 +77,15 @@ router.post(
 				},
 			};
 
-			jwt.sign(payload, 
-        config.get('jwtSecret'),
-        { expiresIn: 360000 },
-        (err, token) => {
-          if(err) throw err;
-          res.json({token});
-        }
-        );
+			jwt.sign(
+				payload,
+				config.get('jwtSecret'),
+				{ expiresIn: 360000 },
+				(err, token) => {
+					if (err) throw err;
+					res.json({ token });
+				}
+			);
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('Server Error');
@@ -99,66 +96,91 @@ router.post(
 //ENDPOINT  POST api/users/addNotification/:postId
 //PURPOSE   Notify User of interactions with posts
 //ACCESS    Private
-router.post(
-	'/addNotification/:postId',
-	auth, 
-	async (req, res) => {
-		
+router.post('/addNotification/:postId', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.postId);
+		const user = await User.findById(post.user).select('-password');
 
-		try {
-			const post = await Post.findById(req.params.postId);
-			const user = await User.findById(post.user).select('-password');
+		//MAKE SURE IT IS NOT A DUPLICATE NOTIFICATION
 
-			//MAKE SURE IT IS NOT A DUPLICATE NOTIFICATION
-			
-			
+		const newNotification = {
+			name: req.user.name,
+			userId: req.user.id,
+			type: req.body.type,
+			postId: req.params.postId,
+		};
 
-			const newNotification = {
-				name: req.user.name,
-				userId: req.user.id,
-				type: req.body.type,
-				postId: req.params.postId
-			};
+		user.notifications.unshift(newNotification);
 
-			user.notifications.unshift(newNotification);
-
-			await user.save();
-			res.json(user.notifications);
-		} catch (error) {
-			console.error(error.message);
-			res.status(500).send('Server Error');
-		}
+		await user.save();
+		res.json(user.notifications);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
 	}
-);
+});
 
 //ENDPOINT  DELETE api/users/deleteNotification/:notificationId
 //PURPOSE   Remove notification from users alerts
 //ACCESS    Private
-router.delete(
-	'/deleteNotification/:notificationId',
-	auth, 
+router.delete('/deleteNotification/:notificationId', auth, async (req, res) => {
+	try {
+		console.log('DELETE HIT!');
+		const user = await User.findById(req.user.id).select('-password');
+		console.log(user);
+		console.log(req.params.notificationId);
+		const notification = user.notifications.find(
+			(notification) => notification.id === req.params.notificationId
+		);
+
+		if (!notification) {
+			return res.status(404).json({ msg: 'Notification does not exist' });
+		}
+
+		const indexToRemove = user.notifications.indexOf(notification);
+		user.notifications.splice(indexToRemove, 1);
+		await user.save();
+		res.json(user.notifications);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+//ENDPOINT  PUT api/users
+//PURPOSE   Update user name and/or email
+//ACCESS    Private
+
+router.put(
+	'/',
+	[
+		auth,
+
+		//VALIDATE FORM INFO
+		[
+			check('name', 'Name is required').not().isEmpty(),
+			check('email', 'Please include a valid email').isEmail(),
+		],
+	],
 	async (req, res) => {
-		
+		//CALL VALIDATOR ON REQ AND IF THERE ARE ERRORS RETURN BAD REQ STATUS AND JSON OBJECT WITH ERROR MESSAGES
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		//DESTRUCTURE VARIABLES FROM REQ.BODY
+		const { name, email } = req.body;
 
 		try {
-			console.log("DELETE HIT!")
-			const user = await User.findById(req.user.id).select('-password');
-			console.log(user);
-			console.log(req.params.notificationId);
-			const notification = user.notifications.find(
-				(notification) => notification.id === req.params.notificationId
-			);
+			let user = User.findById(req.user.id).select('-password');
+			user = await User.findByIdAndUpdate(
+				{ _id: req.user.id },
+				{ name: name, email: email },
+				{ new: true }
+			).select('-password');
 
-			if (!notification) {
-				return res.status(404).json({msg: 'Notification does not exist'})
-			}
-
-			const indexToRemove = user.notifications.indexOf(notification);
-			user.notifications.splice(indexToRemove, 1);
-			await user.save();
-			res.json(user.notifications);
-
-						
+			return res.json(user);
 		} catch (error) {
 			console.error(error.message);
 			res.status(500).send('Server Error');

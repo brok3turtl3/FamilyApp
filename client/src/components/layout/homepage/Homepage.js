@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../../actions/profile';
 import { Link } from 'react-router-dom';
 import Hourglass from '../Hourglass';
+import Alert from '../Alert';
 
 const Homepage = ({
 	getCurrentProfile,
@@ -32,11 +33,18 @@ const Homepage = ({
 									</div>
 								) : null}
 								
+								
 								<div>
 									<Link to='/editprofile' className='btn btn-primary'>
 										Edit Profile
 									</Link>
 								</div>
+								<div>
+									<Link to='/editaccountinfo' className='btn btn-primary'>
+										Edit Account Info
+									</Link>
+								</div>
+								<div className="medium"><Alert /></div>
 							</Fragment>
 						) : (
 							<Fragment>

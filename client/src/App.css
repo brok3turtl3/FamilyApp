@@ -40,6 +40,11 @@ html {
 	color: #fff;
 }
 
+.alert-success {
+	background-color: var(--success-color);
+	color: #fff;
+}
+
 .x-large {
 	font-size: 4rem;
 	line-height: 1.2;
