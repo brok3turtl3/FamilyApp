@@ -108,7 +108,7 @@ router.post('/forgot-password', async (req, res) => {
 			expiresIn: '5m',
 		});
 
-		const link = `http://localhost:5000/api/auth/reset-password/${oldUser._id}/${token}`;
+		const link = `https://family-app-cdn.herokuapp.com/api/auth/reset-password/${oldUser._id}/${token}`;
 		var transporter = nodemailer.createTransport({
 			service: 'gmail',
 			auth: {

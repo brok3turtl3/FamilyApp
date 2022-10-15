@@ -40,8 +40,8 @@ html {
 	color: #fff;
 }
 
-.alert-success {
-	background-color: var(--success-color);
+.alert-success{
+	background: var(--success-color);
 	color: #fff;
 }
 

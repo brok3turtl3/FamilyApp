@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { forgotPassword } from '../actions/auth';
 import Alert from './layout/Alert';
 import PropTypes from 'prop-types';
+import { setAlert } from '../actions/alert';
 
 const PasswordReset = ({forgotPassword}) => {
 	const [email, setEmail] = useState();
