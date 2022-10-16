@@ -126,72 +126,14 @@ a {
 	text-decoration: none;
 	color: #17a2b8;
 }
-ul {
-	list-style: none;
-}
+
 img {
 	width: 100%;
 }
-.navbar {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0.7rem 2rem;
-	position: fixed;
-	z-index: 1;
-	width: 100%;
-	top: 0;
-	border-bottom: solid 1px #17a2b8;
-	opacity: 0.9;
-	background-color: #343a40;
-	color: #fff;
-	
-}
-.nav-links ul {
-	display: flex;
-	flex-wrap: wrap;
-	
-}
-.navbar a {
-	color: #fff;
-	padding: 0.45rem;
-	margin: 0 0.25rem;
-}
-.navbar a:hover {
-	color: #17a2b8;
-}
-.notifications-display {
-	color: --light-color;
-	background-color: var(--dark-color);
-	position: absolute;
-	top: 4rem;
-	right: 4rem;
-	font-size: 1rem;
-	padding: 0.25rem;
-	border-radius: 10px;
-	border: #17a2b8 1px solid;
 
-	z-index: 1;
-}
-.notification{
-	border-bottom: var(--dark-color) 1px solid;
-	padding: .5rem;
-	color: yellow;
-	
-}
 
-.notification:hover{
-	color: var(--primary-color);
-	cursor: pointer;
-	
-}
 
-.notifications {
-	color: yellow;
-	
-}
+
 
 .homepage {
 	background: url(./images/pexels-fauxels-3184183.jpg) no-repeat center
@@ -779,21 +721,7 @@ width: 100px;
 		
 	}
 
-	.logo{
-		margin-bottom: 1rem;
-	}
-
-	.navbar ul {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-around;
-	}
-
-	.nav-links{
-		display: flex;
-		
-		justify-content: space-evenly;
-	}
+	
 
 	
 
@@ -865,12 +793,7 @@ width: 100px;
 		overflow: auto;
 	}
 
-	/* .post-buttons {
-		display: flex;
-		margin-bottom: 1rem;
-		margin-right: 2rem;
-		text-align: right;
-	} */
+	
 
 	.img-thumb{
 		min-width: 75px;

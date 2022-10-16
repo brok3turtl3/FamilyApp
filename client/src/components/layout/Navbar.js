@@ -3,6 +3,7 @@ import { Link, useNavigate,  } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { PropTypes } from 'prop-types';
+import './Navbar.css';
 
 import { deleteNotification, updateNotifications } from '../../actions/notifications';
 

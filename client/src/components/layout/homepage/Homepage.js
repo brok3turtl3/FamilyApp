@@ -5,6 +5,7 @@ import { getCurrentProfile } from '../../../actions/profile';
 import { Link } from 'react-router-dom';
 import Hourglass from '../Hourglass';
 import Alert from '../Alert';
+import './Homepage.css';
 
 const Homepage = ({
 	getCurrentProfile,

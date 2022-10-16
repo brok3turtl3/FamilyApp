@@ -5,6 +5,7 @@ import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import Alert from './Alert';
+import './Register.css'
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
@@ -49,10 +50,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<section className='homepage'>
-				<section className='dark-overlay'>
-					<section className='auth-container'>
-						<form className='auth-form' onSubmit={handleSubmit}>
+			<section className='register'>
+				<section className='register-overlay'>
+					<section className='register-container'>
+						<form className='register-form' onSubmit={handleSubmit}>
 							<p className="medium">
 								Please enter your name, email and password to register your
 								account for the site.
@@ -108,7 +109,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 										onChange={handleChange}
 										required
 									/>
-							<div className='auth-button'>
+							<div className='register-button'>
 							<button className='btn btn-primary' type='submit'>
 								Submit
 							</button>

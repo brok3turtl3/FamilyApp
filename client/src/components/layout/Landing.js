@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './Landing.css';
 
 const Landing = () => {
   return (
-    <section className="homepage">
+    <section className="landing">
 			<div className="dark-overlay">
-				<div className="homepage-inner">
+				<div className="landing-inner">
 					<h1 className="x-large">Family Matters</h1>
 					<p className="medium">
 						A private page for our family to get to know each other, share

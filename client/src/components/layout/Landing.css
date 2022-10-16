@@ -1,0 +1,32 @@
+.landing{
+    background: url(../../images/pexels-fauxels-3184183.jpg) no-repeat center
+    center/cover;
+position: relative;
+height: 100vh;
+}
+
+.dark-overlay{
+    height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	overflow: auto;
+}
+
+.landing-inner{
+    color: var(--light-color);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: auto;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.buttons-container{
+
+}

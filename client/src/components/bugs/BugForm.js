@@ -12,7 +12,7 @@ const BugForm = ({ addBug }) => {
 		image: ''
 	});
 
-	const { subject, text } = formData;
+	const { text } = formData;
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });

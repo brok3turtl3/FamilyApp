@@ -5,6 +5,7 @@ import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import Alert from '../layout/Alert'
+import './Login.css'
 
 const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
@@ -35,10 +36,10 @@ const Login = ({ login, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<section className="homepage">
+			<section className="login">
 				<section className="dark-overlay">
-					<section className="auth-container">
-						<form className="auth-form" onSubmit={handleSubmit}>
+					<section className="login-container">
+						<form className="login-form" onSubmit={handleSubmit}>
 							<p className="medium">Please enter your email and password to login.</p>
 
 							<input
@@ -62,7 +63,7 @@ const Login = ({ login, isAuthenticated }) => {
 							/>
 							<p className='center-text'>Forgot Password?<Link to="/password-reset">Click here</Link></p>
 
-<div className='auth-button'>
+<div className='login-button'>
 							<button className='btn btn-primary' type='submit'>
 								Submit
 							</button>
