@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { editPost, deletePost, toggleLike, toggleLaugh } from '../../actions/post';
-
+import './IndividualPost.css'
 import { addNotification } from '../../actions/notifications';
 import Linkify from 'react-linkify';
+
+
 
 const IndividualPost = ({
 	deletePost,
@@ -82,10 +84,10 @@ const IndividualPost = ({
 	};
 
 	return (
-		<div className='posts'>
-			<div className='subject'>
+		<div className='post'>
+			<div className='banner'>
 				<Link to={`/profile/${user}`}>
-					<div className='post-img-thumb '>
+					<div className='poster-img-thumb '>
 						<img src={posterImage} alt='PH' className='profile-link'></img>
 					</div>
 				</Link>

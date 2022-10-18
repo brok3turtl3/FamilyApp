@@ -5,6 +5,7 @@ import { getPosts } from '../../actions/post';
 import Hourglass from '../layout/Hourglass';
 import IndividualPost from './IndividualPost';
 import PostForm from './PostForm';
+import './Posts.css';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
 	useEffect(() => {
@@ -12,7 +13,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 	}, [getPosts]);
 
 	return (
-		<section className='homepage'>
+		<section className='posts-container'>
 			<section className='posts-overlay'>
 				<div className='posts-inner'>
 					{loading ? (

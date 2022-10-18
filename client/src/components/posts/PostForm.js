@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
 import SimpleFileUpload from 'react-simple-file-upload';
+import './PostForm.css';
 
 const PostForm = ({ addPost }) => {
 	const [formData, setFormData] = useState({

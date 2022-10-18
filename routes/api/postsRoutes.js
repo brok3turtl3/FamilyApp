@@ -47,7 +47,7 @@ router.post(
 //ACCESS    Private
 router.get('/', auth, async (req, res) => {
 	try {
-		const posts = await Post.find().sort({ date: -1 });
+		const posts = await Post.find().sort({ date: -1 }).limit(50);
 		res.json(posts);
 	} catch (error) {
 		console.error(error.message);
@@ -163,19 +163,17 @@ router.put('/toggle-like/:postId', auth, async (req, res) => {
 				.length === 0
 		) {
 			post.likes.unshift({ user: req.user.id, name: req.user.name });
-		await post.save();
-		res.json(post.likes);
-		}else {
+			await post.save();
+			res.json(post.likes);
+		} else {
 			const removeIndex = post.likes
-			.map((like) => like.user.toString())
-			.indexOf(req.user.id);
-		post.likes.splice(removeIndex, 1);
-		await post.save();
+				.map((like) => like.user.toString())
+				.indexOf(req.user.id);
+			post.likes.splice(removeIndex, 1);
+			await post.save();
 
-		res.json(post.likes);
+			res.json(post.likes);
 		}
-
-		
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');
@@ -194,26 +192,22 @@ router.put('/toggle-laugh/:postId', auth, async (req, res) => {
 				.length === 0
 		) {
 			post.laughs.unshift({ user: req.user.id, name: req.user.name });
-		await post.save();
-		res.json(post.laughs);
-		}else {
+			await post.save();
+			res.json(post.laughs);
+		} else {
 			const removeIndex = post.laughs
-			.map((laugh) => laugh.user.toString())
-			.indexOf(req.user.id);
-		post.laughs.splice(removeIndex, 1);
-		await post.save();
+				.map((laugh) => laugh.user.toString())
+				.indexOf(req.user.id);
+			post.laughs.splice(removeIndex, 1);
+			await post.save();
 
-		res.json(post.laughs);
+			res.json(post.laughs);
 		}
-
-		
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');
 	}
 });
-
-
 
 //ENDPOINT  POST api/posts/comment/:postId
 //PURPOSE   Comment on a post

@@ -1,0 +1,43 @@
+.submit-post {
+	width: 80%;
+	background-color: #3f474e;
+	/* border: #f4f4f4 solid 1px; */
+	display: flex;
+	border-radius: 2rem;
+	flex-direction: column;
+}
+
+.post-field {
+	display: flex;
+	padding: 1rem;
+}
+
+.post-pic-section{
+	display: flex;
+	justify-content: center;
+	
+}
+
+.post-pic-current{
+	display: flex;
+	flex-direction: column;
+	
+}
+.post-pic-img{
+width: 100px;
+	height: 100px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 2rem;
+	align-self: center;
+}
+
+
+  .post-buttons {
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    padding-top: .2rem;
+    
+  
+  }

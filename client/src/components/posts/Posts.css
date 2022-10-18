@@ -1,0 +1,56 @@
+.posts-container {
+	background: url(../../images/pexels-fauxels-3184183.jpg) no-repeat center
+		center/cover;
+	position: relative;
+	height: 100vh;
+}
+
+.posts-overlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #18191a;
+	overflow: auto;
+}
+
+.posts-inner {
+	
+	color: var(--light-color);
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	margin: 4rem auto;
+	align-items: center;
+	
+	text-align: center;
+	padding-top: 2rem;
+}
+
+.main-posts {
+	padding-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-around;
+	overflow: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .posts-inner {
+	
+		color: var(--light-color);
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		width: 80%;
+		margin: 4rem auto;
+		align-items: center;
+		
+		text-align: center;
+		padding-top: 2rem;
+	}
+}

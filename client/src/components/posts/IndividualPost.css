@@ -1,0 +1,112 @@
+.post{
+  margin-top: 1rem;
+	width: 80%;
+	background-color: #3f474e;
+
+	border-radius: 2rem;
+	/* border: #f4f4f4 solid 1px; */
+}
+
+.banner{
+  display: flex;
+	flex-direction: row;
+	margin: 1rem;
+}
+
+.poster-img-thumb {
+	height: 120px;
+	width: auto;
+	align-self: center;
+	
+	display: flex;
+}
+
+
+.poster-img-thumb img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 2rem;
+	align-self: center;
+	
+	
+	
+}
+
+.profile-link:hover{
+	border:yellow 1px solid;
+}
+
+.poster-info{
+  padding-left: 1rem;
+	align-self: center;
+}
+
+.post-delete{
+  display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-left: auto;
+	
+	
+	justify-content: space-evenly;
+}
+
+.body{
+  margin: 1rem;
+	text-align: left;
+
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+.post-image {
+	
+	width: 90%;
+	height: auto;
+	object-fit: cover;
+	object-position: center;
+}
+
+.reaction-counters{
+	display: flex;
+}
+
+.likes-counter{
+	
+	text-align: left;
+	width: fit-content;
+	margin-left: .5rem;
+	margin-top: .5rem;
+	margin-bottom: .5rem;
+	
+}
+.likes-counter:hover{
+	color: yellow;
+}
+
+
+  .post-buttons {
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    padding-top: .2rem;
+    
+  
+  }
+
+
+.likes-display {
+	color: yellow;
+	background-color: var(--primary-color);
+	position: absolute;
+	padding: 0.25rem;
+	border-radius: 10px;
+
+	z-index: 1;
+}
+
+.likes {
+	margin-right: 1rem;
+}

@@ -6,6 +6,7 @@ import { getPost } from '../../actions/post';
 import { useParams } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
+import './Post.css';
 
 const Post = ({
 	getPost,
@@ -20,10 +21,10 @@ const Post = ({
 	return loading || post === null ? <Hourglass /> : 
   
   <Fragment>
-		<div className='homepage'>
-			<div className='posts-overlay'>
-				<div className='posts-inner'>
-					<div className='posts'>
+		<div className='post-container'>
+			<div className='post-overlay'>
+				<div className='post-inner'>
+					<div className='original-post'>
 						<div className='subject'>
 							
 							<div>{post.name}</div>
