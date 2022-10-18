@@ -5,6 +5,7 @@ import { addComment } from '../../actions/post';
 import Alert from '../layout/Alert';
 import { Link } from 'react-router-dom';
 import { addNotification } from '../../actions/notifications';
+import './CommentForm.css';
 
 const CommentForm = ({ addComment, postId, addNotification }) => {
 	const [text, setText] = useState('');
@@ -25,9 +26,9 @@ const CommentForm = ({ addComment, postId, addNotification }) => {
 
 	return (
 		<Fragment>
-			<form className='submit-post' onSubmit={handleSubmit}>
+			<form className='submit-comment' onSubmit={handleSubmit}>
 				
-				<div className='post-field'>
+				<div className='comment-field'>
 					<label htmlFor='text'>MESSAGE:</label>
 
 					<textarea

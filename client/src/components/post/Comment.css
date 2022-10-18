@@ -1,0 +1,29 @@
+.comment{
+    margin-top: 1rem;
+	width: 80%;
+	background-color: #3f474e;
+
+	border-radius: 2rem;
+	/* border: #f4f4f4 solid 1px; */
+}
+
+.comment-banner{
+    display: flex;
+	flex-direction: row;
+	margin: 1rem;
+}
+
+.comment-body{
+    margin: 1rem;
+	text-align: left;
+
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+.comment-buttons{
+    margin-bottom: 1rem;
+	margin-right: 2rem;
+	text-align: right;
+	padding-top: .2rem;
+}

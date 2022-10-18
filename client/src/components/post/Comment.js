@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteComment } from '../../actions/post';
 import Linkify from 'react-linkify';
+import './Comment.css'
 
 const Comment = ({
 	postId,
@@ -12,8 +13,8 @@ const Comment = ({
 	auth,
 }) => {
 	return (
-		<div className='posts'>
-			<div className='subject'>
+		<div className='comment'>
+			<div className='comment-banner'>
 				<div>{name}</div>
 				<div>{date.substring(0, 10)}</div>
 			</div>
@@ -29,10 +30,10 @@ const Comment = ({
 					</a>
 				)}
 			>
-				<div className='body'>{text}</div>
+				<div className='comment-body'>{text}</div>
 			</Linkify>
 			{!auth.loading && user === auth.user._id && (
-				<div className='post-buttons'>
+				<div className='comment-buttons'>
 					<button onClick={() => deleteComment(postId, _id)} type='button'>
 						Delete Comment
 					</button>

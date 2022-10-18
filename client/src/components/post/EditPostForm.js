@@ -5,6 +5,7 @@ import Hourglass from '../layout/Hourglass';
 import { editPost, getPost } from '../../actions/post';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './EditPostForm.css';
 
 const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 	const { id } = useParams();
@@ -28,17 +29,17 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 		<Hourglass />
 	) : (
 		<Fragment>
-			<div className='homepage'>
-				<div className='posts-overlay'>
-					<div className='posts-inner'>
-						<div className='posts'>
+			<div className='edit-post-form'>
+				<div className='overlay'>
+					<div className='epf-inner'>
+						<div className='epf-post'>
 							<form onSubmit={handleSubmit}>
 								<div className='subject'>
 									<div>{post.name}</div>
 									<div>{post.date.substring(0, 10)}</div>
 									<div>{post.text}</div>
 								</div>
-								<div className='body'>
+								<div className='edit-post-field'>
 									<textarea
 										name=''
 										id=''
@@ -49,7 +50,7 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 									></textarea>
 								</div>
 
-								<div className='post-buttons'>
+								<div className='epf-buttons'>
 									<Link to='/posts' className='btn'>
 										Back to Forums
 									</Link>
