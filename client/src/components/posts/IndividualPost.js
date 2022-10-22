@@ -88,7 +88,7 @@ const IndividualPost = ({
 			<div className='banner'>
 				<Link to={`/profile/${user}`}>
 					<div className='poster-img-thumb '>
-						<img src={posterImage} alt='PH' className='profile-link'></img>
+						<img src={posterImage + "?dontusecache"} alt='PH' className='profile-link'></img>
 					</div>
 				</Link>
 				<div className='poster-info'>
@@ -128,7 +128,7 @@ const IndividualPost = ({
 			>
 				<div className='body'>{text}</div>
 			</Linkify>
-			{image ? <img className='post-image' src={image} alt='ph'></img> : null}
+			{image ? <img className='post-image' src={image + "?dontusecache"} alt='ph'></img> : null}
 
 			{/* LIKE AND LAUGHS COUNTERS */}
 			<div className="reaction-counters">
