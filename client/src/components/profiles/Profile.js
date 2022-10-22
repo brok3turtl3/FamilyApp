@@ -25,7 +25,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 							<div className="profile-banner">
 							{profile.image !== null ? (
 							<div className="profile-img">
-							<img src={`${profile.image}`} alt="Placeholder"></img>
+							<img src={`${profile.image + "?dontusecache"}`} alt="Placeholder"></img>
 							</div>) : null}
     <div className='profile-banner-info'>
     <p className='medium m-bottom'>{profile.user.name}'s Profile</p>
