@@ -19,7 +19,7 @@ const IndividualBug = ({
 				
 			<Link to={`/profile/${user}`}>
 					<div className='post-img-thumb '>
-						<img src={posterImage} alt='PH' className='profile-link'></img>
+						<img src={`${posterImage}?dontusecache`} alt='PH' className='profile-link'></img>
 					</div>
 				</Link>
 
@@ -57,7 +57,7 @@ const IndividualBug = ({
 			>
 				<div className='bug-body'>{text}</div>
 			</Linkify>
-			{image ? <img src={image} alt='ph'></img> : null}
+			{image ? <img src={`${image}?dontusecache`} alt='ph'></img> : null}
 			<div className='bug-buttons'>
 				
 			</div>
