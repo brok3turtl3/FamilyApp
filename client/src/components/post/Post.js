@@ -21,7 +21,7 @@ const Post = ({
 	return loading || post === null ? <Hourglass /> : 
   
   <Fragment>
-		<div className='post-container'>
+		<div className='post-container-'>
 			<div className='post-overlay'>
 				<div className='post-inner'>
 					<div className='original-post'>

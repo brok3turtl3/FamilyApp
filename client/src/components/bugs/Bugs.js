@@ -13,7 +13,7 @@ const Bugs = ({ getBugs, bug: { bugs, loading } }) => {
 	}, [getBugs]);
 
 	return (
-		<section className='background'>
+		<section className='background-'>
 			<section className='posts-overlay'>
 				<div className='posts-inner'>
 					{loading ? (

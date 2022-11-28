@@ -17,7 +17,7 @@ const Profiles = ({
 
 
   return (
-    <section className='background'>
+    <section className='background-'>
 				<section className='posts-overlay'>
           <section className="profiles-inner">
 					

@@ -10,7 +10,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #18191a;
+	background-color: rgba(24, 25, 26, 0);
 	overflow: auto;
 }
 .post-inner{
