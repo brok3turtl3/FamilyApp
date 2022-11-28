@@ -25,7 +25,8 @@ const Homepage = ({
 			<section className='homepage-'>
 				<section className='dark-overlay'>
 					<section className='homepage-container'>
-						<h1>Welcome {user && user.name}</h1>
+						<h1>Merry Christmas {user && user.name}!</h1>
+						<br></br>
 						{profile !== null ? (
 							<Fragment>
 								{profile?.image !== null ? (
