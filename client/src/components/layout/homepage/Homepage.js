@@ -22,7 +22,7 @@ const Homepage = ({
 		</Fragment>
 	) : (
 		<Fragment>
-			<section className='homepage'>
+			<section className='homepage-'>
 				<section className='dark-overlay'>
 					<section className='homepage-container'>
 						<h1>Welcome {user && user.name}</h1>

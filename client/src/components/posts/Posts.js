@@ -13,7 +13,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 	}, [getPosts]);
 
 	return (
-		<section className='posts-container'>
+		<section className='posts-container-'>
 			<section className='posts-overlay'>
 				<div className='posts-inner'>
 					{loading ? (

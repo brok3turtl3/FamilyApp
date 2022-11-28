@@ -36,7 +36,7 @@ const Login = ({ login, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<section className="login">
+			<section className="login-">
 				<section className="dark-overlay">
 					<section className="login-container">
 						<form className="login-form" onSubmit={handleSubmit}>

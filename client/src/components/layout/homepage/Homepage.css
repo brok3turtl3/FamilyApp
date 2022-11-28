@@ -11,12 +11,12 @@ height: 100vh;
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.0);
 	overflow: auto;
 }
 
 .homepage-container{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.0);
 	font-size: 3rem;
 	color: var(--light-color);
 	height: 100%;
