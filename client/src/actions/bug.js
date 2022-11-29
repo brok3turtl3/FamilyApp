@@ -5,7 +5,9 @@ import {
 	DELETE_BUG,
 	GET_BUGS,
 	BUG_ERROR,
-	GET_BUG
+	GET_BUG,
+	ADD_BUG_COMMENT,
+	POST_ERROR
 } from './types';
 
 //GET ALL BUGS
@@ -91,6 +93,34 @@ export const deleteBug = (id) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: BUG_ERROR,
+			payload: {
+				msg: error.response.statusText,
+				status: error.response.status,
+			},
+		});
+	}
+};
+
+//ADD COMMENT
+export const addComment = (bugId, formData) => async (dispatch) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+
+		const res = await axios.post(`/api/bugs/comment/${bugId}`, formData, config);
+
+		dispatch({
+			type: ADD_BUG_COMMENT,
+			payload: res.data,
+		});
+
+		dispatch(setAlert('Comment Added', 'success'));
+	} catch (error) {
+		dispatch({
+			type: POST_ERROR,
 			payload: {
 				msg: error.response.statusText,
 				status: error.response.status,

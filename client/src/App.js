@@ -17,6 +17,7 @@ import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import EditPostForm from './components/post/EditPostForm';
 import Bugs from './components/bugs/Bugs';
+import Bug from './components/bug/Bug';
 import EditAccountInfoForm from './components/EditAccountInfoForm';
 
 
@@ -59,6 +60,7 @@ const App = () => {
 								<Route path='/posts/:id' element={<Post />} />
 								<Route path='/posts/edit/:id' element={<EditPostForm />} />
 								<Route path='/bugs' element={<Bugs />} />
+								<Route path='/bugs/:id' element={<Bug />} />
 								<Route path='/editaccountinfo' element={<EditAccountInfoForm />} />
 
 								

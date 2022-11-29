@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteBug } from '../../actions/bug';
 import Linkify from 'react-linkify';
@@ -12,6 +12,14 @@ const IndividualBug = ({
 	auth,
 	bug: { _id, subject, text, name, posterImage, user, comments, date, image },
 }) => {
+
+	const navigate = useNavigate();
+
+	const navigateComments = () => {
+		navigate(`/bugs/${_id}`);
+	};
+
+
 	return (
 		<div className='bugs'>
 			<div className='bug-subject'>
@@ -59,7 +67,12 @@ const IndividualBug = ({
 			</Linkify>
 			{image ? <img src={`${image}?dontusecache`} alt='ph'></img> : null}
 			<div className='bug-buttons'>
-				
+			<span onClick={navigateComments}>
+					<i className='fa-solid fa-comments likes hover'>
+						{' '}
+						<span className='fa'>Comments {comments.length}</span>
+					</i>
+				</span>
 			</div>
 		</div>
 	);

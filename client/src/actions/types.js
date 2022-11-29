@@ -28,6 +28,7 @@ export const BUG_ERROR = 'BUG_ERROR';
 export const ADD_BUG = 'ADD_BUG';
 export const DELETE_BUG = 'DELETE_BUG';
 export const GET_BUG = 'GET_BUG';
+export const ADD_BUG_COMMENT = 'ADD_BUG_COMMENT';
 
 
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';

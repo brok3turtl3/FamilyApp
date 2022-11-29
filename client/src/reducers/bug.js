@@ -3,7 +3,8 @@ import {
 	BUG_ERROR,
 	ADD_BUG,
 	DELETE_BUG,
-	GET_BUG
+	GET_BUG,
+	ADD_BUG_COMMENT
 } from '../actions/types';
 
 const initialState = {
@@ -33,6 +34,13 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				bugs: [payload, ...state.bugs],
+				loading: false,
+			};
+
+			case ADD_BUG_COMMENT:
+			return {
+				...state,
+				bug: { ...state.bug, comments: payload },
 				loading: false,
 			};
 			
