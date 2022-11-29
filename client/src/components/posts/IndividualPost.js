@@ -67,7 +67,9 @@ const IndividualPost = ({
 		toggleLike(_id);
 		// console.log(auth.user)
 		// console.log(`Value of user in Post submission ${user}`)
+		if( user !== auth.user._id){
 		addNotification(_id, 'liked your post');
+		}
 	};
 
 	const handleLaughClick = () => {
@@ -76,7 +78,9 @@ const IndividualPost = ({
 		console.log('Handle Laugh HIT!!!');
 		console.log(auth.user)
 		console.log(`Value of user in Post submission ${user}`)
+		if(user !== auth.user._id){
 		addNotification(_id, 'laughed at your post');
+		}
 	};
 
 	const linkStyle = {

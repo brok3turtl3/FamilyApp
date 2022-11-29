@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { addNotification } from '../../actions/notifications';
 import './CommentForm.css';
 
-const CommentForm = ({ addComment, postId, addNotification }) => {
+const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
 	const [text, setText] = useState('');
 
 	
@@ -20,7 +20,11 @@ const CommentForm = ({ addComment, postId, addNotification }) => {
 		e.preventDefault();
 		addComment(postId, {text});
 		console.log(postId);
+		console.log(user);
+		console.log(auth.user._id)
+		if(user !== auth.user._id){
 		addNotification(postId, 'commented on your post')
+		}
 		setText('');
 	};
 
@@ -62,7 +66,8 @@ CommentForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+	auth: state.auth
 })
 
 export default connect(mapStateToProps, { addComment, addNotification })(CommentForm);

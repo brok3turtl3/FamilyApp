@@ -33,7 +33,7 @@ const Post = ({
 						<div className='body'>{post.text}</div>
 						<div className='post-buttons'></div>
 					</div>
-          <CommentForm postId={post._id}/>
+          <CommentForm postId={post._id} user={post.user}/>
 					{post.comments.map(comment => (
 						<Comment key={comment._id} comment={comment} postId={post._id} />
 					))}
