@@ -9,14 +9,42 @@ import './Comment.css'
 const Comment = ({
 	postId,
 	deleteComment,
-	comment: { _id, text, name, user, date },
+	comment: { _id, text, name, user, commentorPic, date },
 	auth,
 }) => {
+
+	const linkStyle = {
+		color: 'white',
+	};
+
 	return (
 		<div className='comment'>
-			<div className='comment-banner'>
-				<div>{name}</div>
-				<div>{date.substring(0, 10)}</div>
+			<div className='banner'>
+				<Link to={`/profile/${user}`}>
+					<div className='poster-img-thumb '>
+						<img src={`${commentorPic}?donotusecache`} alt='PH' className='profile-link'></img>
+					</div>
+				</Link>
+				<div className='poster-info'>
+					<div>{name}</div>
+					<div>{date.substring(0, 10)}</div>
+				</div>
+
+				<div className='post-delete'>
+					{!auth.loading && user === auth.user._id && (
+						<Fragment>
+							
+
+							<i
+								onClick={(e) => deleteComment(postId, _id)}
+								className='fa-solid fa-trash hover-danger'
+							>
+								{' '}
+								X
+							</i>
+						</Fragment>
+					)}
+				</div>
 			</div>
 			<Linkify
 				componentDecorator={(decoratedHref, decoratedText, key) => (
@@ -32,13 +60,7 @@ const Comment = ({
 			>
 				<div className='comment-body'>{text}</div>
 			</Linkify>
-			{!auth.loading && user === auth.user._id && (
-				<div className='comment-buttons'>
-					<button onClick={() => deleteComment(postId, _id)} type='button'>
-						Delete Comment
-					</button>
-				</div>
-			)}
+			
 		</div>
 	);
 };

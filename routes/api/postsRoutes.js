@@ -229,6 +229,7 @@ router.post(
 				text: req.body.text,
 				name: user.name,
 				user: req.user.id,
+				commentorPic: user.profilePic
 			};
 
 			post.comments.unshift(newComment);

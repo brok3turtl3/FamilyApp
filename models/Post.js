@@ -58,6 +58,9 @@ const PostSchema = new Schema({
 			name: {
 				type: String,
 			},
+			commentorPic:{
+				type: String
+			},
 			date: {
 				type: Date,
 				default: Date.now,
