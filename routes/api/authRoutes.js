@@ -7,6 +7,9 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import { check, validationResult } from 'express-validator';
 import  nodemailer from 'nodemailer';
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 //ROUTE  		GET api/auth
 //PURPOSE   Get user with current jwt
@@ -73,7 +76,7 @@ router.post(
 
 			jwt.sign(
 				payload,
-				config.get('jwtSecret'),
+				process.env.JWT_SECRET,
 				{ expiresIn: 360000 },
 				(err, token) => {
 					if (err) throw err;
@@ -103,7 +106,7 @@ router.post('/forgot-password', async (req, res) => {
 				.json({ errors: [{ msg: 'Email does not exist in our records' }] });
 		}
 
-		const secret = config.get('jwtSecret') + oldUser.password;
+		const secret = process.env.JWT_SECRET + oldUser.password;
 		const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
 			expiresIn: '5m',
 		});
@@ -154,7 +157,7 @@ router.get('/reset-password/:id/:token', async (req, res) => {
 			.status(400)
 			.json({ errors: [{ msg: 'Email does not exist in our records' }] });
 	}
-	const secret = config.get('jwtSecret') + oldUser.password;
+	const secret = process.env.JWT_SECRET + oldUser.password;
 	try {
 		const verify = jwt.verify(token, secret);
 		res.render('index', { email: verify.email, status: 'Not Verified' });
@@ -180,7 +183,7 @@ router.post('/reset-password/:id/:token', async (req, res) => {
 			.status(400)
 			.json({ errors: [{ msg: 'Email does not exist in our records' }] });
 	}
-	const secret = config.get('jwtSecret') + oldUser.password;
+	const secret = process.env.JWT_SECRET + oldUser.password;
 
 	try {
 		const verify = jwt.verify(token, secret);

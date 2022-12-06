@@ -7,6 +7,9 @@ import Post from '../../models/Post.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 //ROUTE   	POST api/users
 //PURPOSE   Register User
@@ -37,7 +40,7 @@ router.post(
 
 		try {
 			//CHECK TO SEE IF REG CODE IS VALID
-			const validCode = config.get('validCode');
+			const validCode = process.env.VALID_CODE;
 			if (regCode !== validCode) {
 				return res
 					.status(400)
@@ -79,7 +82,7 @@ router.post(
 
 			jwt.sign(
 				payload,
-				config.get('jwtSecret'),
+				process.env.JWT_SECRET,
 				{ expiresIn: 360000 },
 				(err, token) => {
 					if (err) throw err;

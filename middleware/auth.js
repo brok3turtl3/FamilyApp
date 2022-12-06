@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 import config from 'config';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const auth = (req, res, next) => {
   //GET TOKEN FROM HEADER
@@ -11,7 +14,7 @@ const auth = (req, res, next) => {
 
   //VERIFY TOKEN
   try {
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.user;
     next();
   } catch (err) {

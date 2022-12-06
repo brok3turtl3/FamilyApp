@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import config from 'config';
-const db = config.get('MONGO_URI');
+
 import dotenv from 'dotenv';
 
 dotenv.config();
