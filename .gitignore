@@ -1,5 +1,5 @@
 node_modules/
 client/node_modules
 .env
-default.json
-production.json
+config/default.json
+config/production.json
