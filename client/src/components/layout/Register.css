@@ -34,7 +34,7 @@ height: 100vh;
 	color: var(--light-color);
 	display: flex;
 	flex-direction: column;
-
+text-align: center;
 	max-width: 500px;
 	min-width: 300px;
 }
@@ -65,4 +65,12 @@ height: 100vh;
 	width: 70%;
 	margin: 1rem auto;
 	padding: 0.2rem;
+}
+
+a{
+	color: white;
+}
+
+#emp-link:hover{
+	color: yellow;
 }

@@ -50,7 +50,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<section className='register'>
+			<section className='register-'>
 				<section className='register-overlay'>
 					<section className='register-container'>
 						<form className='register-form' onSubmit={handleSubmit}>
@@ -58,6 +58,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 								Please enter your name, email and password to register your
 								account for the site.
 							</p>
+							<a href="mailto:brok3turtl3@gmail.com"><p id="emp-link" className='normal'>(Potential employers - click to contact me for a demo.)</p></a>
 							
 							<Alert></Alert>
 								<input

@@ -30,3 +30,7 @@ height: 100vh;
 .buttons-container{
 
 }
+a{
+	color: white;
+}
+a:hover{color: yellow}

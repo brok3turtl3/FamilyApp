@@ -16,6 +16,8 @@ const Landing = () => {
 						<Link to="/register" className="btn btn-primary">Register</Link>
 						<Link to="/login" className="btn btn-primary">Login</Link>
 					</div>
+					<br />
+					<a href="mailto:brok3turtl3@gmail.com"><p className='normal'>(Potential employers - click to contact me for a demo.)</p></a>
 				</div>
 			</div>
 		</section>
