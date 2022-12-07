@@ -2,7 +2,12 @@ import axios from 'axios';
 import { setAlert } from './alert';
 // import setAuthToken from '../utils/setAuthToken';
 
-import { GET_PROFILE, PROFILE_ERROR, GET_PROFILES, CLEAR_PROFILE } from './types';
+import {
+	GET_PROFILE,
+	PROFILE_ERROR,
+	GET_PROFILES,
+	CLEAR_PROFILE,
+} from './types';
 
 //ACTION TO RETRIEVE CURRENT USERS PROFILE
 export const getCurrentProfile = () => async (dispatch) => {
@@ -19,8 +24,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 			payload: res.data,
 		});
 	} catch (error) {
-		console.log('FAIL - User has no profile!');
-		dispatch({ type: CLEAR_PROFILE});
+		dispatch({ type: CLEAR_PROFILE });
 		dispatch({
 			type: PROFILE_ERROR,
 			payload: {
@@ -34,7 +38,6 @@ export const getCurrentProfile = () => async (dispatch) => {
 //GET DETAILED PROFILE BY ID
 export const getProfileById = (userId) => async (dispatch) => {
 	try {
-		
 		const res = await axios.get(`/api/profile/user/${userId}`);
 
 		dispatch({
@@ -66,7 +69,6 @@ export const getProfiles = () => async (dispatch) => {
 			payload: res.data,
 		});
 	} catch (error) {
-		console.log('FAIL');
 		dispatch({
 			type: PROFILE_ERROR,
 			payload: {
@@ -93,11 +95,9 @@ export const createProfile =
 				},
 			};
 
-
 			//SEND POST REQUEST WITH INFO TO DB WITH AXIOS
 			const res = await axios.post('/api/profile', formData, config);
-			console.log('This is server response data for /api/profile')
-console.log(res.data);
+
 			dispatch({
 				type: GET_PROFILE,
 				payload: res.data,

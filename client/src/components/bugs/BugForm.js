@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBug } from '../../actions/bug';
 import SimpleFileUpload from 'react-simple-file-upload';
-import  './BugForm.css';
+import './BugForm.css';
 
 const BugForm = ({ addBug }) => {
 	const [formData, setFormData] = useState({
 		subject: '',
 		text: '',
-		image: ''
+		image: '',
 	});
 
 	const { text } = formData;
@@ -25,17 +25,15 @@ const BugForm = ({ addBug }) => {
 	};
 
 	function handleFile(url) {
-		console.log('The URL of the file is ' + url);
-		setFormData({...formData, image: url});
+		setFormData({ ...formData, image: url });
 	}
 
 	return (
 		<Fragment>
 			<form className='submit-post' onSubmit={handleSubmit}>
-				
 				<div className='post-field'>
 					<label htmlFor='text'>MESSAGE:</label>
-					
+
 					<textarea
 						name='text'
 						id='text'
@@ -47,14 +45,14 @@ const BugForm = ({ addBug }) => {
 					></textarea>
 				</div>
 				<div>
-				<SimpleFileUpload
-										apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
-										onSuccess={handleFile}
-									/>
-									<p>Upload a pic</p>
-									<p>Click to browse or drag and drop</p>
+					<SimpleFileUpload
+						apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
+						onSuccess={handleFile}
+					/>
+					<p>Upload a pic</p>
+					<p>Click to browse or drag and drop</p>
 				</div>
-				
+
 				<div className='post-buttons'>
 					<button className='btn btn-primary' type='submit'>
 						Submit Post

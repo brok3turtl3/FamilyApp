@@ -14,7 +14,7 @@ import {
 export const getBugs = () => async (dispatch) => {
 	try {
 		const res = await axios.get('/api/bugs');
-console.log(res.data);
+
 		dispatch({
 			type: GET_BUGS,
 			payload: res.data,

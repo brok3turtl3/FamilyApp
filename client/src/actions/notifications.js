@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {
-	ADD_NOTIFICATION,
+	
 	DELETE_NOTIFICATION,
 	NOTIFICATION_ERROR,
 	GET_NOTIFICATIONS,
-	USER_LOADED
+	USER_LOADED,
 } from './types';
 
 import setAuthToken from '../utils/setAuthToken';
@@ -12,7 +12,6 @@ import setAuthToken from '../utils/setAuthToken';
 //ADD NOTIFICATION
 
 export const addNotification = (postId, type) => async (dispatch) => {
-  console.log('Add Notification hit!')
 	try {
 		const config = {
 			headers: {
@@ -20,13 +19,7 @@ export const addNotification = (postId, type) => async (dispatch) => {
 			},
 		};
 
-		await axios.post(
-			`/api/users/addNotification/${postId}`,
-			{ type },
-			config
-		);
-
-  
+		await axios.post(`/api/users/addNotification/${postId}`, { type }, config);
 	} catch (error) {
 		dispatch({
 			type: NOTIFICATION_ERROR,
@@ -42,16 +35,12 @@ export const addNotification = (postId, type) => async (dispatch) => {
 
 export const deleteNotification = (notificationId) => async (dispatch) => {
 	try {
-		
-		console.log("HIT!");
 		await axios.delete(`/api/users/deleteNotification/${notificationId}`);
 
 		dispatch({
 			type: DELETE_NOTIFICATION,
 			payload: notificationId,
 		});
-
-		
 	} catch (error) {
 		dispatch({
 			type: NOTIFICATION_ERROR,
@@ -66,7 +55,7 @@ export const deleteNotification = (notificationId) => async (dispatch) => {
 //UPDATE NOTIFICATIONS
 
 export const updateNotifications = () => async (dispatch) => {
-  console.log('Update Notifications hit!')
+	
 
 	if (localStorage.token) {
 		setAuthToken(localStorage.token);
@@ -78,14 +67,11 @@ export const updateNotifications = () => async (dispatch) => {
 			type: USER_LOADED,
 			payload: res.data,
 		});
-		console.log("here is response data")
-		console.log(res.data.notifications);
+		
 		dispatch({
 			type: GET_NOTIFICATIONS,
-			payload: res.data.notifications
-		})
-
-  
+			payload: res.data.notifications,
+		});
 	} catch (error) {
 		dispatch({
 			type: NOTIFICATION_ERROR,

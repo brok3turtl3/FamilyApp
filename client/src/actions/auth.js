@@ -30,8 +30,7 @@ export const loadUser = () => async (dispatch) => {
 			type: USER_LOADED,
 			payload: res.data,
 		});
-		console.log("here is response data")
-		console.log(res.data.notifications);
+		
 		dispatch({
 			type: GET_NOTIFICATIONS,
 			payload: res.data.notifications
@@ -120,8 +119,7 @@ export const logout = () => (dispatch) => {
 
 //FORGOTTEN PASSWORD
 export const forgotPassword = (email) => async (dispatch) => {
-	console.log('Forgot Password action HIT!')
-	console.log(email);
+	
 
 	const config = {
 		headers: {
@@ -132,9 +130,9 @@ export const forgotPassword = (email) => async (dispatch) => {
 	
 	try {
 		const res = await axios.post('api/auth/forgot-password', body, config);
-	console.log(res.data);
+	
 	dispatch(setAlert('Link sent', 'success'));
-	console.log('Set Alert should have been hit')
+	
 	
 } catch (error) {
 	console.log('Error on ForgotPassword func');	

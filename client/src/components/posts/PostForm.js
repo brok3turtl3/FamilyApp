@@ -7,12 +7,11 @@ import './PostForm.css';
 
 const PostForm = ({ addPost }) => {
 	const [formData, setFormData] = useState({
-		
 		text: '',
 		image: '',
 	});
 
-	const {  text, image } = formData;
+	const { text, image } = formData;
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +24,6 @@ const PostForm = ({ addPost }) => {
 	};
 
 	function handleFile(url) {
-		console.log('The URL of the file is ' + url);
 		setFormData({ ...formData, image: url });
 	}
 
@@ -46,17 +44,16 @@ const PostForm = ({ addPost }) => {
 					></textarea>
 				</div>
 				<div className='post-pic-section'>
-				<div>
-					{image ? (
-						<Fragment>
-							<div className='post-pic-current'>
-								
+					<div>
+						{image ? (
+							<Fragment>
+								<div className='post-pic-current'>
 									<img src={image} alt='PH' className='post-pic-img'></img>
 									<div>Current pic</div>
-								
-							</div>
-						</Fragment>
-					) : null}</div>
+								</div>
+							</Fragment>
+						) : null}
+					</div>
 					<div>
 						<SimpleFileUpload
 							apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'

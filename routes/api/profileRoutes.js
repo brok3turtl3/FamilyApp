@@ -3,15 +3,14 @@ const router = express.Router();
 import auth from '../../middleware/auth.js';
 import Profile from '../../models/Profile.js';
 import User from '../../models/User.js';
-import { check, validationResult } from 'express-validator';
+
 
 //ENDPOINT  GET api/profile/user
 //PURPOSE   Retrieve current users profile
 //ACCESS    Private
 
 router.get('/user', auth, async (req, res) => {
-	console.log(req.body);
-	console.log('TESTING!!!!');
+	
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate(
 			'user',
@@ -22,7 +21,7 @@ router.get('/user', auth, async (req, res) => {
 		}
 		res.json(profile);
 	} catch (error) {
-		console.error(error.message);
+		console.log(error.message)
 		res.status(500).send('Server Error');
 	}
 });
@@ -100,7 +99,7 @@ router.post(
 				);
 
 				//ADD IMAGE TO USER INFO
-			console.log('profileRoute HIT!')
+			
 			User.findOneAndUpdate({_id: req.user.id}, {profilePic: image}, (err, data) => {
 				if(err){
 					console.log(err)
@@ -175,6 +174,8 @@ router.get('/user/:user_id', auth, async (req, res) => {
 //ENDPOINT   DELETE api/profile
 //PURPOSE    Delete profile, user & posts
 //ACCESS     Private
+
+//TODO NOT IMPLEMENTED ON FRONT END YET
 router.delete('/', auth, async (req, res) => {
 	try {
 		//REMOVE PROFILE

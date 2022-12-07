@@ -10,7 +10,7 @@ import {
 	GET_POST,
 	ADD_COMMENT,
 	DELETE_COMMENT,
-	EDIT_POST
+	EDIT_POST,
 } from './types';
 
 //GET ALL POSTS
@@ -135,7 +135,6 @@ export const deletePost = (id) => async (dispatch) => {
 //ADD LIKE
 export const addLike = (postId) => async (dispatch) => {
 	try {
-		
 		const res = await axios.put(`/api/posts/like/${postId}`);
 		dispatch({
 			type: UPDATE_LIKES,
@@ -170,8 +169,6 @@ export const removeLike = (postId) => async (dispatch) => {
 		});
 	}
 };
-
-
 
 //TOGGLE LIKE
 export const toggleLike = (postId) => async (dispatch) => {
@@ -220,7 +217,11 @@ export const addComment = (postId, formData) => async (dispatch) => {
 			},
 		};
 
-		const res = await axios.post(`/api/posts/comment/${postId}`, formData, config);
+		const res = await axios.post(
+			`/api/posts/comment/${postId}`,
+			formData,
+			config
+		);
 
 		dispatch({
 			type: ADD_COMMENT,
@@ -242,8 +243,6 @@ export const addComment = (postId, formData) => async (dispatch) => {
 //DELETE COMMENT
 export const deleteComment = (postId, commentId) => async (dispatch) => {
 	try {
-		
-		console.log("HIT!");
 		await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 
 		dispatch({

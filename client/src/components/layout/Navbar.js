@@ -1,74 +1,88 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, useNavigate,  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { PropTypes } from 'prop-types';
 import './Navbar.css';
 
-import { deleteNotification, updateNotifications } from '../../actions/notifications';
+import {
+	deleteNotification,
+	updateNotifications,
+} from '../../actions/notifications';
 
-
-const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifications}, logout, deleteNotification, updateNotifications }) => {
-
+const Navbar = ({
+	auth: { isAuthenticated, loading },
+	notifications: { notifications },
+	logout,
+	deleteNotification,
+	updateNotifications,
+}) => {
 	const navigate = useNavigate();
 
-	
 	useEffect(() => {
-		
-			const interval = setInterval(() => {
-			console.log('TEST');
+		const interval = setInterval(() => {
 			updateNotifications();
 		}, 3000);
 		return () => clearInterval(interval);
-	},[])
-
+	}, []);
 
 	const [showNotifications, setshowNotifications] = useState();
 
 	const handleBellClick = () => {
 		setshowNotifications(!showNotifications);
-		console.log(showNotifications);
-	}
-
-	
+	};
 
 	const authLinks = (
 		<Fragment>
-		<ul>
-			<li>
-				<Link to='/homepage'>Homepage</Link>
-			</li>
-			<li>
-				<Link to="/profiles">Profiles</Link>
-			</li>
-			<li>
-				<Link to="/posts">Posts</Link>
-			</li>
-			<li>
-				<Link to="/bugs">Feedback</Link>
-			</li>
-			<li>
-				<a onClick={logout} href='#!'>
-					Logout
-				</a>
-			</li>
-			{ notifications.length > 0 ? <div className="notifications"><i className="fa-solid fa-bell fa-shake hover" onClick={handleBellClick}></i> {notifications.length}</div> : null }
-			
-		</ul>
-		<div>
-		{showNotifications && notifications.length > 0 && (
-			<div className='notifications-display'>
-				<p>Click to view post</p>
-				{notifications.map((notification) => (
-					<div key={notification._id} className="notification" onClick={() => {
-						setshowNotifications(!showNotifications);
-						navigate(`/posts/${notification.postId}`);
-				deleteNotification(notification._id);
-				}}>{`${notification.name} ${notification.type}`} </div>
-				))}{' '}
+			<ul>
+				<li>
+					<Link to='/homepage'>Homepage</Link>
+				</li>
+				<li>
+					<Link to='/profiles'>Profiles</Link>
+				</li>
+				<li>
+					<Link to='/posts'>Posts</Link>
+				</li>
+				<li>
+					<Link to='/bugs'>Feedback</Link>
+				</li>
+				<li>
+					<a onClick={logout} href='#!'>
+						Logout
+					</a>
+				</li>
+				{notifications.length > 0 ? (
+					<div className='notifications'>
+						<i
+							className='fa-solid fa-bell fa-shake hover'
+							onClick={handleBellClick}
+						></i>{' '}
+						{notifications.length}
+					</div>
+				) : null}
+			</ul>
+			<div>
+				{showNotifications && notifications.length > 0 && (
+					<div className='notifications-display'>
+						<p>Click to view post</p>
+						{notifications.map((notification) => (
+							<div
+								key={notification._id}
+								className='notification'
+								onClick={() => {
+									setshowNotifications(!showNotifications);
+									navigate(`/posts/${notification.postId}`);
+									deleteNotification(notification._id);
+								}}
+							>
+								{`${notification.name} ${notification.type}`}{' '}
+							</div>
+						))}{' '}
+					</div>
+				)}
 			</div>
-		)}
-	</div></Fragment>
+		</Fragment>
 	);
 
 	const guestLinks = (
@@ -82,22 +96,20 @@ const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifica
 		</ul>
 	);
 
-	
-
 	return (
 		<nav className='navbar'>
 			<div className='logo'>
-			<h1>
-				<Link to='/'>
-					<i className='fa-solid fa-users'></i> Family Matters
-				</Link>
-			</h1>
-</div>
-<div className='nav-links'>
-			{!loading && (
-				<Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>
-			)}
-		</div>
+				<h1>
+					<Link to='/'>
+						<i className='fa-solid fa-users'></i> Family Matters
+					</Link>
+				</h1>
+			</div>
+			<div className='nav-links'>
+				{!loading && (
+					<Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>
+				)}
+			</div>
 		</nav>
 	);
 };
@@ -105,12 +117,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, notifications : { notifica
 Navbar.propTypes = {
 	logout: PropTypes.func.isRequired,
 	deleteNotification: PropTypes.func.isRequired,
-	updateNotifications: PropTypes.func.isRequired
+	updateNotifications: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
-	notifications: state.notifications
+	notifications: state.notifications,
 });
 
-export default connect(mapStateToProps, { logout, deleteNotification, updateNotifications })(Navbar);
+export default connect(mapStateToProps, {
+	logout,
+	deleteNotification,
+	updateNotifications,
+})(Navbar);

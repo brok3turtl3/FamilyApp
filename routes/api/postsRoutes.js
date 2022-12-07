@@ -100,56 +100,7 @@ router.delete('/:postId', auth, async (req, res) => {
 	}
 });
 
-//ENDPOINT  PUT api/posts/like/:postId
-//PURPOSE   Add a like to a post
-//ACCESS    Private
-router.put('/like/:postId', auth, async (req, res) => {
-	try {
-		console.log('TEST-LIKES');
-		const post = await Post.findById(req.params.postId);
-		//CHECK TO SEE IF POST IS ALREADY LIKED
-		if (
-			post.likes.filter((like) => like.user.toString() === req.user.id).length >
-			0
-		) {
-			return res.status(400).json({ msg: 'Post already liked' });
-		}
-		console.log('TEST-LIKES');
-		console.log(req.user.name);
-		post.likes.unshift({ user: req.user.id, name: req.user.name });
-		await post.save();
-		res.json(post.likes);
-	} catch (error) {
-		console.error(error.message);
-		res.status(500).send('Server Error');
-	}
-});
 
-//ENDPOINT  PUT api/posts/unlike/:postId
-//PURPOSE   Remove a like to a post
-//ACCESS    Private
-router.put('/unlike/:postId', auth, async (req, res) => {
-	try {
-		const post = await Post.findById(req.params.postId);
-		if (
-			post.likes.filter((like) => like.user.toString() === req.user.id)
-				.length === 0
-		) {
-			return res.status(404).json({ msg: 'Post not liked' });
-		}
-
-		const removeIndex = post.likes
-			.map((like) => like.user.toString())
-			.indexOf(req.user.id);
-		post.likes.splice(removeIndex, 1);
-		await post.save();
-
-		res.json(post.likes);
-	} catch (error) {
-		console.error(error.message);
-		res.status(500).send('Server Error');
-	}
-});
 
 //ENDPOINT  PUT api/posts/toggle-like/:postId
 //PURPOSE   Like or un-like a post.

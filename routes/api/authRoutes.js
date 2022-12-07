@@ -58,7 +58,7 @@ router.post(
 			}
 
 			const isMatch = await bcrypt.compare(password, user.password);
-			console.log(isMatch);
+			
 
 			if (!isMatch) {
 				return res
@@ -173,7 +173,7 @@ router.get('/reset-password/:id/:token', async (req, res) => {
 router.post('/reset-password/:id/:token', async (req, res) => {
 	const { id, token } = req.params;
 
-	//NEED PASSWORD VALIDATION DONE HERE
+	//TODO NEED PASSWORD VALIDATION DONE HERE
 	const { password } = req.body;
 
 	const oldUser = await User.findOne({ _id: id });

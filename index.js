@@ -7,7 +7,7 @@ import usersRoutes from './routes/api/usersRoutes.js'
 import authRoutes from './routes/api/authRoutes.js'
 import postsRoutes from './routes/api/postsRoutes.js'
 import profileRoutes from './routes/api/profileRoutes.js'
-import uploadRoutes from './routes/api/uploadRoutes.js'
+
 import bugsRoutes from './routes/api/bugsRoutes.js'
 
 const app = express();
@@ -29,7 +29,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
-app.use('/api/upload', uploadRoutes);
+
 app.use('/api/bugs', bugsRoutes);
 
 

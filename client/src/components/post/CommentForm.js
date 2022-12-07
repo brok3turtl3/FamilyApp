@@ -10,20 +10,16 @@ import './CommentForm.css';
 const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
 	const [text, setText] = useState('');
 
-	
-
 	const handleChange = (e) => {
 		setText(e.target.value);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addComment(postId, {text});
-		console.log(postId);
-		console.log(user);
-		console.log(auth.user._id)
-		if(user !== auth.user._id){
-		addNotification(postId, 'commented on your post')
+		addComment(postId, { text });
+
+		if (user !== auth.user._id) {
+			addNotification(postId, 'commented on your post');
 		}
 		setText('');
 	};
@@ -31,7 +27,6 @@ const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
 	return (
 		<Fragment>
 			<form className='submit-comment' onSubmit={handleSubmit}>
-				
 				<div className='comment-field'>
 					<label htmlFor='text'>MESSAGE:</label>
 
@@ -45,9 +40,9 @@ const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
 						required
 					></textarea>
 				</div>
-        <Alert />
+				<Alert />
 				<div className='post-buttons'>
-				<Link to="/posts" className='btn'>
+					<Link to='/posts' className='btn'>
 						Back to Forums
 					</Link>
 					<button className='btn' type='submit'>
@@ -61,13 +56,14 @@ const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
 
 CommentForm.propTypes = {
 	addComment: PropTypes.func.isRequired,
-	addNotification: PropTypes.func.isRequired
-  
+	addNotification: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  post: state.post,
-	auth: state.auth
-})
+const mapStateToProps = (state) => ({
+	post: state.post,
+	auth: state.auth,
+});
 
-export default connect(mapStateToProps, { addComment, addNotification })(CommentForm);
+export default connect(mapStateToProps, { addComment, addNotification })(
+	CommentForm
+);

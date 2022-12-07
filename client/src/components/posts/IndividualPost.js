@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { editPost, deletePost, toggleLike, toggleLaugh } from '../../actions/post';
-import './IndividualPost.css'
+import {
+	editPost,
+	deletePost,
+	toggleLike,
+	toggleLaugh,
+} from '../../actions/post';
+import './IndividualPost.css';
 import { addNotification } from '../../actions/notifications';
 import Linkify from 'react-linkify';
-
-
 
 const IndividualPost = ({
 	deletePost,
@@ -65,21 +68,17 @@ const IndividualPost = ({
 
 	const handleLikeClick = () => {
 		toggleLike(_id);
-		// console.log(auth.user)
-		// console.log(`Value of user in Post submission ${user}`)
-		if( user !== auth.user._id){
-		addNotification(_id, 'liked your post');
+
+		if (user !== auth.user._id) {
+			addNotification(_id, 'liked your post');
 		}
 	};
 
 	const handleLaughClick = () => {
-		console.log('Handle Laugh HIT!!!');
 		toggleLaugh(_id);
-		console.log('Handle Laugh HIT!!!');
-		console.log(auth.user)
-		console.log(`Value of user in Post submission ${user}`)
-		if(user !== auth.user._id){
-		addNotification(_id, 'laughed at your post');
+
+		if (user !== auth.user._id) {
+			addNotification(_id, 'laughed at your post');
 		}
 	};
 
@@ -92,7 +91,11 @@ const IndividualPost = ({
 			<div className='banner'>
 				<Link to={`/profile/${user}`}>
 					<div className='poster-img-thumb '>
-						<img src={`${posterImage}?dontusecache`} alt='PH' className='profile-link'></img>
+						<img
+							src={`${posterImage}?dontusecache`}
+							alt='PH'
+							className='profile-link'
+						></img>
 					</div>
 				</Link>
 				<div className='poster-info'>
@@ -132,37 +135,43 @@ const IndividualPost = ({
 			>
 				<div className='body'>{text}</div>
 			</Linkify>
-			{image ? <img className='post-image' src={`${image}?dontusecache`} alt='ph'></img> : null}
+			{image ? (
+				<img
+					className='post-image'
+					src={`${image}?dontusecache`}
+					alt='ph'
+				></img>
+			) : null}
 
 			{/* LIKE AND LAUGHS COUNTERS */}
-			<div className="reaction-counters">
-			{likes.length > 0 ? (
-				<div
-					className='likes-counter'
-					onClick={toggleLikeHovering}
-					onMouseOver={handleLikeMouseOver}
-					onMouseOut={handleLikeMouseOut}
-				>
-					<i className='fa-solid fa-thumbs-up'>
-						<span className='fa'>{likes.length}</span>
-					</i>
-				</div>
-			) : null}
+			<div className='reaction-counters'>
+				{likes.length > 0 ? (
+					<div
+						className='likes-counter'
+						onClick={toggleLikeHovering}
+						onMouseOver={handleLikeMouseOver}
+						onMouseOut={handleLikeMouseOut}
+					>
+						<i className='fa-solid fa-thumbs-up'>
+							<span className='fa'>{likes.length}</span>
+						</i>
+					</div>
+				) : null}
 
-{laughs.length > 0 ? (
-				<div
-					className='likes-counter'
-					onClick={toggleLaughHovering}
-					onMouseOver={handleLaughMouseOver}
-					onMouseOut={handleLaughMouseOut}
-				>
-					<i className='fa-solid fa-face-laugh-squint'>
-						<span className='fa'>{laughs.length}</span>
-					</i>
-				</div>
-			) : null}
+				{laughs.length > 0 ? (
+					<div
+						className='likes-counter'
+						onClick={toggleLaughHovering}
+						onMouseOver={handleLaughMouseOver}
+						onMouseOut={handleLaughMouseOut}
+					>
+						<i className='fa-solid fa-face-laugh-squint'>
+							<span className='fa'>{laughs.length}</span>
+						</i>
+					</div>
+				) : null}
 			</div>
-			
+
 			<div className='post-buttons'>
 				{likeHovering && (
 					<div className='likes-display'>
@@ -190,7 +199,11 @@ const IndividualPost = ({
 					</i>
 				</span>
 				<span>
-					<i className='fa-solid fa-face-laugh-squint likes hover' onClick={handleLaughClick}><span className='fa'>Laugh</span>
+					<i
+						className='fa-solid fa-face-laugh-squint likes hover'
+						onClick={handleLaughClick}
+					>
+						<span className='fa'>Laugh</span>
 					</i>
 				</span>
 				<span onClick={navigateComments}>
@@ -223,5 +236,5 @@ export default connect(mapStateToProps, {
 	deletePost,
 	addNotification,
 	toggleLike,
-	toggleLaugh
+	toggleLaugh,
 })(IndividualPost);

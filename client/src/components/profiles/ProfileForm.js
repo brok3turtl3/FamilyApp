@@ -56,7 +56,6 @@ const ProfileForm = ({ createProfile }) => {
 	};
 
 	function handleFile(url) {
-		console.log('The URL of the file is ' + url);
 		setFormData({ ...formData, image: url });
 	}
 

@@ -5,7 +5,7 @@ import Alert from './layout/Alert';
 import PropTypes from 'prop-types';
 import { setAlert } from '../actions/alert';
 
-const PasswordReset = ({forgotPassword}) => {
+const PasswordReset = ({ forgotPassword }) => {
 	const [email, setEmail] = useState();
 
 	const handleChange = (e) => {
@@ -14,9 +14,8 @@ const PasswordReset = ({forgotPassword}) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(email);
-		forgotPassword(email);
 
+		forgotPassword(email);
 	};
 
 	return (
@@ -44,7 +43,7 @@ const PasswordReset = ({forgotPassword}) => {
 									Submit
 								</button>
 							</div>
-              <Alert />
+							<Alert />
 						</form>
 
 						<Alert />
@@ -59,4 +58,4 @@ PasswordReset.propTypes = {
 	forgotPassword: PropTypes.func.isRequired,
 };
 
-export default connect(null, {forgotPassword})(PasswordReset);
+export default connect(null, { forgotPassword })(PasswordReset);
