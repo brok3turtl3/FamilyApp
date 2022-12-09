@@ -122,6 +122,36 @@ router.post('/addNotification/:postId', auth, async (req, res) => {
 	}
 });
 
+//ENDPOINT  POST api/users/addWatchlist/Notification/:postId
+//PURPOSE   Notify User of interactions with posts they have interacted with
+//ACCESS    Private
+router.post('/addWatchlistNotification/:postId', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.postId);
+
+		for (let i = 0; i < post.watchlist.length; i++) {
+			const watchUser = await User.findById(post.watchlist[i].id).select(
+				'-password'
+			);
+			
+			const newNotification = {
+				name: req.user.name,
+				userId: req.user.id,
+				type: req.body.type,
+				postId: req.params.postId,
+			};
+
+			watchUser.notifications.unshift(newNotification);
+			await watchUser.save();
+			
+		}
+		res.json({msg: "All good"})
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
 //ENDPOINT  DELETE api/users/deleteNotification/:notificationId
 //PURPOSE   Remove notification from users alerts
 //ACCESS    Private

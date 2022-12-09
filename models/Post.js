@@ -58,8 +58,8 @@ const PostSchema = new Schema({
 			name: {
 				type: String,
 			},
-			commentorPic:{
-				type: String
+			commentorPic: {
+				type: String,
 			},
 			date: {
 				type: Date,
@@ -67,7 +67,7 @@ const PostSchema = new Schema({
 			},
 		},
 	],
-	viewed: [
+	watchlist: [
 		{
 			userId: {
 				type: String,

@@ -31,6 +31,33 @@ export const addNotification = (postId, type) => async (dispatch) => {
 	}
 };
 
+export const addWatchlistNotification = (postId, type) => async (dispatch) => {
+  console.log('Add Notification hit!')
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+
+		await axios.post(
+			`/api/users/addWatchlistNotification/${postId}`,
+			{ type },
+			config
+		);
+
+  
+	} catch (error) {
+		dispatch({
+			type: NOTIFICATION_ERROR,
+			payload: {
+				msg: error.response.statusText,
+				status: error.response.status,
+			},
+		});
+	}
+};
+
 //DELETE NOTIFICATION
 
 export const deleteNotification = (notificationId) => async (dispatch) => {

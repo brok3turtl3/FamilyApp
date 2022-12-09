@@ -182,11 +182,28 @@ router.post(
 				user: req.user.id,
 				commentorPic: user.profilePic
 			};
+			const userId = post.user;
+			console.log(userId.toString());
+			console.log(req.user.id)
+
+			//CHECK TO SEE IF USER IS ON POSTS WATCHLIST AND IF NOT ADD THEM
+			if(req.user.id !== userId.toString()){
+			let watching = false;
+			for (let i = 0; i < post.watchlist.length; i++) {
+				if (post.watchlist[i].id === req.user.id) {
+					watching = true;
+				}
+			}
+			if (watching === false) {
+				post.watchlist.push(req.user.id);
+			}
+			}
+
 
 			post.comments.unshift(newComment);
 
 			await post.save();
-			res.json(post.comments);
+			res.json(post.watchlist);
 		} catch (error) {
 			console.error(error.message);
 			res.status(500).send('Server Error');
