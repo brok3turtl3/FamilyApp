@@ -133,7 +133,7 @@ router.post('/addWatchlistNotification/:postId', auth, async (req, res) => {
 			const watchUser = await User.findById(post.watchlist[i].id).select(
 				'-password'
 			);
-			
+
 			const newNotification = {
 				name: req.user.name,
 				userId: req.user.id,
@@ -141,11 +141,12 @@ router.post('/addWatchlistNotification/:postId', auth, async (req, res) => {
 				postId: req.params.postId,
 			};
 
-			watchUser.notifications.unshift(newNotification);
-			await watchUser.save();
-			
+			if (req.user.id !== watchUser.id) {
+				watchUser.notifications.unshift(newNotification);
+				await watchUser.save();
+			}
 		}
-		res.json({msg: "All good"})
+		res.json({ msg: 'All good' });
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');

@@ -203,7 +203,7 @@ router.post(
 			post.comments.unshift(newComment);
 
 			await post.save();
-			res.json(post.watchlist);
+			res.json(post.comments);
 		} catch (error) {
 			console.error(error.message);
 			res.status(500).send('Server Error');

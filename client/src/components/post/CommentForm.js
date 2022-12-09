@@ -4,10 +4,20 @@ import { connect } from 'react-redux';
 import { addComment } from '../../actions/post';
 import Alert from '../layout/Alert';
 import { Link } from 'react-router-dom';
-import { addNotification } from '../../actions/notifications';
+import {
+	addNotification,
+	addWatchlistNotification,
+} from '../../actions/notifications';
 import './CommentForm.css';
 
-const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
+const CommentForm = ({
+	addComment,
+	postId,
+	addNotification,
+	addWatchlistNotification,
+	user,
+	auth,
+}) => {
 	const [text, setText] = useState('');
 
 	const handleChange = (e) => {
@@ -21,6 +31,7 @@ const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
 		if (user !== auth.user._id) {
 			addNotification(postId, 'commented on your post');
 		}
+		addWatchlistNotification(postId, 'commented on a post of interest');
 		setText('');
 	};
 
@@ -57,6 +68,7 @@ const CommentForm = ({ addComment, postId, addNotification, user, auth }) => {
 CommentForm.propTypes = {
 	addComment: PropTypes.func.isRequired,
 	addNotification: PropTypes.func.isRequired,
+	addWatchlistNotification: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -64,6 +76,8 @@ const mapStateToProps = (state) => ({
 	auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addComment, addNotification })(
-	CommentForm
-);
+export default connect(mapStateToProps, {
+	addComment,
+	addNotification,
+	addWatchlistNotification,
+})(CommentForm);
