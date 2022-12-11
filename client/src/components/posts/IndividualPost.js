@@ -31,6 +31,7 @@ const IndividualPost = ({
 		comments,
 		date,
 		image,
+		images,
 		posterImage,
 	},
 }) => {
@@ -142,6 +143,11 @@ const IndividualPost = ({
 					alt='ph'
 				></img>
 			) : null}
+			{images.length > 0 ? <div className="images-comtainer">{images.map((image, index) => {
+				return <img className="post-image" key={index} src={`${image}?dontusecache`} alt="PH"></img>
+			})}</div> : null}
+
+
 
 			{/* LIKE AND LAUGHS COUNTERS */}
 			<div className='reaction-counters'>

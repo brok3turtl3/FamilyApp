@@ -18,7 +18,7 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { subject, text, image } = req.body;
+		const { subject, text, images } = req.body;
 
 		try {
 			const user = await User.findById(req.user.id).select('-password');
@@ -27,7 +27,7 @@ router.post(
 
 			if (subject) postFields.subject = subject;
 			if (text) postFields.text = text;
-			if (image) postFields.image = image;
+			if (images) postFields.images = images;
 			postFields.name = user.name;
 			postFields.user = req.user.id;
 			postFields.posterImage = user.profilePic;

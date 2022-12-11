@@ -61,9 +61,13 @@
 	white-space: pre-wrap;
 }
 
+.images-container{
+	display: flex;
+}
+
 .post-image {
 	
-	width: 90%;
+	max-width: 90%;
 	height: auto;
 	object-fit: cover;
 	object-position: center;
