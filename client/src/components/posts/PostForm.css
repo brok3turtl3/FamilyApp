@@ -41,3 +41,32 @@ width: 100px;
     
   
   }
+
+	.mentions-styling{
+		width: 90%;
+		height: 6rem;
+		background-color: rgb(98, 109, 120);
+		margin: 0 auto;
+		overflow: auto;
+		color: yellow;
+	}
+
+	#placeholder::placeholder{
+		color: white;
+		opacity: 0.5;
+	}
+
+	.mentions-styling__suggestions{
+		background-color: #3f474e !important;
+		position: fixed !important;
+		
+		border-radius: 10px;
+		top: 22rem !important;
+		left: 3rem !important;
+		width: 15rem;
+		
+		color: yellow;
+		max-height: 300px;
+		overflow: scroll;
+	}
+	

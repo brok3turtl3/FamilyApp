@@ -1,11 +1,39 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
 import SimpleFileUpload from 'react-simple-file-upload';
 import './PostForm.css';
+import axios from 'axios';
+import { taggedNotification } from '../../actions/notifications';
+
+
+import { MentionsInput, Mention } from 'react-mentions';
 
 const PostForm = ({ addPost }) => {
+	const [users, setUsers] = useState([]);
+	const [tagged, setTagged] = useState([]);
+
+	useEffect(() => {
+		getUsers();
+	}, []);
+
+	const getUsers = async () => {
+		try {
+			const res = await axios.get('/api/users');
+			const usersArr = [];
+			res.data.map((item) =>
+				usersArr.push({
+					id: item._id,
+					display: item.name,
+				})
+			);
+			setUsers(usersArr);
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+
 	const [formData, setFormData] = useState({
 		text: '',
 		images: [],
@@ -14,18 +42,39 @@ const PostForm = ({ addPost }) => {
 	const { text, images } = formData;
 
 	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		setFormData({ ...formData, text: e.target.value });
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		addPost(formData);
+		let newText = text;
+
+		console.log(newText);
+
+		newText = newText.split('@@@__').join(' ');
+
+		let body = newText.trim();
+		console.log(body);
+
+		const newObj = {
+			text: body,
+			images,
+			tagged,
+		};
+
+		addPost(newObj);
+
 		setFormData({ text: '', images: [] });
+		setTagged([]);
+	};
+
+	const onAdd = (id, display) => {
+		setTagged([...tagged, id]);
 	};
 
 	function handleFile(url) {
-		if(formData.images.length < 5){
-		setFormData({ ...formData, images: [...formData.images, url] });
+		if (formData.images.length < 5) {
+			setFormData({ ...formData, images: [...formData.images, url] });
 		}
 	}
 
@@ -33,9 +82,9 @@ const PostForm = ({ addPost }) => {
 		<Fragment>
 			<form className='submit-post' onSubmit={handleSubmit}>
 				<div className='post-field'>
-					<label htmlFor='text'>MESSAGE:</label>
+					{/* <label htmlFor='text'>MESSAGE:</label> */}
 
-					<textarea
+					{/* <textarea
 						name='text'
 						id='text'
 						type='text'
@@ -43,25 +92,50 @@ const PostForm = ({ addPost }) => {
 						value={text}
 						onChange={handleChange}
 						required
-					></textarea>
+					></textarea> */}
+
+					<MentionsInput
+						className='mentions-styling'
+						id="placeholder"
+						value={text}
+						name='text'
+						onChange={handleChange}
+						placeholder={'What is on your mind? (Use "@" to mention people!)'}
+					>
+						<Mention
+							trigger='@'
+							data={users}
+							markup='@@@__@__display__'
+							// markup='@__display__'
+							className='mention-styling'
+							appendSpaceOnAdd={true}
+							onAdd={onAdd}
+						/>
+					</MentionsInput>
 				</div>
 				<div className='post-pic-section'>
 					<div>
-						{images.length > 0 ? (
-							images.map((image, index) => {
-								return <Fragment>
-								<div className='post-pic-current'>
-									
-									<img src={image} alt='PH' className='post-pic-img'></img>
-									<div>Current pic</div>
-								</div>
-							</Fragment>
-							})
-							
+						{images.length > 0
+							? images.map((image, index) => {
+									return (
+										<Fragment>
+											<div className='post-pic-current'>
+												<img
+													src={image}
+													alt='PH'
+													className='post-pic-img'
+												></img>
+												<div>Current pic</div>
+											</div>
+										</Fragment>
+									);
+							  })
+							: null}
+						{images.length >= 4 ? (
+							<p className='alert-danger'>Image limit reached</p>
 						) : null}
-						{ images.length >= 4 ? <p className='alert-danger'>Image limit reached</p> : null}
 					</div>
-					
+
 					<div>
 						<SimpleFileUpload
 							apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'

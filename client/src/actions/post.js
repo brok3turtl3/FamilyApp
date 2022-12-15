@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
+import { taggedNotification } from './notifications';
 import {
 	ADD_POST,
 	DELETE_POST,
@@ -64,6 +65,40 @@ export const addPost = (formData) => async (dispatch) => {
 		};
 
 		const res = await axios.post('/api/posts', formData, config);
+		// console.log(`This is the postId: ${res.data._id}`)
+
+		//CHECK FORMDATA FOR ANY TAGGED USERS AND SEND NOTIFICATIONS
+		if (formData.tagged.length > 0) {
+			console.log('The array has this many' + formData.tagged[0]);
+			for (let i = 0; i < formData.tagged.length; i++) {
+				console.log('FOR LOOP HIT!');
+				try {
+					const config = {
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					};
+
+					await axios.post(
+						`/api/users/taggedNotification/${res.data._id}`,
+						{
+							type: 'has mentioned you in a post!',
+							userId: formData.tagged[i],
+						},
+						config
+					);
+				} catch (error) {
+					console.log(error.message);
+					// dispatch({
+					// 	type: NOTIFICATION_ERROR,
+					// 	payload: {
+					// 		msg: error.response.statusText,
+					// 		status: error.response.status,
+					// 	},
+					// });
+				}
+			}
+		}
 
 		dispatch({
 			type: ADD_POST,

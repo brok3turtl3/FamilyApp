@@ -18,7 +18,8 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { subject, text, images } = req.body;
+		const { subject, text, images, tagged } = req.body;
+		console.log(tagged[0]);
 
 		try {
 			const user = await User.findById(req.user.id).select('-password');

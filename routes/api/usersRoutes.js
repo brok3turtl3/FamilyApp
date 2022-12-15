@@ -95,6 +95,20 @@ router.post(
 	}
 );
 
+//ENDPOINT  GET api/users
+//PURPOSE   Retrieve all users
+//ACCESS    Private
+
+router.get('/', auth, async (req, res) => {
+	try {
+		const users = await User.find().select('name profilePic');
+		res.json(users);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
 //ENDPOINT  POST api/users/addNotification/:postId
 //PURPOSE   Notify User of interactions with posts
 //ACCESS    Private
@@ -147,6 +161,32 @@ router.post('/addWatchlistNotification/:postId', auth, async (req, res) => {
 			}
 		}
 		res.json({ msg: 'All good' });
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+//ENDPOINT  POST api/users/taggedNotification/:postId
+//PURPOSE   Notify User when tagged in a post
+//ACCESS    Private
+router.post('/taggedNotification/:postId', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.postId);
+		const user = await User.findById(req.body.userId);
+		
+
+		const newNotification = {
+			name: req.user.name,
+			userId: req.user.id,
+			type: req.body.type,
+			postId: req.params.postId,
+		};
+
+		user.notifications.unshift(newNotification);
+
+		await user.save();
+		res.json(user.notifications);
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');
