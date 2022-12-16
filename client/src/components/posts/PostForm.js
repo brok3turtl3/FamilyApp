@@ -5,12 +5,11 @@ import { addPost } from '../../actions/post';
 import SimpleFileUpload from 'react-simple-file-upload';
 import './PostForm.css';
 import axios from 'axios';
-import { taggedNotification } from '../../actions/notifications';
-
 
 import { MentionsInput, Mention } from 'react-mentions';
+import { addImages } from '../../actions/images';
 
-const PostForm = ({ addPost }) => {
+const PostForm = ({ addPost, addImages }) => {
 	const [users, setUsers] = useState([]);
 	const [tagged, setTagged] = useState([]);
 
@@ -49,12 +48,9 @@ const PostForm = ({ addPost }) => {
 		e.preventDefault();
 		let newText = text;
 
-		console.log(newText);
-
 		newText = newText.split('@@@__').join(' ');
 
 		let body = newText.trim();
-		console.log(body);
 
 		const newObj = {
 			text: body,
@@ -63,6 +59,7 @@ const PostForm = ({ addPost }) => {
 		};
 
 		addPost(newObj);
+		addImages(images);
 
 		setFormData({ text: '', images: [] });
 		setTagged([]);
@@ -82,21 +79,9 @@ const PostForm = ({ addPost }) => {
 		<Fragment>
 			<form className='submit-post' onSubmit={handleSubmit}>
 				<div className='post-field'>
-					{/* <label htmlFor='text'>MESSAGE:</label> */}
-
-					{/* <textarea
-						name='text'
-						id='text'
-						type='text'
-						placeholder='What do you what to share?'
-						value={text}
-						onChange={handleChange}
-						required
-					></textarea> */}
-
 					<MentionsInput
 						className='mentions-styling'
-						id="placeholder"
+						id='placeholder'
 						value={text}
 						name='text'
 						onChange={handleChange}
@@ -106,7 +91,6 @@ const PostForm = ({ addPost }) => {
 							trigger='@'
 							data={users}
 							markup='@@@__@__display__'
-							// markup='@__display__'
 							className='mention-styling'
 							appendSpaceOnAdd={true}
 							onAdd={onAdd}
@@ -160,6 +144,7 @@ const PostForm = ({ addPost }) => {
 
 PostForm.propTypes = {
 	addPost: PropTypes.func.isRequired,
+	addImages: PropTypes.func.isRequired
 };
 
-export default connect(null, { addPost })(PostForm);
+export default connect(null, { addPost, addImages })(PostForm);

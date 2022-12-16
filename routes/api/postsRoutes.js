@@ -19,7 +19,6 @@ router.post(
 		}
 
 		const { subject, text, images, tagged } = req.body;
-		console.log(tagged[0]);
 
 		try {
 			const user = await User.findById(req.user.id).select('-password');
@@ -101,8 +100,6 @@ router.delete('/:postId', auth, async (req, res) => {
 	}
 });
 
-
-
 //ENDPOINT  PUT api/posts/toggle-like/:postId
 //PURPOSE   Like or un-like a post.
 //ACCESS    Private
@@ -181,25 +178,22 @@ router.post(
 				text: req.body.text,
 				name: user.name,
 				user: req.user.id,
-				commentorPic: user.profilePic
+				commentorPic: user.profilePic,
 			};
 			const userId = post.user;
-			console.log(userId.toString());
-			console.log(req.user.id)
 
 			//CHECK TO SEE IF USER IS ON POSTS WATCHLIST AND IF NOT ADD THEM
-			if(req.user.id !== userId.toString()){
-			let watching = false;
-			for (let i = 0; i < post.watchlist.length; i++) {
-				if (post.watchlist[i].id === req.user.id) {
-					watching = true;
+			if (req.user.id !== userId.toString()) {
+				let watching = false;
+				for (let i = 0; i < post.watchlist.length; i++) {
+					if (post.watchlist[i].id === req.user.id) {
+						watching = true;
+					}
+				}
+				if (watching === false) {
+					post.watchlist.push(req.user.id);
 				}
 			}
-			if (watching === false) {
-				post.watchlist.push(req.user.id);
-			}
-			}
-
 
 			post.comments.unshift(newComment);
 

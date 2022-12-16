@@ -1,14 +1,15 @@
 import path from 'path';
 
 import express from 'express';
-import {connectDB}  from './config/db.js';
+import { connectDB } from './config/db.js';
 
-import usersRoutes from './routes/api/usersRoutes.js'
-import authRoutes from './routes/api/authRoutes.js'
-import postsRoutes from './routes/api/postsRoutes.js'
-import profileRoutes from './routes/api/profileRoutes.js'
+import usersRoutes from './routes/api/usersRoutes.js';
+import authRoutes from './routes/api/authRoutes.js';
+import postsRoutes from './routes/api/postsRoutes.js';
+import profileRoutes from './routes/api/profileRoutes.js';
+import imagesRoutes from './routes/api/imagesRoutes.js'
 
-import bugsRoutes from './routes/api/bugsRoutes.js'
+import bugsRoutes from './routes/api/bugsRoutes.js';
 
 const app = express();
 
@@ -17,26 +18,19 @@ connectDB();
 
 //INITIALIZE MIDDLEWARE
 app.use(express.json({ extended: false }));
-app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false}));
-
-// app.get('/', (req, res) => {
-// 	res.send('API running!');
-// });
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
 
 //GIVE ACCESS TO ALL ROUTES
 app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
+app.use('/api/images', imagesRoutes);
 
 app.use('/api/bugs', bugsRoutes);
 
-
 const __dirname = path.resolve();
-// app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-
-console.log(process.env.NODE_ENV);
 
 if (
 	process.env.NODE_ENV === 'production' ||

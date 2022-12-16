@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {
-	
 	DELETE_NOTIFICATION,
 	NOTIFICATION_ERROR,
 	GET_NOTIFICATIONS,
@@ -32,7 +31,6 @@ export const addNotification = (postId, type) => async (dispatch) => {
 };
 
 export const addWatchlistNotification = (postId, type) => async (dispatch) => {
-  console.log('Add Notification hit!')
 	try {
 		const config = {
 			headers: {
@@ -45,8 +43,6 @@ export const addWatchlistNotification = (postId, type) => async (dispatch) => {
 			{ type },
 			config
 		);
-
-  
 	} catch (error) {
 		dispatch({
 			type: NOTIFICATION_ERROR,
@@ -82,8 +78,6 @@ export const deleteNotification = (notificationId) => async (dispatch) => {
 //UPDATE NOTIFICATIONS
 
 export const updateNotifications = () => async (dispatch) => {
-	
-
 	if (localStorage.token) {
 		setAuthToken(localStorage.token);
 	}
@@ -94,7 +88,7 @@ export const updateNotifications = () => async (dispatch) => {
 			type: USER_LOADED,
 			payload: res.data,
 		});
-		
+
 		dispatch({
 			type: GET_NOTIFICATIONS,
 			payload: res.data.notifications,

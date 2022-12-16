@@ -5,6 +5,7 @@ import profile from './profile';
 import post from './post';
 import bug from './bug';
 import notifications from './notifications';
+import images from './images';
 
 export default combineReducers({
 	alert,
@@ -13,4 +14,5 @@ export default combineReducers({
 	post,
 	bug,
 	notifications,
+	images
 });

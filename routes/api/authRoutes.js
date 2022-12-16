@@ -6,8 +6,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 import { check, validationResult } from 'express-validator';
-import  nodemailer from 'nodemailer';
-import dotenv from 'dotenv'
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -58,7 +58,6 @@ router.post(
 			}
 
 			const isMatch = await bcrypt.compare(password, user.password);
-			
 
 			if (!isMatch) {
 				return res
@@ -96,7 +95,7 @@ router.post(
 
 router.post('/forgot-password', async (req, res) => {
 	const { email } = req.body;
-	console.log(email);
+
 	try {
 		const oldUser = await User.findOne({ email });
 
@@ -116,25 +115,25 @@ router.post('/forgot-password', async (req, res) => {
 			service: 'gmail',
 			auth: {
 				user: 'our.family.matters.cdn@gmail.com',
-				pass: 'oxntfkqdefrzcbjt'
-			}
+				pass: 'oxntfkqdefrzcbjt',
+			},
 		});
-		
+
 		var mailOptions = {
 			from: 'brok3turtl3@gmail.com',
 			to: email,
 			subject: 'Password Reset Link',
-			text: link
+			text: link,
 		};
-		
-		transporter.sendMail(mailOptions, function(error, info){
+
+		transporter.sendMail(mailOptions, function (error, info) {
 			if (error) {
 				console.log(error);
 			} else {
 				console.log('Email sent: ' + info.response);
 			}
 		});
-		console.log(link);
+
 		res.json(oldUser);
 	} catch (error) {
 		console.error(err.message);
@@ -201,7 +200,7 @@ router.post('/reset-password/:id/:token', async (req, res) => {
 			}
 		);
 		// res.json({status: 'Password Updated'})
-		res.render("index", {email: verify.email, status: 'verified'})
+		res.render('index', { email: verify.email, status: 'verified' });
 	} catch (error) {
 		res.send('Something went wrong');
 	}

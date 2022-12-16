@@ -10,11 +10,10 @@ import {
 	LOGOUT,
 	CLEAR_PROFILE,
 	CLEAR_NOTIFICATIONS,
-	GET_NOTIFICATIONS, 
+	GET_NOTIFICATIONS,
 } from './types';
 
 import setAuthToken from '../utils/setAuthToken';
-
 
 //LOAD USER
 export const loadUser = () => async (dispatch) => {
@@ -22,21 +21,17 @@ export const loadUser = () => async (dispatch) => {
 		setAuthToken(localStorage.token);
 	}
 
-	
-
 	try {
 		const res = await axios.get('/api/auth');
 		dispatch({
 			type: USER_LOADED,
 			payload: res.data,
 		});
-		
+
 		dispatch({
 			type: GET_NOTIFICATIONS,
-			payload: res.data.notifications
-		})
-
-		
+			payload: res.data.notifications,
+		});
 	} catch (error) {
 		dispatch({
 			type: AUTH_ERROR,
@@ -48,9 +43,6 @@ export const loadUser = () => async (dispatch) => {
 export const register =
 	({ name, email, password, regCode, profilePic }) =>
 	async (dispatch) => {
-
-		
-
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
@@ -66,7 +58,6 @@ export const register =
 				payload: res.data,
 			});
 			dispatch(loadUser());
-			
 		} catch (error) {
 			const errors = error.response.data.errors;
 			if (errors) {
@@ -96,7 +87,6 @@ export const login = (email, password) => async (dispatch) => {
 			payload: res.data,
 		});
 		dispatch(loadUser());
-		
 	} catch (error) {
 		const errors = error.response.data.errors;
 		if (errors) {
@@ -111,36 +101,28 @@ export const login = (email, password) => async (dispatch) => {
 
 //LOGOUT USER
 export const logout = () => (dispatch) => {
-	dispatch({ type: CLEAR_PROFILE});
-	dispatch({ type: CLEAR_NOTIFICATIONS});
+	dispatch({ type: CLEAR_PROFILE });
+	dispatch({ type: CLEAR_NOTIFICATIONS });
 	dispatch({ type: LOGOUT });
-	
 };
 
 //FORGOTTEN PASSWORD
 export const forgotPassword = (email) => async (dispatch) => {
-	
-
 	const config = {
 		headers: {
 			'Content-Type': 'application/json',
 		},
 	};
-	const body = JSON.stringify({email});
-	
-	try {
-		const res = await axios.post('api/auth/forgot-password', body, config);
-	
-	dispatch(setAlert('Link sent', 'success'));
-	
-	
-} catch (error) {
-	console.log('Error on ForgotPassword func');	
-	const errors = error.response.data.errors;
-			if (errors) {
-				errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-			}
-	}
-	
+	const body = JSON.stringify({ email });
 
-}
+	try {
+		await axios.post('api/auth/forgot-password', body, config);
+
+		dispatch(setAlert('Link sent', 'success'));
+	} catch (error) {
+		const errors = error.response.data.errors;
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+		}
+	}
+};
