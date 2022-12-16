@@ -59,14 +59,14 @@ const Homepage = ({
 								<div className='medium'>
 									<Alert />
 								</div>
-								<div>
+								{/* <div>
 									{images.filter(image => 
 										image.user === user._id
 									).map((image) => {
 										return <p>{image.user}</p>
 									})
 									}
-								</div>
+								</div> */}
 							</Fragment>
 						) : (
 							<Fragment>
