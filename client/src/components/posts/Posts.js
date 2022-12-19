@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 
 import Hourglass from '../layout/Hourglass';
 import IndividualPost from './IndividualPost';
+import { getPosts } from '../../actions/post';
 import PostForm from './PostForm';
 import './Posts.css';
 
-const Posts = ({ post: { posts, loading } }) => {
-	// useEffect(() => {
-	// 	getPosts();
-	// }, [getPosts]);
+const Posts = ({ getPosts, post: { posts, loading } }) => {
+	useEffect(() => {
+		getPosts();
+	}, [getPosts]);
 
 	return (
 		<section className='posts-container-'>
@@ -49,4 +50,4 @@ const mapStateToProps = (state) => ({
 	post: state.post,
 });
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);
