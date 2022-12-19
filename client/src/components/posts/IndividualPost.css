@@ -1,6 +1,7 @@
 .post{
   margin-top: 1rem;
 	width: 500px;
+	max-width: 100%;
 	
 	background-color: #3f474e;
 

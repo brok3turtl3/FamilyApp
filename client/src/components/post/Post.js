@@ -23,7 +23,7 @@ const Post = ({
   <Fragment>
 		<div className='post-container-'>
 			<div className='post-overlay'>
-				<div className='post-inner'>
+				<div className='posta-inner'>
 					<div className='original-post'>
 						<div className='subject'>
 							

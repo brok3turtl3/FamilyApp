@@ -8,10 +8,11 @@ const Posts = ({id, post: {posts}}) => {
   return (
     <Fragment>
     <div>Posts</div>
+    <div className="posts-inner">
     {posts.filter(post => post.user === id).map((post, index) => {
       return <IndividualPost key={post._id} post={post} />
     })}
-    
+    </div>
     </Fragment>
   )
 }

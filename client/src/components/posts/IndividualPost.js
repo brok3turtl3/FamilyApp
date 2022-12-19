@@ -93,6 +93,7 @@ const IndividualPost = ({
 				<Link to={`/profile/${user}`}>
 					<div className='poster-img-thumb '>
 						<img
+							loading='lazy'
 							src={`${posterImage}?dontusecache`}
 							alt='PH'
 							className='profile-link'
@@ -138,16 +139,27 @@ const IndividualPost = ({
 			</Linkify>
 			{image ? (
 				<img
+					loading='lazy'
 					className='post-image'
 					src={`${image}?dontusecache`}
 					alt='ph'
 				></img>
 			) : null}
-			{images.length > 0 ? <div className="images-comtainer">{images.map((image, index) => {
-				return <img className="post-image" key={index} src={`${image}?dontusecache`} alt="PH"></img>
-			})}</div> : null}
-
-
+			{images.length > 0 ? (
+				<div className='images-comtainer'>
+					{images.map((image, index) => {
+						return (
+							<img
+								loading='lazy'
+								className='post-image'
+								key={index}
+								src={`${image}?dontusecache`}
+								alt='PH'
+							></img>
+						);
+					})}
+				</div>
+			) : null}
 
 			{/* LIKE AND LAUGHS COUNTERS */}
 			<div className='reaction-counters'>
