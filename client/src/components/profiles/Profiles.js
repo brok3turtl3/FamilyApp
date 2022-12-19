@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import Hourglass from '../layout/Hourglass';
 import SmallProfile from './SmallProfile';
+import './Profiles.css'
 
 import { getProfiles } from '../../actions/profile'
 
@@ -18,7 +19,7 @@ const Profiles = ({
 
   return (
     <section className='background-'>
-				<section className='posts-overlay'>
+				<section className='profiles-overlay'>
           <section className="profiles-inner">
 					
           {loading ? (

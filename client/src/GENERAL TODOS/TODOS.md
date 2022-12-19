@@ -1,14 +1,14 @@
 
-***TODO*** Add an image Model to store all images and associate with the user that posted.
+COMPLETE*** Add an image Model to store all images and associate with the user that posted.
 ***TODO*** Set up as an App for mobiles
 ***TODO*** Direct messaging
 ***TODO*** Figure out CORB handling
 ***TODO*** Evolve Feedback forums to offer simliar function to regular forums
 ***TODO*** Clean up codebase - get rid of un-needed/un-used code
-***TODO*** Upload multiple photos
+COMPLETE*** Upload multiple photos
 ***TODO*** Individual user page with their posts, detailed profile, pics they have posted etc.
 ***TODO*** Likes on comments
-***TODO*** Profile pic on comments
+COMPLETE*** Profile pic on comments
 ***TODO*** Move CSS to individual pages for clarity
 COMPLETE*** Notifications system
 COMNPLETE*** Allow users to change name or email
@@ -22,10 +22,10 @@ COMPLETE*** Style individual profile pages.
 COMPLETE*** Add formatting to inputs for posts and comments
 ***TODO*** Clean up CSS styling. Too many redundent rules.
 ***TODO*** Work on responsive styling for mobile screens.
-COMPLETE*** Add image uploads for profile pics.  ***URGENT***
+COMPLETE*** Add image uploads for profile pics. 
 COMPLETE*** Add date stamps to comments
 COMPLETE*** Format date stamps on posts and comments
-COMPLETE*** Fix and restyle create profile component.  ***URGENT***
+COMPLETE*** Fix and restyle create profile component.  
 COMPLETE*** Restyle all profiles component
 COMPLETE*** Restyle register component to match login.
 COMPLETE*** Add delete action for comments.

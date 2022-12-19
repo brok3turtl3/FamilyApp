@@ -71,7 +71,7 @@ border: white 1px solid;
 	padding-top: .2rem;
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
 
     .epf-inner {
 	
@@ -86,4 +86,4 @@ border: white 1px solid;
 		text-align: center;
 		padding-top: 2rem;
 	}
-}
+} */

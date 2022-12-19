@@ -25,7 +25,7 @@ const Bugs = ({ getBugs, bug: { bugs, loading } }) => {
 								Tell me what you would like added or what is broken!
 							</p>
 							<BugForm />
-							<div className='profiles'>
+							<div className='posts'>
 								{bugs.length > 0 ? (
 									bugs.map((bug) => <IndividualBug key={bug._id} bug={bug} />)
 								) : (

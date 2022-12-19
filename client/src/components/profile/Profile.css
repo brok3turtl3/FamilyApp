@@ -1,0 +1,127 @@
+.homepage {
+	background: url(../../images/pexels-fauxels-3184183.jpg) no-repeat center
+		center/cover;
+	position: relative;
+	height: 100vh;
+}
+
+.profile-overlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0);
+	overflow: auto;
+}
+
+.profile-container {
+	border: #f4f4f4 solid 1px;
+	color: var(--light-color);
+	height: auto;
+	min-height: 6;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 4rem auto;
+	align-items: center;
+	text-align: center;
+	padding-top: 2rem;
+	background-color: var(--dark-color);
+	overflow: auto;
+}
+
+.profile-banner {
+	display: flex;
+	margin: 0 auto;
+	/* border:yellow 1px solid; */
+	justify-content: center;
+}
+
+.profile-banner-info {
+	/* border: #17a2b8 1px solid; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 50%;
+	margin-left: 2rem;
+}
+
+.profile-img {
+	height: 200px;
+	width: auto;
+	/* border: #17a2b8 1px solid; */
+	align-self: center;
+}
+.profile-img img {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .profile-banner {
+    display: flex;
+    margin: 0 auto;
+    /* border:yellow 1px solid; */
+    justify-content: center;
+    width: 90%;
+  }
+
+  .profile-banner-info {
+    /* border: #17a2b8 1px solid; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    
+    margin: 1rem auto;
+  }
+
+  .profile-img {
+    height: 150px;
+    width: auto;
+    /* border: #17a2b8 1px solid; */
+    align-self: center;
+  }
+
+  .profile-img img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 2rem;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+  .profile-banner {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    /* border:yellow 1px solid; */
+    justify-content: center;
+  }
+
+  .profile-banner-info {
+    /* border: #17a2b8 1px solid; */
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    max-width: 80%;
+    margin: 1rem auto;
+  }
+
+ 
+
+}
+
+
+
+

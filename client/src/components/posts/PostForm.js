@@ -12,6 +12,7 @@ import { addImages } from '../../actions/images';
 const PostForm = ({ addPost, addImages }) => {
 	const [users, setUsers] = useState([]);
 	const [tagged, setTagged] = useState([]);
+	
 
 	useEffect(() => {
 		getUsers();
@@ -133,7 +134,7 @@ const PostForm = ({ addPost, addImages }) => {
 				</div>
 
 				<div className='post-buttons'>
-					<button className='btn btn-primary' type='submit'>
+					<button className='btn' type='submit'>
 						Submit Post
 					</button>
 				</div>

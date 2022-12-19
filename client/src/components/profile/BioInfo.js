@@ -1,37 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Hourglass from '../layout/Hourglass';
-import { getProfileById } from '../../actions/profile';
-import './Profile.css'
+import React, { Fragment } from 'react'
+
+const BioInfo = ({profile}) => {
 
 
-const Profile = ({ getProfileById, profile: { profile }, auth }) => {
-	const { id } = useParams();
 
-	useEffect(() => {
-		getProfileById(id);
-	}, [getProfileById, id]);
 
-	return (
-		<section  className='homepage'>
-			<section className='profile-overlay'>
-				<section className='profile-container margin-top'>
-					{profile === null ? (
-						<Hourglass />
-					) : (
-						<Fragment>
-							<div className="profile-banner">
-							{profile.image !== null ? (
-							<div className="profile-img">
-							<img src={`${profile.image}?dontusecache`} alt="Placeholder"></img>
-							</div>) : null}
-    <div className='profile-banner-info'>
-    <p className='medium m-bottom'>{profile.user.name}'s Profile</p>
-    {profile.smallBio ? (<p>{profile.smallBio}</p>) : null}
-    </div>
-  </div>
+  return (
     <div className="profile-info">
       <div className="profile-info-section">
         <fieldset>
@@ -69,27 +43,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
       </div>
 
     </div>
-							
+  )
+}
 
-							
-							
-						</Fragment>
-					)}
-				</section>
-			</section>
-		</section>
-	);
-};
-
-Profile.propTypes = {
-	getProfileById: PropTypes.func.isRequired,
-	profile: PropTypes.object.isRequired,
-	auth: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-	profile: state.profile,
-	auth: state.auth,
-});
-
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default BioInfo

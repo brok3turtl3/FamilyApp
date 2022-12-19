@@ -1,0 +1,69 @@
+.background{
+  background: url(../../images/pexels-fauxels-3184183.jpg) no-repeat center
+		center/cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+}
+
+.profiles-overlay{
+  height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* background-color: #18191a; */
+	overflow: auto;
+}
+
+.profiles-inner {
+	
+	color: var(--light-color);
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 4rem auto;
+	align-items: center;
+	
+	text-align: center;
+	padding-top: 2rem;
+}
+
+.profiles{
+  padding-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-around;
+	overflow: auto;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .profiles-inner {
+	
+    color: var(--light-color);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 4rem auto;
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  .profiles {
+		padding-top: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		justify-content: space-around;
+		overflow: auto;
+		
+	}
+}

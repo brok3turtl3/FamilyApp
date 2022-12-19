@@ -1,0 +1,13 @@
+.images-container{
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  
+  justify-content: center;
+  
+}
+
+.images-container img {
+  max-width: 200px;
+  border: 1px solid white;
+}

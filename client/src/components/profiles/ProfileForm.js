@@ -61,7 +61,7 @@ const ProfileForm = ({ createProfile }) => {
 
 	return (
 		<Fragment>
-			<div className='homepage'>
+			<div className='homepage-'>
 				<div className='profile-overlay'>
 					<div className='profile-container'>
 						<div className='heading'>Create Profile</div>

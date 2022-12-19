@@ -7,10 +7,12 @@ import Hourglass from '../Hourglass';
 import Alert from '../Alert';
 import './Homepage.css';
 import { getImages } from '../../../actions/images';
-import auth from '../../../reducers/auth';
+import { getPosts } from '../../../actions/post';
+
 
 const Homepage = ({
 	getCurrentProfile,
+	getPosts,
 	getImages,
 	auth: { user },
 	profile: { profile, loading },
@@ -23,6 +25,10 @@ const Homepage = ({
 	useEffect(() => {
 		getImages();
 	}, [getImages])
+
+	useEffect(() => {
+		getPosts();
+	}, [getPosts])
 
 	return loading && profile === null ? (
 		<Fragment>
@@ -47,12 +53,12 @@ const Homepage = ({
 								) : null}
 
 								<div>
-									<Link to='/editprofile' className='btn btn-primary'>
+									<Link to='/editprofile' className='btn'>
 										Edit Profile
 									</Link>
 								</div>
 								<div>
-									<Link to='/editaccountinfo' className='btn btn-primary'>
+									<Link to='/editaccountinfo' className='btn'>
 										Edit Account Info
 									</Link>
 								</div>
@@ -90,14 +96,17 @@ Homepage.propTypes = {
 	auth: PropTypes.object.isRequired,
 	profile: PropTypes.object.isRequired,
 	getImages: PropTypes.func.isRequired,
+	getPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
 	profile: state.profile,
-	images: state.images
+	images: state.images,
+	post: state.post
+
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, getImages })(
+export default connect(mapStateToProps, { getCurrentProfile, getImages, getPosts })(
 	Homepage
 );

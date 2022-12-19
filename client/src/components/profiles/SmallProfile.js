@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './SmallProfile.css'
 import { Link } from 'react-router-dom';
 
 const SmallProfile = ({
@@ -20,7 +21,7 @@ const SmallProfile = ({
 			<div className="sm-pr-field"><h2>{name}</h2></div>
 			<div className="sm-pr-field"><h1>{city}</h1></div>
 			<div className="sm-pr-field"><p>{smallBio}</p></div>
-			<Link to={`/profile/${_id}`} className='btn btn-primary'>
+			<Link to={`/profile/${_id}`} className='btn'>
 				Detailed Profile
 			</Link>
 			

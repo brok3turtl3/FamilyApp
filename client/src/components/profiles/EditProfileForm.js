@@ -89,7 +89,7 @@ const EditProfileForm = ({
 
 	return (
 		<Fragment>
-			<div className='homepage'>
+			<div className='homepage-'>
 				<div className='profile-overlay'>
 					<div className='profile-container'>
 						<div className='heading'>Edit Profile</div>

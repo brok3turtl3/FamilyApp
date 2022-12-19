@@ -1,5 +1,5 @@
 .submit-post {
-	width: 80%;
+	width: 500px;
 	background-color: #3f474e;
 	/* border: #f4f4f4 solid 1px; */
 	display: flex;
@@ -68,5 +68,9 @@ width: 100px;
 		color: yellow;
 		max-height: 300px;
 		overflow: scroll;
+	}
+
+	@media only screen and (max-width: 768px) {
+
 	}
 	

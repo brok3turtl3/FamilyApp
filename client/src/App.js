@@ -12,7 +12,7 @@ import Homepage from './components/layout/homepage/Homepage';
 import ProfileForm from './components/profiles/ProfileForm';
 import Profiles from './components/profiles/Profiles';
 import EditProfileForm from './components/profiles/EditProfileForm';
-import Profile from './components/profiles/Profile';
+import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import EditPostForm from './components/post/EditPostForm';
