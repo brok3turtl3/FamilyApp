@@ -94,7 +94,7 @@ const IndividualPost = ({
 					<div className='poster-img-thumb '>
 						<img
 							loading='lazy'
-							src={`${posterImage}?dontusecache`}
+							src={`${posterImage}`}
 							alt='PH'
 							className='profile-link'
 						></img>
@@ -141,7 +141,7 @@ const IndividualPost = ({
 				<img
 					loading='lazy'
 					className='post-image'
-					src={`${image}?dontusecache`}
+					src={`${image}`}
 					alt='ph'
 				></img>
 			) : null}
@@ -153,7 +153,7 @@ const IndividualPost = ({
 								loading='lazy'
 								className='post-image'
 								key={index}
-								src={`${image}?dontusecache`}
+								src={`${image}`}
 								alt='PH'
 							></img>
 						);
