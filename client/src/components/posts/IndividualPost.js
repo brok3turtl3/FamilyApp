@@ -37,6 +37,9 @@ const IndividualPost = ({
 }) => {
 	const [likeHovering, setlikeHovering] = useState();
 	const [laughHovering, setlaughHovering] = useState();
+	const [originalImage, setOriginalImage] = useState(false);
+  const [originalImageSrc, setOriginalImageSrc] = useState('');
+
 	const navigate = useNavigate();
 
 	const handleLikeMouseOver = () => {
@@ -83,12 +86,29 @@ const IndividualPost = ({
 		}
 	};
 
+	const showImage = (e) => {
+
+		if(window.innerWidth > 500){
+    setOriginalImage(true)
+    setOriginalImageSrc(e.target.src)
+    console.log(originalImage)
+    console.log(e.target.src)
+		}
+    
+  }
+
+  const closeImage = () => {
+    setOriginalImage(false)
+    setOriginalImageSrc('')
+  }
+
 	const linkStyle = {
 		color: 'white',
 	};
 
 	return (
 		<div className='post'>
+			{ originalImage === true ? <div id='original-p-image'><img className="p-image" onClick={() => closeImage()} src={originalImageSrc} alt="PH"></img></div> : null}
 			<div className='banner'>
 				<Link to={`/profile/${user}`}>
 					<div className='poster-img-thumb '>
@@ -150,6 +170,7 @@ const IndividualPost = ({
 					{images.map((image, index) => {
 						return (
 							<img
+							onClick={(e) => showImage(e)}
 								loading='lazy'
 								className='post-image'
 								key={index}
