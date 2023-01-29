@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
+import ReactPlayer from 'react-player'
 
 import { connect } from 'react-redux';
 import {
@@ -31,6 +32,8 @@ const IndividualPost = ({
 		comments,
 		date,
 		image,
+		videoLink,
+		video,
 		images,
 		posterImage,
 	},
@@ -157,6 +160,8 @@ const IndividualPost = ({
 			>
 				<div className='body'>{text}</div>
 			</Linkify>
+			{videoLink ? <ReactPlayer url={videoLink} width='100%'/> : null}
+			{video ? <div><video src={video} title='Video for Post' width='100%' height='auto' allow='controls' controls></video></div> : null}
 			{image ? (
 				<img
 					loading='lazy'

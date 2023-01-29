@@ -10,9 +10,11 @@ import { MentionsInput, Mention } from 'react-mentions';
 import { addImages } from '../../actions/images';
 
 const PostForm = ({ addPost, addImages }) => {
+	const [videoUpload, setVideoUpload] = useState(false);
 	const [users, setUsers] = useState([]);
 	const [tagged, setTagged] = useState([]);
-	
+	const [videoLink, setVideoLink] = useState(null);
+	const [video, setVideo] = useState(null);
 
 	useEffect(() => {
 		getUsers();
@@ -36,7 +38,7 @@ const PostForm = ({ addPost, addImages }) => {
 
 	const [formData, setFormData] = useState({
 		text: '',
-		images: [],
+		images: []
 	});
 
 	const { text, images } = formData;
@@ -56,14 +58,28 @@ const PostForm = ({ addPost, addImages }) => {
 		const newObj = {
 			text: body,
 			images,
-			tagged,
+			tagged
 		};
 
+		if (videoLink) {
+			newObj.videoLink = videoLink;
+		}
+
+		console.log(video);
+
+		if(video){
+			newObj.video = video;
+		}
+
 		addPost(newObj);
+		if(images.length > 0){
 		addImages(images);
+		}
 
 		setFormData({ text: '', images: [] });
 		setTagged([]);
+		setVideoLink('');
+		setVideo('')
 	};
 
 	const onAdd = (id, display) => {
@@ -75,6 +91,15 @@ const PostForm = ({ addPost, addImages }) => {
 			setFormData({ ...formData, images: [...formData.images, url] });
 		}
 	}
+
+	function handleVideoFile(url) {
+		console.log(url);
+		setVideo(url);
+	}
+
+	const videoChange = (e) => {
+		setVideoLink(e.target.value);
+	};
 
 	return (
 		<Fragment>
@@ -97,6 +122,15 @@ const PostForm = ({ addPost, addImages }) => {
 							onAdd={onAdd}
 						/>
 					</MentionsInput>
+				</div>
+				<div className='post-field'>
+					<input
+						type='text'
+						value={videoLink}
+						name='videoLink'
+						placeholder='Add a video link'
+						onChange={videoChange}
+					/>
 				</div>
 				<div className='post-pic-section'>
 					<div>
@@ -122,18 +156,39 @@ const PostForm = ({ addPost, addImages }) => {
 					</div>
 
 					<div>
-						<SimpleFileUpload
-							apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
-							onSuccess={handleFile}
-							preview={false}
-						/>
-						<p>Upload a pic</p>
-						<p>Click to browse or drag and drop</p>
-						<p>Max of 4 pics</p>
+						<div>
+							<SimpleFileUpload
+								apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
+								onSuccess={handleFile}
+								preview={false}
+							/>
+							<p>Upload a pic</p>
+							<p>Click to browse or drag and drop</p>
+							<p>Max of 4 pics</p>
+						</div>
+						{videoUpload === true ? (
+							<div>
+								<SimpleFileUpload
+									apiKey='5af8bfef1fbeedd25af3de7ae9e6b36a'
+									onSuccess={handleVideoFile}
+									preview={false}
+								/>
+								<p>Upload a video</p>
+								<p>Click to browse or drag and drop</p>
+								<p>Max of 1 video</p>
+							</div>
+						) : null}
 					</div>
 				</div>
 
 				<div className='post-buttons'>
+					<button
+						className='btn'
+						type='button'
+						onClick={() => setVideoUpload(!videoUpload)}
+					>
+						Video Upload
+					</button>
 					<button className='btn' type='submit'>
 						Submit Post
 					</button>
@@ -145,7 +200,7 @@ const PostForm = ({ addPost, addImages }) => {
 
 PostForm.propTypes = {
 	addPost: PropTypes.func.isRequired,
-	addImages: PropTypes.func.isRequired
+	addImages: PropTypes.func.isRequired,
 };
 
 export default connect(null, { addPost, addImages })(PostForm);

@@ -28,6 +28,12 @@ const PostSchema = new Schema({
 	type: String
 }
 	],
+	video: {
+		type: String
+	},
+	videoLink: {
+		type: String
+	},
 	likes: [
 		{
 			user: {

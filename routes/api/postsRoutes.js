@@ -18,7 +18,9 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { subject, text, images, tagged } = req.body;
+		const { subject, text, images, tagged, videoLink, video } = req.body;
+		console.log(text)
+		console.log(video)
 
 		try {
 			const user = await User.findById(req.user.id).select('-password');
@@ -28,6 +30,9 @@ router.post(
 			if (subject) postFields.subject = subject;
 			if (text) postFields.text = text;
 			if (images) postFields.images = images;
+			if (video) postFields.video = video;
+			if (videoLink) postFields.videoLink = videoLink;
+
 			postFields.name = user.name;
 			postFields.user = req.user.id;
 			postFields.posterImage = user.profilePic;
