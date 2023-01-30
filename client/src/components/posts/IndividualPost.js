@@ -1,7 +1,9 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+import Comment from '../post/Comment';
+import CommentForm from '../post/CommentForm';
 
 import { connect } from 'react-redux';
 import {
@@ -12,36 +14,43 @@ import {
 } from '../../actions/post';
 import './IndividualPost.css';
 import { addNotification } from '../../actions/notifications';
+
 import Linkify from 'react-linkify';
 
 const IndividualPost = ({
 	deletePost,
 	addNotification,
 	toggleLike,
+
 	toggleLaugh,
+	index,
+	test,
 	auth,
-	post: {
-		_id,
-		subject,
-		text,
-		name,
-		user,
-		likes,
-		laughs,
-		viewed,
-		comments,
-		date,
-		image,
-		videoLink,
-		video,
-		images,
-		posterImage,
-	},
+	// post: {
+	// 	_id,
+	// 	subject,
+	// 	text,
+	// 	name,
+	// 	user,
+	// 	likes,
+	// 	laughs,
+	// 	viewed,
+	// 	comments,
+	// 	date,
+	// 	image,
+	// 	videoLink,
+	// 	video,
+	// 	images,
+	// 	posterImage,
+	// },
 }) => {
 	const [likeHovering, setlikeHovering] = useState();
 	const [laughHovering, setlaughHovering] = useState();
 	const [originalImage, setOriginalImage] = useState(false);
-  const [originalImageSrc, setOriginalImageSrc] = useState('');
+	const [originalImageSrc, setOriginalImageSrc] = useState('');
+	const [showComments, setShowComments] = useState(false);
+
+	const post = test.posts[index];
 
 	const navigate = useNavigate();
 
@@ -70,40 +79,40 @@ const IndividualPost = ({
 	};
 
 	const navigateComments = () => {
-		navigate(`/posts/${_id}`);
+		navigate(`/posts/${post._id}`);
 	};
 
 	const handleLikeClick = () => {
-		toggleLike(_id);
+		toggleLike(post._id);
 
-		if (user !== auth.user._id) {
-			addNotification(_id, 'liked your post');
+		if (post.user !== auth.user._id) {
+			addNotification(post._id, 'liked your post');
 		}
 	};
 
 	const handleLaughClick = () => {
-		toggleLaugh(_id);
+		toggleLaugh(post._id);
 
-		if (user !== auth.user._id) {
-			addNotification(_id, 'laughed at your post');
+		if (post.user !== auth.user._id) {
+			addNotification(post._id, 'laughed at your post');
 		}
 	};
 
 	const showImage = (e) => {
-
-		if(window.innerWidth > 500){
-    setOriginalImage(true)
-    setOriginalImageSrc(e.target.src)
-    console.log(originalImage)
-    console.log(e.target.src)
+		if (window.innerWidth > 500) {
+			setOriginalImage(true);
+			setOriginalImageSrc(e.target.src);
 		}
-    
-  }
+	};
 
-  const closeImage = () => {
-    setOriginalImage(false)
-    setOriginalImageSrc('')
-  }
+	const closeImage = () => {
+		setOriginalImage(false);
+		setOriginalImageSrc('');
+	};
+
+	const toggleComments = () => {
+		setShowComments(!showComments);
+	};
 
 	const linkStyle = {
 		color: 'white',
@@ -111,32 +120,45 @@ const IndividualPost = ({
 
 	return (
 		<div className='post'>
-			{ originalImage === true ? <div id='original-p-image'><img className="p-image" onClick={() => closeImage()} src={originalImageSrc} alt="PH"></img></div> : null}
+			{originalImage === true ? (
+				<div id='original-p-image'>
+					<img
+						className='p-image'
+						onClick={() => closeImage()}
+						src={originalImageSrc}
+						alt='PH'
+					></img>
+				</div>
+			) : null}
 			<div className='banner'>
-				<Link to={`/profile/${user}`}>
+				<Link to={`/profile/${post.user}`}>
 					<div className='poster-img-thumb '>
 						<img
 							loading='lazy'
-							src={`${posterImage}`}
+							src={`${post.posterImage}`}
 							alt='PH'
 							className='profile-link'
 						></img>
 					</div>
 				</Link>
 				<div className='poster-info'>
-					<div>{name}</div>
-					<div>{date.substring(0, 10)}</div>
+					<div>{post.name}</div>
+					<div>{post.date.substring(0, 10)}</div>
 				</div>
 
 				<div className='post-delete'>
-					{!auth.loading && user === auth.user._id && (
+					{!auth.loading && post.user === auth.user._id && (
 						<Fragment>
-							<Link style={linkStyle} to={`/posts/edit/${_id}`} type='button'>
+							<Link
+								style={linkStyle}
+								to={`/posts/edit/${post._id}`}
+								type='button'
+							>
 								<i className='fa-solid fa-pen hover'></i>
 							</Link>
 
 							<i
-								onClick={(e) => deletePost(_id)}
+								onClick={(e) => deletePost(post._id)}
 								className='fa-solid fa-trash hover-danger'
 							>
 								{' '}
@@ -158,24 +180,37 @@ const IndividualPost = ({
 					</a>
 				)}
 			>
-				<div className='body'>{text}</div>
+				<div className='body'>{post.text}</div>
 			</Linkify>
-			{videoLink ? <ReactPlayer url={videoLink} width='100%'/> : null}
-			{video ? <div><video src={video} title='Video for Post' width='100%' height='auto' allow='controls' controls></video></div> : null}
-			{image ? (
+			{post.videoLink ? (
+				<ReactPlayer url={post.videoLink} width='100%' />
+			) : null}
+			{post.video ? (
+				<div>
+					<video
+						src={post.video}
+						title='Video for Post'
+						width='100%'
+						height='auto'
+						allow='controls'
+						controls
+					></video>
+				</div>
+			) : null}
+			{post.image ? (
 				<img
 					loading='lazy'
 					className='post-image'
-					src={`${image}`}
+					src={`${post.image}`}
 					alt='ph'
 				></img>
 			) : null}
-			{images.length > 0 ? (
+			{post.images.length > 0 ? (
 				<div className='images-comtainer'>
-					{images.map((image, index) => {
+					{post.images.map((image, index) => {
 						return (
 							<img
-							onClick={(e) => showImage(e)}
+								onClick={(e) => showImage(e)}
 								loading='lazy'
 								className='post-image'
 								key={index}
@@ -189,7 +224,7 @@ const IndividualPost = ({
 
 			{/* LIKE AND LAUGHS COUNTERS */}
 			<div className='reaction-counters'>
-				{likes.length > 0 ? (
+				{post.likes.length > 0 ? (
 					<div
 						className='likes-counter'
 						onClick={toggleLikeHovering}
@@ -197,12 +232,12 @@ const IndividualPost = ({
 						onMouseOut={handleLikeMouseOut}
 					>
 						<i className='fa-solid fa-thumbs-up'>
-							<span className='fa'>{likes.length}</span>
+							<span className='fa'>{post.likes.length}</span>
 						</i>
 					</div>
 				) : null}
 
-				{laughs.length > 0 ? (
+				{post.laughs.length > 0 ? (
 					<div
 						className='likes-counter'
 						onClick={toggleLaughHovering}
@@ -210,7 +245,7 @@ const IndividualPost = ({
 						onMouseOut={handleLaughMouseOut}
 					>
 						<i className='fa-solid fa-face-laugh-squint'>
-							<span className='fa'>{laughs.length}</span>
+							<span className='fa'>{post.laughs.length}</span>
 						</i>
 					</div>
 				) : null}
@@ -220,7 +255,7 @@ const IndividualPost = ({
 				{likeHovering && (
 					<div className='likes-display'>
 						{' '}
-						{likes.map((like) => (
+						{post.likes.map((like) => (
 							<div key={like.name}>{like.name}</div>
 						))}{' '}
 					</div>
@@ -228,7 +263,7 @@ const IndividualPost = ({
 				{laughHovering && (
 					<div className='likes-display'>
 						{' '}
-						{laughs.map((laugh) => (
+						{post.laughs.map((laugh) => (
 							<div key={laugh.name}>{laugh.name}</div>
 						))}{' '}
 					</div>
@@ -250,13 +285,26 @@ const IndividualPost = ({
 						<span className='fa'>Laugh</span>
 					</i>
 				</span>
-				<span onClick={navigateComments}>
+				{/* <span onClick={navigateComments}> */}
+				<span onClick={toggleComments}>
 					<i className='fa-solid fa-comments likes hover'>
 						{' '}
-						<span className='fa'>Comments {comments.length}</span>
+						<span className='fa'>Comments {post.comments.length}</span>
 					</i>
 				</span>
 			</div>
+			<CommentForm
+				postId={post._id}
+				user={post.user}
+				setShowComments={setShowComments}
+				showComments={showComments}
+			/>
+
+			{showComments && post.comments.length > 0
+				? post.comments.map((comment) => (
+						<Comment key={comment._id} comment={comment} postId={post._id} />
+				  ))
+				: null}
 		</div>
 	);
 };
@@ -273,6 +321,7 @@ IndividualPost.propTypes = {
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
+	test: state.post,
 });
 
 export default connect(mapStateToProps, {

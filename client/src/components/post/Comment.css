@@ -1,10 +1,10 @@
 .comment{
-    margin-top: 1rem;
+    margin: 1rem auto;
 	width: 80%;
-	background-color: #3f474e;
-
+	
+background-color: #626D78 !important;
 	border-radius: 2rem;
-	/* border: #f4f4f4 solid 1px; */
+	
 }
 
 .comment-banner{
@@ -19,6 +19,7 @@
 
 	line-height: 1.5;
 	white-space: pre-wrap;
+	padding-bottom: 1rem;
 }
 
 .comment-buttons{

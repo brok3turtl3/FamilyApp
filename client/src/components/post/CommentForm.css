@@ -1,20 +1,26 @@
 .submit-comment{
-    width: 80%;
+    width: 100%;
 	background-color: #3f474e;
 	/* border: #f4f4f4 solid 1px; */
 	display: flex;
 	border-radius: 2rem;
 	flex-direction: column;
+	margin: 0 auto;
 }
 
 .comment-field{
     display: flex;
-	padding: 1rem;
+		width: 100%;
+		
+}
+
+#text::placeholder{
+	color: white;
 }
 
 .post-buttons{
     margin-bottom: 1rem;
-	margin-right: 2rem;
+	/* margin-right: 2rem; */
 	text-align: right;
 	padding-top: .2rem;
 }

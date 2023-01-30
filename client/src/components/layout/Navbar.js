@@ -72,11 +72,12 @@ const Navbar = ({
 								className='notification'
 								onClick={() => {
 									setshowNotifications(!showNotifications);
-									navigate(`/posts/${notification.postId}`);
+									navigate(`/posts`);
+
 									deleteNotification(notification._id);
 								}}
 							>
-								{`${notification.name} ${notification.type}`}{' '}
+								<a href={`#${notification.postId}`}>{`${notification.name} ${notification.type}`}{' '}</a>
 							</div>
 						))}{' '}
 					</div>

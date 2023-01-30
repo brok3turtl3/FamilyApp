@@ -52,7 +52,7 @@ router.post(
 //ACCESS    Private
 router.get('/', auth, async (req, res) => {
 	try {
-		const posts = await Post.find().sort({ date: -1 });
+		const posts = await Post.find().sort({ date: -1 }).limit(100);
 		res.json(posts);
 	} catch (error) {
 		console.error(error.message);
@@ -203,6 +203,7 @@ router.post(
 			post.comments.unshift(newComment);
 
 			await post.save();
+			//res.json(post.comments);
 			res.json(post.comments);
 		} catch (error) {
 			console.error(error.message);

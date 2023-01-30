@@ -1,6 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 
 import Hourglass from '../layout/Hourglass';
 import IndividualPost from './IndividualPost';
@@ -9,8 +10,14 @@ import PostForm from './PostForm';
 import './Posts.css';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
+	
+	
+
 	useEffect(() => {
+		
 		getPosts();
+		
+		
 	}, [getPosts]);
 
 	return (
@@ -28,7 +35,11 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 							<PostForm />
 							<div className='main-posts'>
 								{posts.length > 0 ? (
-									posts.map((post) => <IndividualPost key={post._id} post={post} />)
+									posts.map((post, index) => (<div id={post._id} key={post._id}>
+												<IndividualPost post={post} index={index}/>
+											</div>)
+										
+									)
 								) : (
 									<h4>No posts found...</h4>
 								)}

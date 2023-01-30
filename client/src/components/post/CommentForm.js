@@ -10,7 +10,10 @@ import {
 } from '../../actions/notifications';
 import './CommentForm.css';
 
-const CommentForm = ({
+const CommentForm = ( {
+	refresh,
+	setShowComments,
+	showComments,
 	addComment,
 	postId,
 	addNotification,
@@ -27,6 +30,7 @@ const CommentForm = ({
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addComment(postId, { text });
+		setShowComments(!showComments)
 
 		if (user !== auth.user._id) {
 			addNotification(postId, 'commented on your post');
@@ -39,7 +43,7 @@ const CommentForm = ({
 		<Fragment>
 			<form className='submit-comment' onSubmit={handleSubmit}>
 				<div className='comment-field'>
-					<label htmlFor='text'>MESSAGE:</label>
+					
 
 					<textarea
 						name='text'
@@ -53,13 +57,12 @@ const CommentForm = ({
 				</div>
 				<Alert />
 				<div className='post-buttons'>
-					<Link to='/posts' className='btn'>
-						Back to Forums
-					</Link>
+					
 					<button className='btn' type='submit'>
 						Submit Comment
 					</button>
 				</div>
+				<div>{refresh}</div>
 			</form>
 		</Fragment>
 	);
