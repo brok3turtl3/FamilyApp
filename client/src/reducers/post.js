@@ -5,15 +5,13 @@ import {
 	DELETE_POST,
 	UPDATE_LIKES,
 	UPDATE_LAUGHS,
-	GET_POST,
+	
 	ADD_COMMENT,
-	DELETE_COMMENT,
-	EDIT_POST
+	DELETE_COMMENT
 } from '../actions/types';
 
 const initialState = {
 	posts: [],
-	post: null,
 	loading: true,
 	error: {},
 };
@@ -28,24 +26,14 @@ export default function (state = initialState, action) {
 				posts: payload,
 				loading: false,
 			};
-		case GET_POST:
-			return {
-				...state,
-				post: payload,
-				loading: false,
-			};
+		
 		case ADD_POST:
 			return {
 				...state,
 				posts: [payload, ...state.posts],
 				loading: false,
 			};
-			case EDIT_POST:
-				return {
-					...state,
-					post: payload,
-					loading: false
-				}
+			
 		case DELETE_POST:
 			return {
 				...state,

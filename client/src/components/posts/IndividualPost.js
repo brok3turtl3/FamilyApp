@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import ReactPlayer from 'react-player';
@@ -78,9 +78,7 @@ const IndividualPost = ({
 		setlaughHovering(!likeHovering);
 	};
 
-	const navigateComments = () => {
-		navigate(`/posts/${post._id}`);
-	};
+	
 
 	const handleLikeClick = () => {
 		toggleLike(post._id);
@@ -285,7 +283,7 @@ const IndividualPost = ({
 						<span className='fa'>Laugh</span>
 					</i>
 				</span>
-				{/* <span onClick={navigateComments}> */}
+				
 				<span onClick={toggleComments}>
 					<i className='fa-solid fa-comments likes hover'>
 						{' '}

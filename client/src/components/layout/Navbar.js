@@ -19,12 +19,12 @@ const Navbar = ({
 }) => {
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			updateNotifications();
-		}, 3000);
-		return () => clearInterval(interval);
-	}, []);
+	// useEffect(() => {
+	// 	const interval = setInterval(() => {
+	// 		updateNotifications();
+	// 	}, 3000);
+	// 	return () => clearInterval(interval);
+	// }, []);
 
 	const [showNotifications, setshowNotifications] = useState();
 

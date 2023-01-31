@@ -8,10 +8,12 @@ import {
 	POST_ERROR,
 	UPDATE_LIKES,
 	UPDATE_LAUGHS,
-	GET_POST,
+	GET_POST_REQUEST,
+	GET_POST_SUCCESS,
 	ADD_COMMENT,
 	DELETE_COMMENT,
-	EDIT_POST,
+	EDIT_POST_REQUEST,
+	EDIT_POST_SUCCESS
 } from './types';
 
 //GET ALL POSTS
@@ -38,10 +40,11 @@ export const getPosts = () => async (dispatch) => {
 
 export const getPost = (postId) => async (dispatch) => {
 	try {
+		dispatch({ type: GET_POST_REQUEST });
 		const res = await axios.get(`/api/posts/${postId}`);
 
 		dispatch({
-			type: GET_POST,
+			type: GET_POST_SUCCESS,
 			payload: res.data,
 		});
 	} catch (error) {
@@ -117,6 +120,9 @@ export const addPost = (formData) => async (dispatch) => {
 //EDIT POST
 export const editPost = (postId, text) => async (dispatch) => {
 	try {
+		dispatch({
+			type: EDIT_POST_REQUEST,
+		});
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
@@ -126,7 +132,7 @@ export const editPost = (postId, text) => async (dispatch) => {
 		const res = await axios.put(`/api/posts/edit/${postId}`, text, config);
 
 		dispatch({
-			type: EDIT_POST,
+			type: EDIT_POST_SUCCESS,
 			payload: res.data,
 		});
 
@@ -257,7 +263,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 
 		dispatch({
 			type: ADD_COMMENT,
-			payload: { postId, comments: res.data}
+			payload: { postId, comments: res.data },
 		});
 
 		dispatch(setAlert('Comment Added', 'success'));
@@ -279,7 +285,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
 
 		dispatch({
 			type: DELETE_COMMENT,
-			payload: { postId, comments: res.data}
+			payload: { postId, comments: res.data },
 		});
 
 		dispatch(setAlert('Comment Deleted', 'success'));

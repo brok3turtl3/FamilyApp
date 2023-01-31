@@ -1,20 +1,34 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import Hourglass from '../layout/Hourglass';
 import { editPost, getPost } from '../../actions/post';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './EditPostForm.css';
 
-const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
+import { EDIT_POST_RESET } from '../../actions/types';
+
+const EditPostForm = ({ editPost, getPost, auth, edit: { post, loading, success, postEdit } }) => {
 	const { id } = useParams();
-	const [text, setText] = useState();
+	const [text, setText] = useState('');
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
+	
 
 	useEffect(() => {
-		getPost(id);
-		setText(post.text)
-	}, []);
+		if(postEdit.success === true){
+			dispatch({ type: EDIT_POST_RESET})
+			navigate('/posts')
+			return
+		}else	if (!post.text || post._id !== id) {
+			getPost(id);
+		}
+		else{
+			setText(post.text)
+		}
+	}, [dispatch, post, id, getPost, success, postEdit.success]);
 
 	const handleChange = (e) => {
 		setText(e.target.value);
@@ -24,6 +38,7 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 		e.preventDefault();
 		editPost(id, { text });
 		setText('');
+		
 	};
 
 	return loading || post === null ? (
@@ -70,13 +85,14 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 
 EditPostForm.propTypes = {
 	getPost: PropTypes.func.isRequired,
-	post: PropTypes.object.isRequired,
+	edit: PropTypes.object.isRequired,
 	editPost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-	post: state.post,
+	
 	auth: state.auth,
+	edit: state.edit
 });
 
 export default connect(mapStateToProps, { getPost, editPost })(EditPostForm);
