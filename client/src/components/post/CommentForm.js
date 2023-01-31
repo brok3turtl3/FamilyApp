@@ -30,7 +30,7 @@ const CommentForm = ( {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addComment(postId, { text });
-		setShowComments(!showComments)
+		setShowComments(true)
 
 		if (user !== auth.user._id) {
 			addNotification(postId, 'commented on your post');
