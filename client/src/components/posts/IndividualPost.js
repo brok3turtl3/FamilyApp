@@ -26,23 +26,23 @@ const IndividualPost = ({
 	index,
 	test,
 	auth,
-	// post: {
-	// 	_id,
-	// 	subject,
-	// 	text,
-	// 	name,
-	// 	user,
-	// 	likes,
-	// 	laughs,
-	// 	viewed,
-	// 	comments,
-	// 	date,
-	// 	image,
-	// 	videoLink,
-	// 	video,
-	// 	images,
-	// 	posterImage,
-	// },
+	post: {
+		_id,
+		subject,
+		text,
+		name,
+		user,
+		likes,
+		laughs,
+		viewed,
+		comments,
+		date,
+		image,
+		videoLink,
+		video,
+		images,
+		posterImage,
+	},
 }) => {
 	const [likeHovering, setlikeHovering] = useState();
 	const [laughHovering, setlaughHovering] = useState();
@@ -50,7 +50,10 @@ const IndividualPost = ({
 	const [originalImageSrc, setOriginalImageSrc] = useState('');
 	const [showComments, setShowComments] = useState(false);
 
+	
+	
 	const post = test.posts[index];
+	
 
 	const navigate = useNavigate();
 

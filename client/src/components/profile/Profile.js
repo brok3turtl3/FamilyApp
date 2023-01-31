@@ -59,14 +59,14 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 								>
 									Images
 								</button>
-								<button
+								{/* <button
 									className='btn'
 									onClick={() => {
 										setActivePage(<Posts id={id} />);
 									}}
 								>
 									Posts
-								</button>
+								</button> */}
 							</div>
 							<br />
 							{activePage === undefined ? (

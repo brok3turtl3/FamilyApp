@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
+import { getPosts } from '../../actions/post';
 import { PropTypes } from 'prop-types';
 import './Navbar.css';
 
@@ -16,6 +17,7 @@ const Navbar = ({
 	logout,
 	deleteNotification,
 	updateNotifications,
+	getPosts
 }) => {
 	const navigate = useNavigate();
 
@@ -73,6 +75,7 @@ const Navbar = ({
 								onClick={() => {
 									setshowNotifications(!showNotifications);
 									navigate(`/posts`);
+									getPosts()
 
 									deleteNotification(notification._id);
 								}}
@@ -119,6 +122,7 @@ Navbar.propTypes = {
 	logout: PropTypes.func.isRequired,
 	deleteNotification: PropTypes.func.isRequired,
 	updateNotifications: PropTypes.func.isRequired,
+	getPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -130,4 +134,5 @@ export default connect(mapStateToProps, {
 	logout,
 	deleteNotification,
 	updateNotifications,
+	getPosts
 })(Navbar);
