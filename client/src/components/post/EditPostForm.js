@@ -9,10 +9,11 @@ import './EditPostForm.css';
 
 const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 	const { id } = useParams();
-	const [text, setText] = useState('');
+	const [text, setText] = useState();
 
 	useEffect(() => {
 		getPost(id);
+		setText(post.text)
 	}, []);
 
 	const handleChange = (e) => {
@@ -37,7 +38,7 @@ const EditPostForm = ({ editPost, getPost, auth, post: { post, loading } }) => {
 								<div className='subject'>
 									<div>{post.name}</div>
 									<div>{post.date.substring(0, 10)}</div>
-									<div>{post.text}</div>
+									
 								</div>
 								<div className='edit-post-field'>
 									<textarea
