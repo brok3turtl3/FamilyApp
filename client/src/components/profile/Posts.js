@@ -9,7 +9,7 @@ const Posts = ({id, post: {posts}}) => {
     <Fragment>
     <div>Posts</div>
     <div className="posts-inner">
-    {posts.filter(post => post.user === id).map((post, index) => {
+    {posts.filter(post => post.user === id).map((post) => {
       return <IndividualPost key={post._id} post={post} />
     })}
     </div>

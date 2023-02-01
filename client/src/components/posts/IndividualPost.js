@@ -52,7 +52,7 @@ const IndividualPost = ({
 
 	
 	
-	const post = test.posts[index];
+	// const post = test.posts[index];
 	
 
 	const navigate = useNavigate();
@@ -84,18 +84,18 @@ const IndividualPost = ({
 	
 
 	const handleLikeClick = () => {
-		toggleLike(post._id);
+		toggleLike(_id);
 
-		if (post.user !== auth.user._id) {
-			addNotification(post._id, 'liked your post');
+		if (user !== auth.user._id) {
+			addNotification(_id, 'liked your post');
 		}
 	};
 
 	const handleLaughClick = () => {
-		toggleLaugh(post._id);
+		toggleLaugh(_id);
 
-		if (post.user !== auth.user._id) {
-			addNotification(post._id, 'laughed at your post');
+		if (user !== auth.user._id) {
+			addNotification(_id, 'laughed at your post');
 		}
 	};
 
@@ -132,34 +132,34 @@ const IndividualPost = ({
 				</div>
 			) : null}
 			<div className='banner'>
-				<Link to={`/profile/${post.user}`}>
+				<Link to={`/profile/${user}`}>
 					<div className='poster-img-thumb '>
 						<img
 							loading='lazy'
-							src={`${post.posterImage}`}
+							src={`${posterImage}`}
 							alt='PH'
 							className='profile-link'
 						></img>
 					</div>
 				</Link>
 				<div className='poster-info'>
-					<div>{post.name}</div>
-					<div>{post.date.substring(0, 10)}</div>
+					<div>{name}</div>
+					<div>{date.substring(0, 10)}</div>
 				</div>
 
 				<div className='post-delete'>
-					{!auth.loading && post.user === auth.user._id && (
+					{!auth.loading && user === auth.user._id && (
 						<Fragment>
 							<Link
 								style={linkStyle}
-								to={`/posts/edit/${post._id}`}
+								to={`/posts/edit/${_id}`}
 								type='button'
 							>
 								<i className='fa-solid fa-pen hover'></i>
 							</Link>
 
 							<i
-								onClick={(e) => deletePost(post._id)}
+								onClick={(e) => deletePost(_id)}
 								className='fa-solid fa-trash hover-danger'
 							>
 								{' '}
@@ -181,15 +181,15 @@ const IndividualPost = ({
 					</a>
 				)}
 			>
-				<div className='body'>{post.text}</div>
+				<div className='body'>{text}</div>
 			</Linkify>
-			{post.videoLink ? (
-				<ReactPlayer url={post.videoLink} width='100%' />
+			{videoLink ? (
+				<ReactPlayer url={videoLink} width='100%' />
 			) : null}
-			{post.video ? (
+			{video ? (
 				<div>
 					<video
-						src={post.video}
+						src={video}
 						title='Video for Post'
 						width='100%'
 						height='auto'
@@ -198,17 +198,17 @@ const IndividualPost = ({
 					></video>
 				</div>
 			) : null}
-			{post.image ? (
+			{image ? (
 				<img
 					loading='lazy'
 					className='post-image'
-					src={`${post.image}`}
+					src={`${image}`}
 					alt='ph'
 				></img>
 			) : null}
-			{post.images.length > 0 ? (
+			{images.length > 0 ? (
 				<div className='images-comtainer'>
-					{post.images.map((image, index) => {
+					{images.map((image, index) => {
 						return (
 							<img
 								onClick={(e) => showImage(e)}
@@ -225,7 +225,7 @@ const IndividualPost = ({
 
 			{/* LIKE AND LAUGHS COUNTERS */}
 			<div className='reaction-counters'>
-				{post.likes.length > 0 ? (
+				{likes.length > 0 ? (
 					<div
 						className='likes-counter'
 						onClick={toggleLikeHovering}
@@ -233,12 +233,12 @@ const IndividualPost = ({
 						onMouseOut={handleLikeMouseOut}
 					>
 						<i className='fa-solid fa-thumbs-up'>
-							<span className='fa'>{post.likes.length}</span>
+							<span className='fa'>{likes.length}</span>
 						</i>
 					</div>
 				) : null}
 
-				{post.laughs.length > 0 ? (
+				{laughs.length > 0 ? (
 					<div
 						className='likes-counter'
 						onClick={toggleLaughHovering}
@@ -246,7 +246,7 @@ const IndividualPost = ({
 						onMouseOut={handleLaughMouseOut}
 					>
 						<i className='fa-solid fa-face-laugh-squint'>
-							<span className='fa'>{post.laughs.length}</span>
+							<span className='fa'>{laughs.length}</span>
 						</i>
 					</div>
 				) : null}
@@ -256,7 +256,7 @@ const IndividualPost = ({
 				{likeHovering && (
 					<div className='likes-display'>
 						{' '}
-						{post.likes.map((like) => (
+						{likes.map((like) => (
 							<div key={like.name}>{like.name}</div>
 						))}{' '}
 					</div>
@@ -264,7 +264,7 @@ const IndividualPost = ({
 				{laughHovering && (
 					<div className='likes-display'>
 						{' '}
-						{post.laughs.map((laugh) => (
+						{laughs.map((laugh) => (
 							<div key={laugh.name}>{laugh.name}</div>
 						))}{' '}
 					</div>
@@ -290,20 +290,20 @@ const IndividualPost = ({
 				<span onClick={toggleComments}>
 					<i className='fa-solid fa-comments likes hover'>
 						{' '}
-						<span className='fa'>Comments {post.comments.length}</span>
+						<span className='fa'>Comments {comments.length}</span>
 					</i>
 				</span>
 			</div>
 			<CommentForm
-				postId={post._id}
-				user={post.user}
+				postId={_id}
+				user={user}
 				setShowComments={setShowComments}
 				showComments={showComments}
 			/>
 
-			{showComments && post.comments.length > 0
-				? post.comments.map((comment) => (
-						<Comment key={comment._id} comment={comment} postId={post._id} />
+			{showComments && comments.length > 0
+				? comments.map((comment) => (
+						<Comment key={comment._id} comment={comment} postId={_id} />
 				  ))
 				: null}
 		</div>
