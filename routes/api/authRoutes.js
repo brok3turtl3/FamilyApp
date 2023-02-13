@@ -73,6 +73,9 @@ router.post(
 				},
 			};
 
+			user.lastLogIn = Date.now()
+			await user.save()
+
 			jwt.sign(
 				payload,
 				process.env.JWT_SECRET,
