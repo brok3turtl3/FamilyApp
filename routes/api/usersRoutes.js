@@ -95,6 +95,33 @@ router.post(
 	}
 );
 
+//ROUTE   	DELETE api/users
+//PURPOSE   Remove User
+//ACCESS  	Private
+
+router.delete('/:userId', auth, async (req, res) => {
+	try {
+		//CHECK TO SEE IF POST EXISTS
+		const user = await User.findById(req.params.userId);
+		if (!user) {
+			return res.status(404).json({ msg: 'User not found' });
+		}
+		if(req.user.id !== req.params.userId){
+			return res.status(404).json({msg: "You are not authorized to delete this account"})
+		}
+		
+		//REMOVE POST
+		await user.remove();
+		res.json({ msg: 'User removed' });
+	} catch (error) {
+		console.error(error.message);
+		if (error.kind === 'ObjectId') {
+			return res.status(404).json({ msg: 'User not found' });
+		}
+		res.status(500).send('Server Error');
+	}
+});
+
 //ENDPOINT  GET api/users
 //PURPOSE   Retrieve all users
 //ACCESS    Private

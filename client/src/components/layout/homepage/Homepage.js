@@ -8,12 +8,14 @@ import Alert from '../Alert';
 import './Homepage.css';
 import { getImages } from '../../../actions/images';
 import { getPosts } from '../../../actions/post';
+import { deleteUser } from '../../../actions/auth';
 
 
 const Homepage = ({
 	getCurrentProfile,
 	getPosts,
 	getImages,
+	deleteUser,
 	auth: { user },
 	profile: { profile, loading },
 	images: {images}
@@ -29,6 +31,10 @@ const Homepage = ({
 	useEffect(() => {
 		getPosts();
 	}, [getPosts])
+
+	const handleDeleteUserClick = () => {
+		deleteUser()
+	}
 
 	return loading && profile === null ? (
 		<Fragment>
@@ -62,6 +68,7 @@ const Homepage = ({
 										Edit Account Info
 									</Link>
 								</div>
+								{/* <div><button onClick={handleDeleteUserClick} className='btn'>DELETE ACCOUNT</button></div> */}
 								<div className='medium'>
 									<Alert />
 								</div>
@@ -107,6 +114,6 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, getImages, getPosts })(
+export default connect(mapStateToProps, { getCurrentProfile, getImages, getPosts, deleteUser })(
 	Homepage
 );

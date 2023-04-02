@@ -106,6 +106,14 @@ export const logout = () => (dispatch) => {
 	dispatch({ type: LOGOUT });
 };
 
+//DELETE USER
+export const deleteUser = () => (dispatch) => {
+	console.log('Delete User fired!')
+	dispatch({ type: CLEAR_PROFILE });
+	dispatch({ type: CLEAR_NOTIFICATIONS });
+	dispatch({ type: LOGOUT });
+}
+
 //FORGOTTEN PASSWORD
 export const forgotPassword = (email) => async (dispatch) => {
 	const config = {
